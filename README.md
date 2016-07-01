@@ -4,7 +4,6 @@
 
 ```
 client/
-  [bower_components go here]
   components/
   routes/
     -routes.jsx
@@ -16,7 +15,6 @@ client/
       [-styles.css]
       src/
         -styles.css
-    libs/
   views/
     -index.js
     welcome/
