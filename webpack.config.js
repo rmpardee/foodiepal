@@ -1,14 +1,15 @@
 module.exports = {
-     entry: 'client/app.js',
-     output: {
-         path: 'client/',
-         filename: 'app.bundle.js'
-     },
-     module: {
-         loaders: [{
-             test: /\.js$/,
-             exclude: /node_modules/,
-             loader: 'babel-loader',
-         }]
-     }
- };
+  entry: './client/app.js',
+  output: {
+    path: './client/',
+    filename: 'app.bundle.js'
+  },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: { presets: [ 'es2015', 'react' ] }
+    }]
+  }
+};
