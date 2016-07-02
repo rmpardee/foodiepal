@@ -2,10 +2,15 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var mongoose = require('mongoose'); 
+var mongoose = require('mongoose');
+
+var middleware = require('./config/middleware.js'); 
 
 // configuration ===========================================
-    
+ 
+//Set up Middleware and Routes
+middleware(app, express);
+
 // db files
 var db = require('./db/db');
 
@@ -22,6 +27,8 @@ var port = process.env.PORT || 3000;
 
 
 
+
+//====For Posible Later Use===============
 // parse application/json 
 app.use(bodyParser.json()); 
 
@@ -36,16 +43,22 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
+//====For Posible Later Use===============
 
-// routes ==================================================
+
+
+
+// routes 
 require('./app/routes')(app); // configure our routes
 
-// start app ===============================================
+
+
+
 // startup our app at http://localhost:3000
 app.listen(port);               
 
 // App server confirmation                     
 console.log('FoodiePal running on port: ' + port);
 
-// expose app           
+// expose app - use for testing         
 exports = module.exports = app; 
