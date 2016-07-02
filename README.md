@@ -1,5 +1,10 @@
 # foodiepal
 
+### Project Wiki
+
+For further documentation beyond the README, please see our wiki:
+https://github.com/protolux/foodiepal/wiki
+
 ### Application Structure
 
 ```
