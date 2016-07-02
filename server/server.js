@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var morgan = require('morgan');
 // var methodOverride = require('method-override'); //Can add to package.json if needed
 var mongoose = require('mongoose');
 
@@ -30,6 +31,9 @@ var port = process.env.PORT || 3000;
 
 
 //====For Posible Later Use===============
+// used for logging incoming request
+app.use(morgan('dev'));
+
 // parse application/json 
 app.use(bodyParser.json()); 
 
@@ -42,15 +46,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 // app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public')); 
+// set the static files location /client/img will be /img for users
+app.use(express.static(__dirname + '/client')); 
 //====For Posible Later Use===============
 
 
 
 
 // Configure routes 
-// require('./food/foodRoutes')(app);
+require('./food/foodRoutes')(app);
 // require('./user/userRoutes')(app);
 
 
