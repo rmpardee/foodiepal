@@ -1,46 +1,40 @@
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { Router, Route } from 'react-router';
 
-const mount = document.getElementById('app');
+import initialState from './initialstate';
+
+import rootReducer from './reducers/';
+
+import App from './containers/app';
+
+const mount = document.getElementById('app')
 
 
 
-let initialState = {
-  user: {
-    name: '',
-    categories: {
-      cheese: {
-        brie: {
-          notes: ''
-        }
-      }
-    }
-  }
-};
 
-function foodiePal(state = initialState, action) {
-  switch (action.type) {
-    case 'ADD_NOTES':
-      var entryWithNotes = state;
-      state.user.categories.cheese.brie.notes = 'testing';
-      return entryWithNotes;
-    default:
-      return state;
-  }
-}
-
-let store = createStore(foodiePal);
+let store = createStore(rootReducer);
 
 store.subscribe(() =>
   console.log(store.getState())
-);
+)
 
-store.dispatch({ type: 'ADD_NOTES' });
+store.dispatch({ type: 'ADD_ENTRY_REQUEST' });
+store.dispatch({ type: 'ADD_ENTRY_SUCCESS' });
+store.dispatch({ type: 'ADD_ENTRY_FAILURE' });
 
-ReactDOM.render(
+
+
+
+
+
+
+render (
   <Provider store={store} key="provider">
-    { component }
+    <App />
   </Provider>
   , mount
 );
+

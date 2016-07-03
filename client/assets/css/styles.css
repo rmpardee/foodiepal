@@ -1,0 +1,11 @@
+.portal {
+  text-indent: -9999em;
+}
+
+.portal a {
+  background: url('../img/logo-large.png') no-repeat top center;
+  background-size: contain;
+  display: block;
+  height: 24px;
+  width: 100%;
+}
