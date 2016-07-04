@@ -1,7 +1,9 @@
 var morgan = require('morgan'); // used for logging incoming request
 var bodyParser = require('body-parser');
 // var methodOverride = require('method-override'); //Not needed yet
-var helpers = require('./helpers.js'); //Custom middleware
+// var helpers = require('./helpers.js'); //Custom middleware
+var foodRoutes = require('../food/foodRoutes.js');
+// var userRoutes = require('../user/userRoutes.js');
 
 
 module.exports = function (app, express) {
@@ -14,8 +16,10 @@ module.exports = function (app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
+  //inject routes into Router
+  // routes(userRouter);
+  foodRoutes(foodRouter);
 
-  // app.use('/api/users', userRouter); // use user router for all user requests
 
   // authentication middleware used to decode token and made available on the request
   //app.use('/api/links', helpers.decode);
@@ -23,7 +27,4 @@ module.exports = function (app, express) {
   // app.use(helpers.errorLogger);
   // app.use(helpers.errorHandler);
 
-  // inject our routers into their respective route files
-  // require('../users/userRoutes.js')(userRouter);
-  require('../food/foodRoutes.js')(foodRouter);
 };
