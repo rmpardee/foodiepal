@@ -1,6 +1,7 @@
 var server = require('../../server/server.js');
 var expect = require('../../node_modules/chai/chai').expect;
 var stubs = require('./stubs.js');
+var handler = require('../../server/food/foodRoutes.js');
 
 
 // Conditional async testing
@@ -13,26 +14,20 @@ function waitForThen(test, cb) {
 
 describe('Node Server Request Listener Function', function() {
 
-  it('Should listen on port 3000', function() {
-    var res = new stubs.response();
-    expect(res._ended).to.equal(true);
-  });
-
-
   it('Should answer GET requests for food/foodRoutes with a 200 status code', function() {
     // This is a fake server request. Normally, the server would provide this,
     // but we want to test our function's behavior totally independent of the server code
     var req = new stubs.request('/food/foodRoutes', 'GET');
     var res = new stubs.response();
 
-    handler.requestHandler(req, res);
+    handler(req, res);
 
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
   });
 
   xit('Should send back parsable stringified JSON', function() {
-    var req = new stubs.request('/classes/room1', 'GET');
+    var req = new stubs.request('/food/foodRoutes', 'GET');
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -42,7 +37,7 @@ describe('Node Server Request Listener Function', function() {
   });
 
   xit('Should send back an object', function() {
-    var req = new stubs.request('/classes/room1', 'GET');
+    var req = new stubs.request('/food/foodRoutes', 'GET');
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -53,7 +48,7 @@ describe('Node Server Request Listener Function', function() {
   });
 
   xit('Should send an object containing a `results` array', function() {
-    var req = new stubs.request('/classes/room1', 'GET');
+    var req = new stubs.request('/food/foodRoutes', 'GET');
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -64,12 +59,12 @@ describe('Node Server Request Listener Function', function() {
     expect(res._ended).to.equal(true);
   });
 
-  xit('Should accept posts to /classes/room1', function() {
+  xit('Should accept posts to /food/foodRoutes', function() {
     var stubMsg = {
-      username: 'Jono',
-      message: 'Do my bidding!'
+      catagory: 'Cheese',
+      subcatagory: 'Cheddar'
     };
-    var req = new stubs.request('/classes/room1', 'POST', stubMsg);
+    var req = new stubs.request('/food/foodRoutes', 'POST', stubMsg);
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -85,10 +80,10 @@ describe('Node Server Request Listener Function', function() {
 
 xit('Should respond with messages that were previously posted', function() {
     var stubMsg = {
-      username: 'Jono',
-      message: 'Do my bidding!'
+      catagory: 'Cheese',
+      subcatagory: 'Cheddar'
     };
-    var req = new stubs.request('/classes/room1', 'POST', stubMsg);
+    var req = new stubs.request('/food/foodRoutes', 'POST', stubMsg);
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -96,7 +91,7 @@ xit('Should respond with messages that were previously posted', function() {
     expect(res._responseCode).to.equal(201);
 
     // Now if we request the log for that room the message we posted should be there:
-    req = new stubs.request('/classes/room1', 'GET');
+    req = new stubs.request('/food/foodRoutes', 'GET');
     res = new stubs.response();
 
     handler.requestHandler(req, res);
@@ -104,14 +99,14 @@ xit('Should respond with messages that were previously posted', function() {
     expect(res._responseCode).to.equal(200);
     var messages = JSON.parse(res._data).results;
     expect(messages.length).to.be.above(0);
-    expect(messages[0].username).to.equal('Jono');
-    expect(messages[0].message).to.equal('Do my bidding!');
+    expect(messages[0].catagory).to.equal('Cheese');
+    expect(messages[0].subcatagory).to.equal('Cheddar');
     expect(res._ended).to.equal(true);
   });
 
 
   xit('Should 404 when asked for a nonexistent file', function() {
-    var req = new stubs.request('/arglebargle', 'GET');
+    var req = new stubs.request('/food/foodRoutes', 'GET');
     var res = new stubs.response();
 
     handler.requestHandler(req, res);
