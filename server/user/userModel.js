@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    // bcrypt   = require('bcrypt-nodejs'),
+var mongoose = require('mongoose');
+    // bcrypt   = require('bcrypt-nodejs');
     // SALT_WORK_FACTOR  = 10;
 
 
@@ -17,9 +17,9 @@ var UserSchema = new mongoose.Schema({
 
   salt: String,
 
-  ancestors: [],
-
-  parent: null
+  ancestors: Array,
+  // unclear what the id of the parent will be, a string?
+  parent: String
 });
 
 // FOR FUTURE USE WITH AUTHENTICATION:
@@ -64,4 +64,4 @@ var UserSchema = new mongoose.Schema({
 //   });
 // });
 
-module.exports = mongoose.model('users', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

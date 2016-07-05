@@ -24,7 +24,7 @@ var port = process.env.PORT || 3000;
 //------!!----------------------
 // connect to mongoDB database 
 // (uncomment after establishing credentials in db/db.js)
-// mongoose.connect(db.url); 
+mongoose.connect(db.url); 
 //------!!----------------------
 
 
