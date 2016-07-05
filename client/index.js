@@ -1,39 +1,34 @@
+import 'babel-polyfill';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { combineReducers, createStore } from 'redux';
+import { 
+  combineReducers,
+  createStore, 
+  applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
 
-import initialState from './initialstate';
+import routes from './routes/index.js';
 
-import rootReducer from './reducers/';
+// import initialState from './initialstate';
 
-import App from './containers/app';
+import rootReducer from './reducers';
+
+import App from './components/app';
 
 const mount = document.getElementById('app')
+const store = applyMiddleware(thunk)(createStore)(rootReducer);
 
-
-
-
-let store = createStore(rootReducer);
-
-store.subscribe(() =>
-  console.log(store.getState())
-)
-
-store.dispatch({ type: 'ADD_ENTRY_REQUEST' });
-store.dispatch({ type: 'ADD_ENTRY_SUCCESS' });
-store.dispatch({ type: 'ADD_ENTRY_FAILURE' });
-
-
+console.log('GLOBAL INITIAL STATE:', store.getState());
 
 
 
 
 
 render (
-  <Provider store={store} key="provider">
-    <App />
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
   </Provider>
   , mount
 );
