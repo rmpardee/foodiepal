@@ -43,7 +43,8 @@ module.exports = function(app) {
     .post(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent categoryID is sent
-      var successResponse = foodControl.addEntry(req);
+      var successResponse = foodControl.addEntry(req.body);
+
       res.send(200, successResponse);
     });
 };

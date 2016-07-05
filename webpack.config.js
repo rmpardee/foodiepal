@@ -15,6 +15,16 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true,
+    contentBase: './client/'
+  },
+  proxy: {
+    '/api/*': {
+      target: 'http://localhost:3000',
+      bypass(req, res) {
+        return () ? '/index.html' : false;
+      }
+    }
   }
 };

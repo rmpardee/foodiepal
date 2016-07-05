@@ -20,7 +20,9 @@ class Detail extends Component {
       <div>
         This is a detail page
         <h3>{ subcat }</h3>
-        { this.props.children }
+        
+        <a href="add">Log New Entry</a>
+
         <h3>Your History for { subcat }</h3>
         <EntryList />
       </div>
