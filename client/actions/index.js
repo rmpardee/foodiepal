@@ -2,8 +2,10 @@
 
 import fetch from 'isomorphic-fetch';
 
-const API_URL = 'http://localhost:8080';
-const API_FOOD = `${API_URL}/api/food/`;
+import axios from 'axios'
+
+const API_URL = 'http://localhost:3000';
+const API_ENTRY = `${API_URL}/api/food/entry`;
 
 // Authentication
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -39,17 +41,52 @@ export function addEntry(entry) {
 }
 
 export function addEntryRequest(entry) {
-  return dispatch => {
+  // return dispatch => {
+  //   dispatch(addEntry(entry));
+
+  //   return fetch(API_ENTRY, {
+  //     method: 'POST',
+  //     body: JSON.stringify({entry}),
+  //     headers: {
+  //       "X-Custom-Header": "yes",
+  //       "Access-Control-Allow-Origin": "*"
+  //     }
+  //   }).then(response => {
+  //     response.JSON();
+  //   }).catch(err => {
+  //     console.error(err);
+  //   });
+  // }
+
+  // console.log('entry: ', entry);
+
+  // const request = axios({
+  //   method: 'post',
+  //   url: API_ENTRY,
+  //   data: entry,
+  //   contentType: 'application/json'
+  // });
+
+  // return {
+  //   type: ADD_ENTRY_REQUEST,
+  //   payload: request
+  // }
+
+  return function(dispatch) {
     dispatch(addEntry(entry));
 
-    return fetch(API_FOOD, {
-      method: 'POST',
-      body: JSON.stringify({entry})
-    }).then(response => {
-      response.JSON();
-    }).catch(err => {
-      console.error(err);
-    });
+    return axios({
+      method: 'post',
+      url: API_ENTRY,
+      data: entry,
+      contentType: 'application/json'
+    })
+    .then(function(response) {
+      console.log('success!', response);
+    })
+    .catch(function(response) {
+      console.error('le error:', response);
+    })
   }
 }
 

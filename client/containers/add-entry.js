@@ -9,7 +9,11 @@ class AddEntry extends Component {
 
     this.state = {
       type: '',
-      notes: ''
+      notes: '',
+      rating: 5,
+      userID: 1,
+      categoryID: 'C1',
+      subcatID: 'S1'
     }
 
     this.onTypeChange = this.onTypeChange.bind(this);
