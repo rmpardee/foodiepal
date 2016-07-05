@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 // Category Model
 var CategorySchema = new mongoose.Schema({
   name: {
@@ -6,9 +8,9 @@ var CategorySchema = new mongoose.Schema({
     unique: true
   },
 
-  ancestors: [],
-
-  parent: null
+  ancestors: Array,
+  // unclear what the id of the parent will be, a string?
+  parent: String
 });
 
 // Subcategory Model
@@ -21,9 +23,9 @@ var SubcatSchema = new mongoose.Schema({
 
   description: String,
 
-  // ancestors: [],
-
-  // parent: null
+  ancestors: Array,
+  // unclear what the id of the parent will be, a string?
+  parent: String
 });
 
 // Entry Model
@@ -35,12 +37,11 @@ var EntrySchema = new mongoose.Schema({
     required: true
   },
 
-  rating: Number
+  rating: Number,
 
-
-  // ancestors: [],
-
-  // parent: null
+  ancestors: Array,
+  // unclear what the id of the parent will be, a string?
+  parent: String
 });
 
 module.exports.CategorySchema = mongoose.model('Category', CategorySchema);
