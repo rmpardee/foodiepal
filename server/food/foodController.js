@@ -1,5 +1,4 @@
-// grab the food model
-// var Food = require('./foodModel.js'); //Uncomment once foodModel is ready to export
+var Food = require('./foodModel.js');
 
 //this adds and modifies food
 module.exports = {
@@ -14,25 +13,64 @@ module.exports = {
   ],
   // ===Testing & Debugging============
 
+  // Same function will work for getting subcatagories and entries
+  getDBItems: function (parentID) {
+    // TO CHANGE: we'll have to see how the parent parentID is sent
+    Food.Subcat.find({parent: parentID}, function(err, subcats) {
 
-  //adds a food item to the db
-  addFood: function (food) {
-    //add food to db
-    console.log('testing add food');
-    return 'testing return in addFood';
+      // if there is an error retrieving, send the error. 
+      if (err) {
+        //TODO: How to deal with err
+        console.log(err);
+      }
+      console.log('Add inside addSubcat');
+
+      return JSON.parse(subcats); // return all the subcategories in JSON format
+    });
   },
 
-  //gets all food from db
-  getAllFood: function () {
-    //get all food from db
-    console.log('showing all food');
-    var food = [{hungry: 'eat'}, {full: 'stop eating'}];
-    return food;
+  addSubcat: function (req) {
+    // create a new subcategory from the model
+    var newSubcat = new Food.Subcat({
+      // TO CHANGE: we'll have to see how all this is sent in the request
+      name: req.subcatName,
+      description: req.description,
+      ancestors: [req.userID, req.categoryID],
+      parent: req.categoryID
+    });
+            
+    newSubcat.save(function(err, res) {
+      if (err) {
+        //TODO: How to deal with err
+        console.log(err);
+      } else {
+        console.log('Success saving subcat to server');
+        return 'The subcat has been saved'; 
+      }
+    });
   },
 
-  //gets all food from a subcatagory in db
-  getFoodSubCatagory: function () {
-    console.log('showing all food in a subcatagory');
+  addEntry: function (req) {
+    // create a new subcategory from the model
+    var newEntry = new Food.Entry({
+      // TO CHANGE: we'll have to see how all this is sent in the request
+      type: req.type,
+      notes: req.notes,
+      rating: req.rating,
+      ancestors: [req.userID, req.categoryID, req.subcatID],
+      parent: req.subcatID
+
+    });
+            
+    newEntry.save(function(err, res) {
+      if (err) {
+        //TODO: How to deal with err
+        console.log(err);
+      } else {
+        console.log('Success saving entry to server');
+        return 'The entry has been saved'; 
+      }
+    });
   }
 
 };
