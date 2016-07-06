@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getEntriesRequest } from '../actions';
 
 class EntryList extends Component {
+  componentWillMount() {
+    this.props.getEntriesRequest('S1');
+  }
+
   renderEntries() {
     if (!this.props.entries) {
       return 'You have not logged any tastings yet. Go out and be a foodie!';
     }
-    return this.props.entries.map((entry) => {
-      return (
-        <li key={ entry.id }>
-          <p>Type: {entry.type}</p>
-          <p>notes: {entry.notes}</p>
-          <p>Rating: {entry.rating}</p>
 
+    console.log('entries props: ', this.props);
+
+    return this.props.entries.map((entry, i) => {
+      return (
+        <li key={ entry._id }>
+          <p><strong>Type</strong>: {entry.type} | <strong>notes</strong>: {entry.notes} | <strong>Rating</strong>: {entry.rating}</p>
         </li>
       );
     })
@@ -27,8 +33,12 @@ class EntryList extends Component {
   }
 }
 
-function mapStateToProps({ entries }) {
-  return { entries };
+function mapStateToProps(state) {
+  return state;
 }
 
-export default connect(mapStateToProps)(EntryList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getEntriesRequest }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntryList);

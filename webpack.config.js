@@ -23,7 +23,7 @@ module.exports = {
     '/api/*': {
       target: 'http://localhost:3000',
       bypass(req, res) {
-        return () ? '/index.html' : false;
+        return (req) ? '/index.html' : false;
       }
     }
   }

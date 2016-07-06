@@ -11,9 +11,6 @@ export default class Subcategory extends Component {
   render() {
     return (
       <div>
-        <h3>Your Recent Posts</h3>
-        <EntryList />
-
         <h3>Select a subcategory</h3>
         <SubcategoryList />
       </div>

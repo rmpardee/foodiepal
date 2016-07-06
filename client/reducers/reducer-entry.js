@@ -1,22 +1,10 @@
 import {
   ADD_ENTRY_REQUEST,
-  REQUEST_ENTRIES
+  ADD_ENTRY_SUCCESS,
+  GET_ENTRIES_SUCCESS
  } from '../actions';
 
-const INITIAL_STATE = [
-  {
-    id: 'ENTRY001',
-    type: 'brie a la tga',
-    notes: 'so good',
-    rating: 5,
-    ancestors: {
-      user: 1,
-      category: 'C1',
-      subcategory: 'S1'
-    },
-    parent: 'S1'
-  }
-]
+const INITIAL_STATE = []
 
 export default function(state = INITIAL_STATE, action) {
   console.log('action received: ', action);
@@ -24,10 +12,15 @@ export default function(state = INITIAL_STATE, action) {
   case ADD_ENTRY_REQUEST:
     return action.payload;
 
-  case REQUEST_ENTRIES:
-    return Object.assign({}, state, {
-      entries: action.payload
-    });
+  case ADD_ENTRY_SUCCESS:
+    return action.payload;
+
+  case GET_ENTRIES_SUCCESS:
+    // return Object.assign({}, state, {
+    //   entries: action.payload
+    // });
+    return action.payload;
+
   default:
     return state;
   }
