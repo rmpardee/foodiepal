@@ -4,7 +4,7 @@
   "description": "food journal",
   "main": "server.js",
   "scripts": {
-    "test": "mocha tests/server/server_spec.js",
+    "test": "mocha tests/server/api_spec.js",
     "start": "nodemon server/server.js"
   },
   "engines": {
