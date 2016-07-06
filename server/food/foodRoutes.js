@@ -20,7 +20,7 @@ module.exports = function(app) {
     .get(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent categoryID is sent
-      foodControl.getDBItems(req.query.parentID).then(function(subcategories) {
+      foodControl.getSubcats(req.query.categoryID).then(function(subcategories) {
         res.status(200).send(subcategories);
       });
 
@@ -39,7 +39,7 @@ module.exports = function(app) {
     .get(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent subcatID is sent
-      foodControl.getDBItems(req.query.subcatID).then(function(entries) {
+      foodControl.getEntriesForSubcat(req.query.subcatID).then(function(entries) {
         res.status(200).send(entries);
       });
     })
