@@ -16,16 +16,16 @@ module.exports = {
   // Same function will work for getting subcatagories and entries
   getDBItems: function (parentID) {
     // TO CHANGE: we'll have to see how the parent parentID is sent
-    Food.Subcat.find({parent: parentID}, function(err, subcats) {
+    return Food.Subcat.find({parent: parentID}, function(err, subcats) {
 
       // if there is an error retrieving, send the error. 
       if (err) {
         //TODO: How to deal with err
         console.log(err);
       }
-      console.log('Add inside addSubcat');
+      console.log('subcats: ', subcats);
 
-      return JSON.parse(subcats); // return all the subcategories in JSON format
+      return subcats; // return all the subcategories in JSON format
     });
   },
 
