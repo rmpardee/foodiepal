@@ -13,19 +13,20 @@ module.exports = {
   ],
   // ===Testing & Debugging============
 
-  // Same function will work for getting subcatagories and entries
-  getDBItems: function (parentID) {
+//SUBCATEGORIES:
+  // the input is the categoryID, which in this case will be the parent of the subcats we want
+  getSubcats: function (categoryID) {
     // TO CHANGE: we'll have to see how the parent parentID is sent
-    Food.Subcat.find({parent: parentID}, function(err, subcats) {
+    return Food.Subcat.find({parent: categoryID}, function(err, subcats) {
 
       // if there is an error retrieving, send the error. 
       if (err) {
         //TODO: How to deal with err
         console.log(err);
       }
-      console.log('Add inside addSubcat');
+      console.log('subcats: ', subcats);
 
-      return JSON.parse(subcats); // return all the subcategories in JSON format
+      return subcats; // return all the subcategories in JSON format
     });
   },
 
@@ -47,6 +48,24 @@ module.exports = {
         console.log('Success saving subcat to server');
         return 'The subcat has been saved'; 
       }
+    });
+  },
+
+//ENTRIES
+  // the input is the subcatID, which in this case will be the parent of the entries we want
+  // TO DO: We will need a separate function to get all the entries within a certain category
+  getEntriesForSubcat: function (subcatID) {
+    // TO CHANGE: we'll have to see how the parent parentID is sent
+    return Food.Entry.find({parent: subcatID}, function(err, subcats) {
+
+      // if there is an error retrieving, send the error. 
+      if (err) {
+        //TODO: How to deal with err
+        console.log(err);
+      }
+      console.log('subcats: ', subcats);
+
+      return subcats; // return all the subcategories in JSON format
     });
   },
 

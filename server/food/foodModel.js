@@ -32,6 +32,7 @@ var SubcatSchema = new mongoose.Schema({
 var EntrySchema = new mongoose.Schema({
   type: String,
 
+  // notes: String,
   notes: {
     type: String,
     required: true
@@ -44,8 +45,8 @@ var EntrySchema = new mongoose.Schema({
   parent: String
 });
 
-module.exports.CategorySchema = mongoose.model('Category', CategorySchema);
-module.exports.SubcatSchema = mongoose.model('Subcat', SubcatSchema);
-module.exports.EntrySchema = mongoose.model('Entry', EntrySchema);
+module.exports.Category = mongoose.model('Category', CategorySchema);
+module.exports.Subcat = mongoose.model('Subcat', SubcatSchema);
+module.exports.Entry = mongoose.model('Entry', EntrySchema);
 
 

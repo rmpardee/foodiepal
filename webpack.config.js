@@ -13,5 +13,18 @@ module.exports = {
         query: { presets: [ 'es2015', 'react' ] }
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    contentBase: './client/'
+  },
+  proxy: {
+    '/api/*': {
+      target: 'http://localhost:3000',
+      bypass(req, res) {
+        return (req) ? '/index.html' : false;
+      }
+    }
   }
 };

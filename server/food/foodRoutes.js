@@ -20,15 +20,18 @@ module.exports = function(app) {
     .get(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent categoryID is sent
-      var subcategories = foodControl.getDBItems(req.categoryID);
-      res.send(200, subcategories);
+      foodControl.getSubcats(req.query.categoryID).then(function(subcategories) {
+        res.status(200).send(subcategories);
+      });
+
     })
     //Add subcategory to db
     .post(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent categoryID is sent
-      var successResponse = foodControl.addSubcat(req);
-      res.send(200, successResponse);
+      // Possilby refactor as promises (like the Gets)
+      var successResponse = foodControl.addSubcat(req.body);
+      res.status(201).send(successResponse);
     });
 
   app.route('/entry')
@@ -36,14 +39,16 @@ module.exports = function(app) {
     .get(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent subcatID is sent
-      var entries = foodControl.getDBItems(req.subcatID);
-      res.send(200, entries);
+      foodControl.getEntriesForSubcat(req.query.subcatID).then(function(entries) {
+        res.status(200).send(entries);
+      });
     })
     //Add subcategory to db
     .post(function(req, res) {
       // TO ADD: capture and respond to errors
       // TO CHANGE: we'll have to see how the parent categoryID is sent
-      var successResponse = foodControl.addEntry(req);
-      res.send(200, successResponse);
+      // Possilby refactor as promises (like the Gets)
+      var successResponse = foodControl.addEntry(req.body);
+      res.status(201).send(successResponse);
     });
 };
