@@ -13,7 +13,7 @@ class AddEntry extends Component {
       rating: 5,
       userID: 1,
       categoryID: 'C1',
-      subcatID: 'S1'
+      subcategoryID: 'S1'
     }
 
     this.onTypeChange = this.onTypeChange.bind(this);

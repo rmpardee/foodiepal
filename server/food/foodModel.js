@@ -8,13 +8,13 @@ var CategorySchema = new mongoose.Schema({
     unique: true
   },
 
-  ancestors: Array,
-  // unclear what the id of the parent will be, a string?
-  parent: String
+  ancestors: {
+    user: String
+  }
 });
 
 // Subcategory Model
-var SubcatSchema = new mongoose.Schema({
+var SubcategorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -23,30 +23,43 @@ var SubcatSchema = new mongoose.Schema({
 
   description: String,
 
-  ancestors: Array,
-  // unclear what the id of the parent will be, a string?
-  parent: String
+  ancestors: {
+    user: String,
+    category: String
+  }
 });
+
+// var EntryAncestor = new mongoose.Schema({
+//   user: String,
+//   category: String,
+//   subcategory: String
+// });
 
 // Entry Model
 var EntrySchema = new mongoose.Schema({
   type: String,
 
-  // notes: String,
-  notes: {
-    type: String,
-    required: true
-  },
+  notes: String,
 
-  rating: Number,
+  // notes: {
+  //   type: String,
+  //   required: true
+  // },
 
-  ancestors: Array,
-  // unclear what the id of the parent will be, a string?
-  parent: String
+  rating: String,
+
+  // rating: {
+  //   type: Number,
+  //   required: true
+  // },
+
+  ancestors: {
+    user: String,
+    category: String,
+    subcategory: String
+  }
 });
 
 module.exports.Category = mongoose.model('Category', CategorySchema);
-module.exports.Subcat = mongoose.model('Subcat', SubcatSchema);
+module.exports.Subcategory = mongoose.model('Subcategory', SubcategorySchema);
 module.exports.Entry = mongoose.model('Entry', EntrySchema);
-
-
