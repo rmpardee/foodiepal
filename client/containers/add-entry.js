@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addEntryRequest } from '../actions';
+import Rater from 'react-rater';
 
 class AddEntry extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class AddEntry extends Component {
     this.state = {
       type: '',
       notes: '',
-      rating: 5,
+      rating: 0,
       userID: 1,
       categoryID: 'C1',
       subcategoryID: 'S1'
@@ -19,6 +20,11 @@ class AddEntry extends Component {
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    // this.onRating = this.onRating.bind(this);
+  }
+
+  closeModal() {
+    this.props.removeModal();
   }
 
   onTypeChange(event) {
@@ -29,10 +35,19 @@ class AddEntry extends Component {
     this.setState({ notes: event.target.value });
   }
 
+  onRating(rating, lastRating) {
+    if (lastRating !== undefined) {
+      console.log('You rated: ', rating);
+      this.setState({ rating: rating });
+    }
+  }
+
+
   onFormSubmit(event) {
     event.preventDefault();
     console.log('submitting:', this.state);
     this.props.addEntryRequest(this.state);
+    this.closeModal();
   }
 
   render() {
@@ -49,6 +64,10 @@ class AddEntry extends Component {
           onChange={ this.onNotesChange }
           type="text"
           placeholder="Notes"
+        />
+        <Rater
+          onRate={ this.onRating.bind(this) }
+          interactive={true}
         />
         <button type="submit">Add Entry</button>
       </form>

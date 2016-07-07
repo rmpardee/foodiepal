@@ -1,15 +1,24 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from '../components/app';
+import App from '../components/app'; // Root layout
+
+// TODO: create/import Welcome (non-authed) layout
+
+import Main from '../components/main'; // Main (user) layout
+
 import AddEntry from '../containers/add-entry';
-import Subcategory from '../components/subcategory';
+import Subcategories from '../components/subcategories';
 import Detail from '../containers/detail';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="add" component={AddEntry} />
-    <Route path="subcategory" component={Subcategory} />
-    <Route path=":name" component={ Detail } />
+    <IndexRoute component={Main} />
+    <Route path="subcategories">
+      <IndexRoute component={ Subcategories } />
+      <Route path=":name" component={ Detail } />
+      <Route path="/:name/add" component={AddEntry} />
+      
+    </Route>
   </Route>
 );

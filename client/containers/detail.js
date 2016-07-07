@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
+
+import { modal } from 'react-redux-modal';
+import AddEntry from './add-entry';
 
 import EntryList from './entry-list';
 
@@ -10,6 +14,18 @@ class Detail extends Component {
     this.state = {
       subcat: this.props.params.name // comes from route
     }
+
+    // this.openEntryForm = this.openEntryForm.bind(this);
+  }
+
+  openEntryForm() {
+    console.log('calling openEntryForm: ');
+    modal.add(AddEntry, {
+      title: 'Add Entry',
+      size: 'medium',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
+    });
   }
 
   render() {
@@ -21,7 +37,8 @@ class Detail extends Component {
         This is a detail page
         <h3>{ subcat }</h3>
         
-        <a href="add">Log New Entry</a>
+        <Link to={ `${subcat}/add` }>Log New Entry</Link>
+        <button onClick={ this.openEntryForm.bind(this) }>Log Entry (Modal)</button>
 
         <h3>Your History for { subcat }</h3>
         <EntryList />
@@ -33,10 +50,7 @@ class Detail extends Component {
 function mapStateToProps(data) {
   console.log('item:', data);
   return {
-    item: {
-      // type: item.type,
-      // notes: item.notes
-    }
+    item: 'test'
   };
 }
 

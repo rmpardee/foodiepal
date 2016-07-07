@@ -13,6 +13,7 @@ export default class Subcategory extends Component {
       <div>
         <h3>Select a subcategory</h3>
         <SubcategoryList />
+        { this.props.children }
       </div>
     );
   };

@@ -2,7 +2,7 @@
   "name": "foodiepal",
   "version": "1.0.0",
   "description": "food journal",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "mocha tests/server/api_spec.js",
     "start": "nodemon server/server.js"
@@ -30,9 +30,11 @@
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
     "node": "0.0.0",
-    "react": "^15.2.0",
+    "react": "^0.14.0",
     "react-dom": "^15.2.0",
+    "react-rater": "^0.3.2",
     "react-redux": "^4.4.5",
+    "react-redux-modal": "^0.4.3",
     "react-router": "^2.5.2",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",

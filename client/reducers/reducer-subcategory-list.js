@@ -19,9 +19,10 @@ export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
   case REQUEST_SUBCATEGORIES:
     // return { ...state, subcategories: action.payload };
-    return Object.assign({}, state, {
-        subcategories: action.payload
-      });
+    // return Object.assign({}, state, {
+    //     subcategories: action.payload
+    //   });
+    return action.payload;
   default:
     return state;
   }

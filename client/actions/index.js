@@ -72,7 +72,12 @@ export function addEntryRequest(entry) {
       data: entry,
       contentType: 'application/json'
     })
-    .then(response => dispatch(addEntrySuccess(response.config.data)))
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      console.log('response: ', response.config);
+      dispatch(addEntrySuccess(response.config.data));
+      dispatch(getEntriesRequest(res.subcategoryID));
+      })
     .catch(response => console.error('le error:', response));
   };
 }
@@ -87,7 +92,7 @@ function addEntry(entry) {
 function addEntrySuccess(entry) {
   return {
     type: ADD_ENTRY_SUCCESS,
-    payload: entry
+    payload: JSON.parse(entry)
   }
 }
 
@@ -106,7 +111,7 @@ export function getEntriesRequest(subcategory) {
         subcategoryID: subcategory
       }
     })
-    .then(response => dispatch(getEntriesSuccess(response.data)))
+    .then(response => dispatch(getEntriesSuccess(response.data.reverse())))
     .catch(response => console.error('le error:', response));
   };
 }

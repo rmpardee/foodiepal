@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 class SubcategoryList extends Component {
@@ -12,7 +13,7 @@ class SubcategoryList extends Component {
     return subcategories.map((subcategory) => {
       return (
         <li key={subcategory.name}>
-          <a href={`/${subcategory.name}`}>{ subcategory.name }</a>
+          <Link to={`/subcategories/${subcategory.name}`}>{ subcategory.name }</Link>
         </li>
       );
     })

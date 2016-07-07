@@ -24,3 +24,16 @@ body {
   height: 24px;
   width: 100%;
 }
+
+.react-rater a {
+  cursor: pointer;
+  color: #ccc;
+}
+
+/*.react-rater a:not(.is-active):not(.will-be-active) {
+}*/
+
+.react-rater a.is-active,
+.react-rater a.will-be-active {
+  color: #fc6;
+}
