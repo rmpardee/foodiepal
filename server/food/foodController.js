@@ -32,7 +32,7 @@ module.exports = {
 
   addSubcat: function (req) {
     // create a new subcategory from the model
-    var newSubcat = new Food.Subcat({
+    var newSubcat = Food.Subcat({
       // TO CHANGE: we'll have to see how all this is sent in the request
       name: req.subcatName,
       description: req.description,
@@ -71,7 +71,7 @@ module.exports = {
 
   addEntry: function (req) {
     // create a new subcategory from the model
-    var newEntry = new Food.Entry({
+    var newEntry = Food.Entry({
       // TO CHANGE: we'll have to see how all this is sent in the request
       type: req.type,
       notes: req.notes,
