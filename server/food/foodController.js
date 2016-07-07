@@ -1,27 +1,15 @@
 var Food = require('./foodModel.js');
 var mongoose = require('mongoose');
 
-
-//this adds and modifies food
 module.exports = {
-    
-  // ===Testing & Debugging============
-  foodFightTest: 'FoodFight!!',
-  objectIdCounter: 1,
-  messages: [
-    {
-      text: 'hello world'
-    }
-  ],
-  // ===Testing & Debugging============
 
 // CATEGORIES:
   // the input is the userID, which in this case will be the parent of the categories we want
   getCategories: function (userID) {
+    // find the categories with the given userID and return them
     return Food.Category.find({'ancestors.user': userID}, function(err, categories) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       return categories;
@@ -36,11 +24,11 @@ module.exports = {
         user: data.userID
       }
     });
-            
+       
+    // save that new entry to the db, and return whatever its callback returns
     return newCategory.save(function(err, res) {
       if (err) {
-        // TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       console.log('Success saving category to db');
@@ -51,10 +39,10 @@ module.exports = {
 // SUBCATEGORIES:
   // the input is the categoryID, which in this case will be the parent of the subcats we want
   getSubcategories: function (categoryID) {
+    // find the subcategories with the given categoryID and return them
     return Food.Subcategory.find({'ancestors.category': categoryID}, function(err, subcategories) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       return subcategories;
@@ -71,11 +59,11 @@ module.exports = {
         category: data.categoryID
       }
     });
-            
+    
+    // save that new entry to the db, and return whatever its callback returns
     return newSubcategory.save(function(err, res) {
       if (err) {
-        // TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       console.log('Success saving subcategory to db');
@@ -86,10 +74,10 @@ module.exports = {
 //ENTRIES
   // the input is the subcategoryID, which in this case will be the parent of the entries we want
   getEntries: function (subcategoryID) {
+    // find the entries with the given subcategoryID and return them
     return Food.Entry.find({'ancestors.subcategory': subcategoryID}, function(err, entries) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       return entries;
@@ -108,11 +96,11 @@ module.exports = {
         subcategory: data.subcategoryID
       }
     });
-            
+    
+    // save that new entry to the db, and return whatever its callback returns
     return newEntry.save(function(err, res) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller: ", err);
         return err;
       }
       console.log('Success saving entry to db');
