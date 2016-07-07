@@ -29,19 +29,29 @@ var SubcategorySchema = new mongoose.Schema({
   }
 });
 
+// var EntryAncestor = new mongoose.Schema({
+//   user: String,
+//   category: String,
+//   subcategory: String
+// });
+
 // Entry Model
 var EntrySchema = new mongoose.Schema({
   type: String,
 
-  notes: {
-    type: String,
-    required: true
-  },
+  notes: String,
 
-  rating: {
-    type: Number,
-    required: true
-  },
+  // notes: {
+  //   type: String,
+  //   required: true
+  // },
+
+  rating: String,
+
+  // rating: {
+  //   type: Number,
+  //   required: true
+  // },
 
   ancestors: {
     user: String,
@@ -53,5 +63,3 @@ var EntrySchema = new mongoose.Schema({
 module.exports.Category = mongoose.model('Category', CategorySchema);
 module.exports.Subcategory = mongoose.model('Subcategory', SubcategorySchema);
 module.exports.Entry = mongoose.model('Entry', EntrySchema);
-
-

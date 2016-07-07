@@ -103,7 +103,7 @@ export function getEntriesRequest(subcategory) {
       method: 'GET',
       url: API_ENTRY,
       params: {
-        subcatID: subcategory
+        subcategoryID: subcategory
       }
     })
     .then(response => dispatch(getEntriesSuccess(response.data)))
