@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Header extends Component {
   render() {
@@ -8,7 +9,7 @@ export default class Header extends Component {
           <div className="mobile-quick-nav"></div>
 
           <div className="portal">
-            <a href="/" title="FoodiePal">FoodiePal</a>
+            <Link to="/" title="FoodiePal">FoodiePal</Link>
           </div>
           
           <div className="mobile-quick-nav"></div>

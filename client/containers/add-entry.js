@@ -2,23 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addEntryRequest } from '../actions';
+import Rater from 'react-rater';
 
 class AddEntry extends Component {
   constructor(props) {
     super(props);
 
+    console.log('AddEntry props:', this.props);
+
     this.state = {
       type: '',
       notes: '',
-      rating: 5,
-      userID: 1,
-      categoryID: 'C1',
-      subcategoryID: 'S1'
+      rating: 0,
+      subcategoryID: this.props.current.subcategory.id
     }
+
 
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  closeModal() {
+    this.props.removeModal();
   }
 
   onTypeChange(event) {
@@ -29,10 +35,18 @@ class AddEntry extends Component {
     this.setState({ notes: event.target.value });
   }
 
+  onRating(rating, lastRating) {
+    if (lastRating !== undefined) {
+      this.setState({ rating: rating });
+    }
+  }
+
+
   onFormSubmit(event) {
     event.preventDefault();
     console.log('submitting:', this.state);
     this.props.addEntryRequest(this.state);
+    this.closeModal();
   }
 
   render() {
@@ -44,11 +58,14 @@ class AddEntry extends Component {
           type="text"
           placeholder="Type"
         />
-        <input 
+        <textarea 
           value={ this.state.notes }
           onChange={ this.onNotesChange }
-          type="text"
           placeholder="Notes"
+        />
+        <Rater
+          onRate={ this.onRating.bind(this) }
+          interactive={true}
         />
         <button type="submit">Add Entry</button>
       </form>
@@ -56,8 +73,12 @@ class AddEntry extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return state;
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addEntryRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AddEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEntry);

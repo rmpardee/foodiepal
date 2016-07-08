@@ -6,6 +6,11 @@ import SubcategoryList from '../containers/subcategory-list';
 export default class Subcategory extends Component {
   componentWillMount() {
     console.log('call fetch action for subcategories');
+    console.log('Subcategory: ', this.props);
+  }
+
+  constructor(props) {
+    super(props);
   }
 
   render() {
