@@ -1,5 +1,4 @@
 var Food = require('./foodModel.js');
-var mongoose = require('mongoose');
 
 module.exports = {
 
@@ -9,7 +8,7 @@ module.exports = {
     // find the categories with the given userID and return them
     return Food.Category.find({'ancestors.user': userID}, function(err, categories) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller getCategories fn: ", err);
         return err;
       }
       return categories;
@@ -26,12 +25,12 @@ module.exports = {
     });
        
     // save that new entry to the db, and return whatever its callback returns
-    return newCategory.save(function(err, res) {
+    return newCategory.save(function(err, savedCategory) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller addCategory fn: ", err);
         return err;
       }
-      console.log('Success saving category to db');
+      console.log('Success saving category to db: ', savedCategory);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
   },
@@ -42,7 +41,7 @@ module.exports = {
     // find the subcategories with the given categoryID and return them
     return Food.Subcategory.find({'ancestors.category': categoryID}, function(err, subcategories) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller getSubcategories fn: ", err);
         return err;
       }
       return subcategories;
@@ -61,12 +60,12 @@ module.exports = {
     });
     
     // save that new entry to the db, and return whatever its callback returns
-    return newSubcategory.save(function(err, res) {
+    return newSubcategory.save(function(err, savedSubcategory) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller addSubcategory fn: ", err);
         return err;
       }
-      console.log('Success saving subcategory to db');
+      console.log('Success saving subcategory to db: ', savedSubcategory);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
   },
@@ -77,7 +76,7 @@ module.exports = {
     // find the entries with the given subcategoryID and return them
     return Food.Entry.find({'ancestors.subcategory': subcategoryID}, function(err, entries) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller getEntries fn: ", err);
         return err;
       }
       return entries;
@@ -98,12 +97,12 @@ module.exports = {
     });
     
     // save that new entry to the db, and return whatever its callback returns
-    return newEntry.save(function(err, res) {
+    return newEntry.save(function(err, savedEntry) {
       if (err) {
-        console.log("err in controller: ", err);
+        console.log("err in controller addEntry fn: ", err);
         return err;
       }
-      console.log('Success saving entry to db');
+      console.log('Success saving entry to db: ', savedEntry);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
   }

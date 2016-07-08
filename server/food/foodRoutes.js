@@ -1,5 +1,4 @@
 var foodControl = require('./foodController.js');
-var Food = require('./foodModel.js');
 
 module.exports = function(app) {
 
