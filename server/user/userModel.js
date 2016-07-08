@@ -6,8 +6,9 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+    // we'd like to have a 'unique: true' param here, but it causes
+    // the POST to fail after adding one user
   },
 
   password: {
@@ -15,11 +16,10 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
 
-  salt: String,
-
-  ancestors: Array,
-  // unclear what the id of the parent will be, a string?
-  parent: String
+  salt: {
+    type: String,
+    required: true
+  }
 });
 
 // FOR FUTURE USE WITH AUTHENTICATION:

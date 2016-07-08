@@ -29,29 +29,19 @@ var SubcategorySchema = new mongoose.Schema({
   }
 });
 
-// var EntryAncestor = new mongoose.Schema({
-//   user: String,
-//   category: String,
-//   subcategory: String
-// });
-
 // Entry Model
 var EntrySchema = new mongoose.Schema({
   type: String,
 
-  notes: String,
+  notes: {
+    type: String,
+    required: true
+  },
 
-  // notes: {
-  //   type: String,
-  //   required: true
-  // },
-
-  rating: String,
-
-  // rating: {
-  //   type: Number,
-  //   required: true
-  // },
+  rating: {
+    type: Number,
+    required: true
+  },
 
   ancestors: {
     user: String,
