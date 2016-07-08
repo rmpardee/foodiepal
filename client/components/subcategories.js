@@ -6,6 +6,7 @@ import SubcategoryList from '../containers/subcategory-list';
 export default class Subcategory extends Component {
   componentWillMount() {
     console.log('call fetch action for subcategories');
+    console.log('Subcategory: ', this.props);
   }
 
   render() {
@@ -13,7 +14,6 @@ export default class Subcategory extends Component {
       <div>
         <h3>Select a subcategory</h3>
         <SubcategoryList />
-        { this.props.children }
       </div>
     );
   };

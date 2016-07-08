@@ -8,14 +8,17 @@ class AddEntry extends Component {
   constructor(props) {
     super(props);
 
+    console.log('AddEntry props:', this.props);
+
     this.state = {
       type: '',
       notes: '',
       rating: 0,
       userID: 1,
       categoryID: 'C1',
-      subcategoryID: 'S1'
+      subcategoryID: this.props.subcategory
     }
+
 
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
@@ -59,10 +62,9 @@ class AddEntry extends Component {
           type="text"
           placeholder="Type"
         />
-        <input 
+        <textarea 
           value={ this.state.notes }
           onChange={ this.onNotesChange }
-          type="text"
           placeholder="Notes"
         />
         <Rater
@@ -75,8 +77,12 @@ class AddEntry extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return state;
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addEntryRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(AddEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEntry);

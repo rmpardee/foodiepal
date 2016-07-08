@@ -5,11 +5,11 @@ import { getEntriesRequest } from '../actions';
 
 class EntryList extends Component {
   componentWillMount() {
-    this.props.getEntriesRequest('S1');
+    this.props.getEntriesRequest(this.props.subcategoryID);
   }
 
   renderEntries() {
-    if (!this.props.entries) {
+    if (this.props.entries.length < 1) {
       return 'You have not logged any tastings yet. Go out and be a foodie!';
     }
 
@@ -18,7 +18,8 @@ class EntryList extends Component {
     return this.props.entries.map((entry, i) => {
       return (
         <li key={ entry._id }>
-          <p><strong>Type</strong>: {entry.type} | <strong>notes</strong>: {entry.notes} | <strong>Rating</strong>: {entry.rating}</p>
+          <p><strong>Type</strong>: {entry.type}</p>
+          <p><strong>notes</strong>: {entry.notes} | <strong>Rating</strong>: {entry.rating}</p>
         </li>
       );
     })
@@ -34,6 +35,7 @@ class EntryList extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('ENTRYLIST state: ', state);
   return state;
 }
 

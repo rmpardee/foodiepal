@@ -1,27 +1,33 @@
-
-import { REQUEST_SUBCATEGORIES } from '../actions';
+import {
+  GET_SUBCATEGORIES_REQUEST,
+  GET_SUBCATEGORIES_SUCCESS,
+  GET_SUBCATEGORIES_FAILURE
+} from '../actions';
 
 // import INITIAL_STATE from '../initialstate';
 
 // Subcategory initial state
-const INITIAL_STATE = [{
-  id: 'S1',
-  name: 'brie',
-  ancestors: {
-    user: 1,
-    category: 'C1'
-  },
-  parent: 'C1'
-}]
+// const INITIAL_STATE = [{
+//   id: 'S1',
+//   name: 'brie',
+//   ancestors: {
+//     user: 1,
+//     category: 'C1'
+//   },
+//   parent: 'C1'
+// }]
+const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
   console.log('action received: ', action);
   switch(action.type) {
-  case REQUEST_SUBCATEGORIES:
+  case GET_SUBCATEGORIES_REQUEST:
     // return { ...state, subcategories: action.payload };
     // return Object.assign({}, state, {
     //     subcategories: action.payload
     //   });
+    return state;
+  case GET_SUBCATEGORIES_SUCCESS:
     return action.payload;
   default:
     return state;

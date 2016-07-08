@@ -1,57 +1,67 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux';
 import { modal } from 'react-redux-modal';
 import AddEntry from './add-entry';
-
 import EntryList from './entry-list';
+import { setCurrentSubcategory } from '../actions';
 
 class Detail extends Component {
   constructor(props) {
     super(props);
-
+    console.log('DETAIL this.props: ', this.props);
     this.state = {
-      subcat: this.props.params.name // comes from route
+      subcategoryID: this.props.params.id, // comes from route
+      subcategories: this.props.subcategories,
+      entries: this.props.entries
     }
+
+
 
     // this.openEntryForm = this.openEntryForm.bind(this);
   }
 
-  openEntryForm() {
-    console.log('calling openEntryForm: ');
+  openEntryForm(subcategory) {
+    console.log('calling openEntryForm: ', arguments);
     modal.add(AddEntry, {
       title: 'Add Entry',
       size: 'medium',
       closeOnOutsideClick: true,
-      hideCloseButton: false
+      hideCloseButton: false,
+      subcategory: subcategory
     });
   }
 
   render() {
-    const itemType = this.props.item.type;
-    const subcat = this.state.subcat;
+    const subcategoryID = this.state.subcategoryID;
+    const subcategoryName = this.state.subcategories.map(function(subcategory) {
+      if (subcategory.id === subcategoryID) {
+        return subcategory.name;
+      }
+    });
 
     return (
       <div>
         This is a detail page
-        <h3>{ subcat }</h3>
+        <h3>{ subcategoryName }</h3>
         
-        <Link to={ `${subcat}/add` }>Log New Entry</Link>
-        <button onClick={ this.openEntryForm.bind(this) }>Log Entry (Modal)</button>
+        <Link to={ `${subcategoryName}/add` }>Log New Entry</Link>
+        <button onClick={ this.openEntryForm.bind(this, this.state.subcategoryID ) }>Log Entry (Modal)</button>
 
-        <h3>Your History for { subcat }</h3>
-        <EntryList />
+        <h3>Your History for { subcategoryName }</h3>
+        <EntryList subcategoryID={ this.state.subcategoryID }/>
       </div>
     );
   }
 }
 
-function mapStateToProps(data) {
-  console.log('item:', data);
-  return {
-    item: 'test'
-  };
+function mapStateToProps(state) {
+  return state;
 }
 
-export default connect(mapStateToProps)(Detail);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setCurrentSubcategory }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  getCurrentCategory,
+  getSubcategoriesRequest,
+  setCurrentSubcategory
+} from '../actions';
 
 class SubcategoryList extends Component {
+  componentWillMount() {
+    this.props.getSubcategoriesRequest(this.props.current.category.id);
+  }
+
   renderSubcategories() {
+    const categoryName = this.props.current.category.name;
     const subcategories = this.props.subcategories;
 
-    if (!subcategories) {
+    if (!subcategories.length) {
       return 'No subcategories.';
     }
 
     return subcategories.map((subcategory) => {
       return (
-        <li key={subcategory.name}>
-          <Link to={`/subcategories/${subcategory.name}`}>{ subcategory.name }</Link>
+        <li key={ subcategory._id }>
+          <Link to={`/${ categoryName }/${ subcategory._id }`}>{ subcategory.name }</Link>
         </li>
       );
     })
@@ -28,8 +39,16 @@ class SubcategoryList extends Component {
   }
 }
 
-function mapStateToProps({ subcategories}) {
-  return { subcategories };
+function mapStateToProps(state) {
+  return state;
 }
 
-export default connect(mapStateToProps)(SubcategoryList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getCurrentCategory,
+    getSubcategoriesRequest,
+    setCurrentSubcategory
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubcategoryList);

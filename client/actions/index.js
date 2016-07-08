@@ -2,7 +2,10 @@
 import axios from 'axios'
 
 const API_URL = 'http://localhost:3000';
+const API_CATEGORY = `${API_URL}/api/food/category`;
+const API_SUBCATEGORY = `${API_URL}/api/food/subcategory`;
 const API_ENTRY = `${API_URL}/api/food/entry`;
+const API_USER = `${API_URL}/api/user`;
 
 // Authentication
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -14,14 +17,71 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
+// Category
+export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';
+export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
+export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE';
+export function getCategoriesRequest(userID) {
+  return dispatch => {
+    dispatch(getCategories());
+
+    return axios({
+      method: 'GET',
+      url: API_CATEGORY,
+      params: {
+        userID: userID
+      }
+    })
+    .then(response => dispatch(getCategoriesSuccess(response.data)))
+    .catch(response => console.error('categories GET error:', response));
+  };
+}
+
+function getCategories() {
+  return {
+    type: GET_CATEGORIES_REQUEST
+  }
+}
+
+function getCategoriesSuccess(categories) {
+  return {
+    type: GET_CATEGORIES_SUCCESS,
+    payload: categories
+  }
+}
 
 // Subcategory
-export const REQUEST_SUBCATEGORIES = 'REQUEST_SUBCATEGORIES';
-export function requestSubcategories() {
-  return {
-    type: REQUEST_SUBCATEGORIES,
-    payload: subcategories
+export const GET_SUBCATEGORIES_REQUEST = 'GET_SUBCATEGORIES_REQUEST';
+export const GET_SUBCATEGORIES_SUCCESS = 'GET_SUBCATEGORIES_SUCCESS';
+export const GET_SUBCATEGORIES_FAILURE = 'GET_SUBCATEGORIES_FAILURE';
+export function getSubcategoriesRequest(categoryID) {
+  return dispatch => {
+    dispatch(getSubcategories());
+
+    return axios({
+      method: 'GET',
+      url: API_SUBCATEGORY,
+      params: {
+        categoryID: categoryID
+      }
+    })
+    .then(response => dispatch(getSubcategoriesSuccess(response.data)))
+    .catch(response => console.error('subcategories GET error:', response));
   };
+}
+
+function getSubcategories() {
+  return {
+    type: GET_SUBCATEGORIES_REQUEST,
+    // payload: subcategories
+  };
+}
+
+function getSubcategoriesSuccess(subcategories) {
+  return {
+    type: GET_SUBCATEGORIES_SUCCESS,
+    payload: subcategories
+  }
 }
 
 
@@ -138,3 +198,55 @@ function getEntriesSuccess(entries) {
 //     entries: json.data.map(entry => entry.data)
 //   };
 // }
+
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
+export const SET_CURRENT_SUBCATEGORY = 'SET_CURRENT_SUBCATEGORY';
+export const GET_CURRENT_USER = 'GET_CURRENT_USER';
+export const GET_CURRENT_CATEGORY = 'GET_CURRENT_CATEGORY';
+export const GET_CURRENT_SUBCATEGORY = 'GET_CURRENT_SUBCATEGORY';
+export const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER';
+export const REMOVE_CURRENT_CATEGORY = 'REMOVE_CURRENT_CATEGORY';
+export const REMOVE_CURRENT_SUBCATEGORY = 'REMOVE_CURRENT_SUBCATEGORY';
+
+export function setCurrentUser(user) {
+  return {
+    type: SET_CURRENT_USER,
+    payload: user
+  }
+}
+
+export function setCurrentCategory(category) {
+  return {
+    type: SET_CURRENT_CATEGORY,
+    payload: category
+  }
+}
+
+export function setCurrentSubcategory(subcategory) {
+  return {
+    type: SET_CURRENT_SUBCATEGORY,
+    payload: subcategory
+  }
+}
+
+export function getCurrentUser() {
+  return {
+    type: GET_CURRENT_USER,
+    // payload: user
+  }
+}
+
+export function getCurrentCategory() {
+  return {
+    type: GET_CURRENT_CATEGORY,
+    // payload: category
+  }
+}
+
+export function getCurrentSubcategory() {
+  return {
+    type: GET_CURRENT_SUBCATEGORY,
+    // payload: subcategory
+  }
+}

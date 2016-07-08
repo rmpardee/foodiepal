@@ -8,11 +8,23 @@ import App from '../components/app'; // Root layout
 import Main from '../components/main'; // Main (user) layout
 
 import AddEntry from '../containers/add-entry';
+import Categories from '../components/categories';
 import Subcategories from '../components/subcategories';
 import Detail from '../containers/detail';
 
 export default (
-  <Route path="/" component={App}>
+  <Route component={ App }>
+    <Route path="/" component={ Main }>
+      <IndexRoute component={ Categories } />
+      <Route path=":name">
+        <IndexRoute component={ Subcategories } />
+        <Route path=":id" component={ Detail } />
+        
+      </Route>
+    </Route>
+  </Route>
+
+  /*<Route path="/" component={App}>
     <IndexRoute component={Main} />
     <Route path="subcategories">
       <IndexRoute component={ Subcategories } />
@@ -20,5 +32,5 @@ export default (
       <Route path="/:name/add" component={AddEntry} />
       
     </Route>
-  </Route>
+  </Route>*/
 );

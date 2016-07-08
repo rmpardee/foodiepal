@@ -8,7 +8,6 @@ export default class Main extends Component {
       <div>
         <Header />
         { this.props.children }
-        <Link to='/subcategories'>Subcategories</Link>
       </div>
     );
   }
