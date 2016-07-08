@@ -19,7 +19,6 @@ import {
 const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
-  console.log('action received: ', action);
   switch(action.type) {
   case GET_CATEGORIES_REQUEST:
     return state;

@@ -51,6 +51,39 @@ function getCategoriesSuccess(categories) {
 }
 
 // Subcategory
+export const ADD_SUBCATEGORY_REQUEST = 'ADD_SUBCATEGORY_REQUEST';
+export const ADD_SUBCATEGORY_SUCCESS = 'ADD_SUBCATEGORY_SUCCESS';
+export const ADD_SUBCATEGORY_FAILURE = 'ADD_SUBCATEGORY_FAILURE';
+export function addSubcategoryRequest(subcategory) {
+  return dispatch => {
+    dispatch(addSubcategory());
+
+    return axios({
+      method: 'POST',
+      url: API_SUBCATEGORY,
+      data: subcategory
+    })
+    .then(response => {
+      console.log('add sub response: ', response);
+      dispatch(addSubcategorySuccess(response.data))
+    })
+    .catch(response => console.error('subcategories POST error:', response));
+  };
+}
+
+function addSubcategory() {
+  return {
+    type: ADD_SUBCATEGORY_REQUEST
+  }
+}
+
+function addSubcategorySuccess(subcategory) {
+  return {
+    type: ADD_SUBCATEGORY_SUCCESS,
+    payload: subcategory
+  }
+}
+
 export const GET_SUBCATEGORIES_REQUEST = 'GET_SUBCATEGORIES_REQUEST';
 export const GET_SUBCATEGORIES_SUCCESS = 'GET_SUBCATEGORIES_SUCCESS';
 export const GET_SUBCATEGORIES_FAILURE = 'GET_SUBCATEGORIES_FAILURE';
@@ -92,37 +125,6 @@ export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 
 
 export function addEntryRequest(entry) {
-  // return dispatch => {
-  //   dispatch(addEntry(entry));
-
-  //   return fetch(API_ENTRY, {
-  //     method: 'POST',
-  //     body: JSON.stringify({entry}),
-  //     headers: {
-  //       "X-Custom-Header": "yes",
-  //       "Access-Control-Allow-Origin": "*"
-  //     }
-  //   }).then(response => {
-  //     response.JSON();
-  //   }).catch(err => {
-  //     console.error(err);
-  //   });
-  // }
-
-  // console.log('entry: ', entry);
-
-  // const request = axios({
-  //   method: 'post',
-  //   url: API_ENTRY,
-  //   data: entry,
-  //   contentType: 'application/json'
-  // });
-
-  // return {
-  //   type: ADD_ENTRY_REQUEST,
-  //   payload: request
-  // }
-
   return dispatch => {
     dispatch(addEntry(entry));
 
@@ -134,10 +136,10 @@ export function addEntryRequest(entry) {
     })
     .then(response => {
       var res = JSON.parse(response.config.data);
-      console.log('response: ', response.config);
+
       dispatch(addEntrySuccess(response.config.data));
       dispatch(getEntriesRequest(res.subcategoryID));
-      })
+    })
     .catch(response => console.error('le error:', response));
   };
 }
@@ -162,7 +164,7 @@ export const GET_ENTRIES_FAILURE = 'GET_ENTRIES_FAILURE';
 
 export function getEntriesRequest(subcategory) {
   return dispatch => {
-    dispatch(getEntries(subcategory));
+    dispatch(getEntries());
 
     return axios({
       method: 'GET',
@@ -176,10 +178,9 @@ export function getEntriesRequest(subcategory) {
   };
 }
 
-function getEntries(subcategory) {
+function getEntries() {
   return {
-    type: GET_ENTRIES_REQUEST,
-    payload: subcategory
+    type: GET_ENTRIES_REQUEST
   }
 }
 

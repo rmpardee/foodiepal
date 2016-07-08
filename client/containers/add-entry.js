@@ -14,16 +14,13 @@ class AddEntry extends Component {
       type: '',
       notes: '',
       rating: 0,
-      userID: 1,
-      categoryID: 'C1',
-      subcategoryID: this.props.subcategory
+      subcategoryID: this.props.current.subcategory.id
     }
 
 
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    // this.onRating = this.onRating.bind(this);
   }
 
   closeModal() {
@@ -40,7 +37,6 @@ class AddEntry extends Component {
 
   onRating(rating, lastRating) {
     if (lastRating !== undefined) {
-      console.log('You rated: ', rating);
       this.setState({ rating: rating });
     }
   }

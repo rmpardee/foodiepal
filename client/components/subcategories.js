@@ -9,6 +9,10 @@ export default class Subcategory extends Component {
     console.log('Subcategory: ', this.props);
   }
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>

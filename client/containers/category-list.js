@@ -10,8 +10,6 @@ import {
 
 class CategoryList extends Component {
   componentWillMount() {
-    console.log('getting CategoryList props: ', this.props);
-    // this.props.getCategoriesRequest('577ee365c84865705e05497c');
     this.props.getCategoriesRequest(this.props.current.user.id);
   }
 
@@ -27,11 +25,16 @@ class CategoryList extends Component {
     }
 
     return categories.map((category) => {
+      let categoryInfo = {
+        id: category._id,
+        name: category.name
+      }
+
       return (
         <li key={ category._id }>
           <Link
             to={ `${ category.name }` }
-            onClick={ () => this.setCategory({ id: category._id, name: category.name }) }>
+            onClick={ () => this.setCategory(categoryInfo) }>
             { category.name }
           </Link>
         </li>
