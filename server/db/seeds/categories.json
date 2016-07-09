@@ -1,0 +1,49 @@
+[{
+ "_id": "category1",
+ "name": "cheese",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category2",
+ "name": "olives",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category6",
+ "name": "chocolate",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category7",
+ "name": "wine",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category8",
+ "name": "beer",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category9",
+ "name": "coffee",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category10",
+ "name": "meats",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category11",
+ "name": "oysters",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category12",
+ "name": "bitters",
+ "userID": "57818817750c620d5bdb1b7e"
+}, {
+ "_id": "category3",
+ "name": "cheese",
+ "userID": "57818817750c620d5bdb1b7f"
+}, {
+ "_id": "category4",
+ "name": "beer",
+ "userID": "57818817750c620d5bdb1b7f"
+}, {
+ "_id": "category5",
+ "name": "chocolate",
+ "userID": "57818817750c620d5bdb1b7f"
+}]
