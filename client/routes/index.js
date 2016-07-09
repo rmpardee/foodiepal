@@ -18,9 +18,9 @@ export default (
       <IndexRoute component={ Categories } />
       <Route path=":name">
         <IndexRoute component={ Subcategories } />
-        <Route path=":id" component={ Detail } />
-        
+        <Route path=":name" component={ Detail } />
       </Route>
+      <Route path="login" />
     </Route>
   </Route>
 

@@ -6,7 +6,11 @@ export default class Header extends Component {
     return (
       <nav>
         <div className="container">
-          <div className="mobile-quick-nav"></div>
+          <div
+            className="mobile-quick-nav"
+            onClick={ this.context.router.goBack }>
+            Back
+          </div>
 
           <div className="portal">
             <Link to="/" title="FoodiePal">FoodiePal</Link>
@@ -17,4 +21,8 @@ export default class Header extends Component {
       </nav>
     );
   }
+}
+
+Header.contextTypes = {
+  router: React.PropTypes.object
 }
