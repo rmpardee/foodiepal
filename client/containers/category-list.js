@@ -31,11 +31,14 @@ class CategoryList extends Component {
       }
 
       return (
-        <li key={ category._id }>
+        <li key={ category._id } className='grid-links-block'>
           <Link
             to={ `${ category.name }` }
             onClick={ () => this.setCategory(categoryInfo) }>
-            { category.name }
+            <div className="grid-link-container">
+              <span className='grid-link-icon'>x</span>
+              <span className='grid-link-name'>{ category.name }</span>
+            </div>
           </Link>
         </li>
       );
@@ -44,7 +47,7 @@ class CategoryList extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className='grid-links'>
         { this.renderCategories() }
       </ul>
     );
