@@ -52,7 +52,6 @@ class CategoryList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('category container state:', state);
   return state;
 }
 

@@ -21,17 +21,28 @@ body {
   background: url('../img/logo-large.png') no-repeat top center;
   background-size: contain;
   display: block;
-  height: 24px;
+  height: 40px;
   width: 100%;
+}
+
+.mobile-quick-nav {
+  color: #00B6EE;
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 5px 10px;
+}
+
+nav::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .react-rater a {
   cursor: pointer;
   color: #ccc;
 }
-
-/*.react-rater a:not(.is-active):not(.will-be-active) {
-}*/
 
 .react-rater a.is-active,
 .react-rater a.will-be-active {

@@ -14,7 +14,9 @@ class AddEntry extends Component {
       type: '',
       notes: '',
       rating: 0,
-      subcategoryID: this.props.current.subcategory.id
+      categoryID: this.props.current.category.id,
+      subcategoryID: this.props.current.subcategory.id,
+      userID: this.props.current.user.id
     }
 
 

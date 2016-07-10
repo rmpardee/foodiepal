@@ -63,10 +63,7 @@ export function addSubcategoryRequest(subcategory) {
       url: API_SUBCATEGORY,
       data: subcategory
     })
-    .then(response => {
-      console.log('add sub response: ', response);
-      dispatch(addSubcategorySuccess(response.data))
-    })
+    .then(response => dispatch(addSubcategorySuccess(response.data)))
     .catch(response => console.error('subcategories POST error:', response));
   };
 }

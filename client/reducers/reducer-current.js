@@ -11,6 +11,9 @@ import {
  } from '../actions';
 
 const INITIAL_STATE = {
+  auth: {
+    isLoggedIn: true
+  },
   user: {
     id: '577ee365c84865705e05497c', // hardcoded for now
     name: ''
