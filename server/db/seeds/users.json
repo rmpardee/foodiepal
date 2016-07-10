@@ -1,0 +1,21 @@
+[{
+ "_id": "user1",
+ "email": "myemail1@gmail.com",
+ "password": "mypassword1",
+ "salt": "mysalt1"
+}, {
+ "_id": "user2",
+ "email": "myemail2@gmail.com",
+ "password": "mypassword2",
+ "salt": "mysalt2"
+}, {
+ "_id": "user3",
+ "email": "myemail3@gmail.com",
+ "password": "mypassword3",
+ "salt": "mysalt3"
+}, {
+ "_id": "user4",
+ "email": "myemail4@gmail.com",
+ "password": "mypassword4",
+ "salt": "mysalt4"
+}]
