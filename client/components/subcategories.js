@@ -8,6 +8,10 @@ export default class Subcategory extends Component {
     console.log('call fetch action for subcategories');
   }
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Header extends Component {
   render() {
     return (
       <nav>
         <div className="container">
-          <div className="mobile-quick-nav"></div>
+          <div
+            className="mobile-quick-nav"
+            onClick={ this.context.router.goBack }>
+            Back
+          </div>
 
           <div className="portal">
-            <a href="/" title="FoodiePal">FoodiePal</a>
+            <Link to="/" title="FoodiePal">FoodiePal</Link>
           </div>
           
           <div className="mobile-quick-nav"></div>
@@ -16,4 +21,8 @@ export default class Header extends Component {
       </nav>
     );
   }
+}
+
+Header.contextTypes = {
+  router: React.PropTypes.object
 }

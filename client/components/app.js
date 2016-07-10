@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-
-// Import component files
-import Header from './header';
-import Subcategory from './subcategory';
+import ReduxModal from 'react-redux-modal';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <a href="/subcategory">Cheese</a>
         { this.props.children }
+        <ReduxModal />
       </div>
     );
   }

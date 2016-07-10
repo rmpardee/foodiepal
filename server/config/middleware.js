@@ -3,12 +3,12 @@ var bodyParser = require('body-parser');
 // var methodOverride = require('method-override'); //Not needed yet
 // var helpers = require('./helpers.js'); //Custom middleware
 var foodRoutes = require('../food/foodRoutes.js');
-// var userRoutes = require('../user/userRoutes.js');
+var userRoutes = require('../user/userRoutes.js');
 
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
-  // var userRouter = express.Router(); //Use when setting up user routes
+  var userRouter = express.Router();
   var foodRouter = express.Router();
 
   app.use(morgan('dev'));
@@ -23,16 +23,17 @@ module.exports = function (app, express) {
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
     // the next() function continues execution and will move onto the requested URL/URI
     next();
-});
+  });
 
   //inject routes into Router
-  // routes(userRouter);
+  userRoutes(userRouter);
   foodRoutes(foodRouter);
 
 
   // authentication middleware used to decode token and made available on the request
   //app.use('/api/links', helpers.decode);
-  app.use('/api/food', foodRouter); // user link router for link request
+  app.use('/api/food', foodRouter);
+  app.use('/api/user', userRouter);
   // app.use(helpers.errorLogger);
   // app.use(helpers.errorHandler);
 

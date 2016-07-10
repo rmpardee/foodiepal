@@ -1,0 +1,79 @@
+[{
+ "_id": "subcategory1",
+ "name": "cheddar",
+ "description": "pressed cheese, British origins",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory2",
+ "name": "brie",
+ "description": "bloomy rind from brie region of France. Cow's milk.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory3",
+ "name": "ricotta",
+ "description": "fresh young cheese. American versions almost always cow, Italian can be sheep, cow, goat, or water buffalo.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory8",
+ "name": "gouda",
+ "description": "hard aged cheese from holland.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory9",
+ "name": "alpine",
+ "description": "creamy, with crystallization.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory10",
+ "name": "manchego",
+ "description": "spanish, sheep's milk",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory11",
+ "name": "parmesan",
+ "description": "classic italian.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory12",
+ "name": "fresh goat",
+ "description": "young, creamy texture.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory13",
+ "name": "bloomy-rind goat",
+ "description": "many different varieties.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054"
+}, {
+ "_id": "subcategory4",
+ "name": "castelvetrano",
+ "description": "large and bright green, fairly mild, smooth dense texture.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055"
+}, {
+ "_id": "subcategory5",
+ "name": "nicoise",
+ "description": "small and black, salty and strong.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055"
+}, {
+ "_id": "subcategory6",
+ "name": "kalamata",
+ "description": "long and oblong, dark brown, usually from greece.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055"
+}, {
+ "_id": "subcategory7",
+ "name": "nyon",
+ "description": "oil-cured, spicy.",
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055"
+}]

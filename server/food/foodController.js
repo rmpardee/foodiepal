@@ -1,95 +1,109 @@
 var Food = require('./foodModel.js');
 
-//this adds and modifies food
 module.exports = {
-    
-  // ===Testing & Debugging============
-  foodFightTest: 'FoodFight!!',
-  objectIdCounter: 1,
-  messages: [
-    {
-      text: 'hello world'
-    }
-  ],
-  // ===Testing & Debugging============
 
-//SUBCATEGORIES:
-  // the input is the categoryID, which in this case will be the parent of the subcats we want
-  getSubcats: function (categoryID) {
-    // TO CHANGE: we'll have to see how the parent parentID is sent
-    return Food.Subcat.find({parent: categoryID}, function(err, subcats) {
-
-      // if there is an error retrieving, send the error. 
+// CATEGORIES:
+  // the input is the userID, which in this case will be the parent of the categories we want
+  getCategories: function (userID) {
+    // find the categories with the given userID and return them
+    return Food.Category.find({'ancestors.user': userID}, function(err, categories) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller getCategories fn: ", err);
+        return err;
       }
-      console.log('subcats: ', subcats);
-
-      return subcats; // return all the subcategories in JSON format
+      return categories;
     });
   },
 
-  addSubcat: function (req) {
-    // create a new subcategory from the model
-    var newSubcat = new Food.Subcat({
-      // TO CHANGE: we'll have to see how all this is sent in the request
-      name: req.subcatName,
-      description: req.description,
-      ancestors: [req.userID, req.categoryID],
-      parent: req.categoryID
-    });
-            
-    newSubcat.save(function(err, res) {
-      if (err) {
-        //TODO: How to deal with err
-        console.log(err);
-      } else {
-        console.log('Success saving subcat to server');
-        return 'The subcat has been saved'; 
+  addCategory: function (data) {
+    // create a new subcategory from the category model
+    var newCategory = Food.Category({
+      name: data.name,
+      ancestors: {
+        user: data.userID
       }
+    });
+       
+    // save that new entry to the db, and return whatever its callback returns
+    return newCategory.save(function(err, savedCategory) {
+      if (err) {
+        console.log("err in controller addCategory fn: ", err);
+        return err;
+      }
+      console.log('Success saving category to db: ', savedCategory);
+      // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
+    });
+  },
+
+// SUBCATEGORIES:
+  // the input is the categoryID, which in this case will be the parent of the subcats we want
+  getSubcategories: function (categoryID) {
+    // find the subcategories with the given categoryID and return them
+    return Food.Subcategory.find({'ancestors.category': categoryID}, function(err, subcategories) {
+      if (err) {
+        console.log("err in controller getSubcategories fn: ", err);
+        return err;
+      }
+      return subcategories;
+    });
+  },
+
+  addSubcategory: function (data) {
+    // create a new subcategory from the model
+    var newSubcategory = Food.Subcategory({
+      name: data.name,
+      description: data.description,
+      ancestors: {
+        user: data.userID,
+        category: data.categoryID
+      }
+    });
+    
+    // save that new entry to the db, and return whatever its callback returns
+    return newSubcategory.save(function(err, savedSubcategory) {
+      if (err) {
+        console.log("err in controller addSubcategory fn: ", err);
+        return err;
+      }
+      console.log('Success saving subcategory to db: ', savedSubcategory);
+      // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
   },
 
 //ENTRIES
-  // the input is the subcatID, which in this case will be the parent of the entries we want
-  // TO DO: We will need a separate function to get all the entries within a certain category
-  getEntriesForSubcat: function (subcatID) {
-    // TO CHANGE: we'll have to see how the parent parentID is sent
-    return Food.Entry.find({parent: subcatID}, function(err, subcats) {
-
-      // if there is an error retrieving, send the error. 
+  // the input is the subcategoryID, which in this case will be the parent of the entries we want
+  getEntries: function (subcategoryID) {
+    // find the entries with the given subcategoryID and return them
+    return Food.Entry.find({'ancestors.subcategory': subcategoryID}, function(err, entries) {
       if (err) {
-        //TODO: How to deal with err
-        console.log(err);
+        console.log("err in controller getEntries fn: ", err);
+        return err;
       }
-      console.log('subcats: ', subcats);
-
-      return subcats; // return all the subcategories in JSON format
+      return entries;
     });
   },
 
-  addEntry: function (req) {
-    // create a new subcategory from the model
-    var newEntry = new Food.Entry({
-      // TO CHANGE: we'll have to see how all this is sent in the request
-      type: req.type,
-      notes: req.notes,
-      rating: req.rating,
-      ancestors: [req.userID, req.categoryID, req.subcatID],
-      parent: req.subcatID
-
-    });
-            
-    newEntry.save(function(err, res) {
-      if (err) {
-        //TODO: How to deal with err
-        console.log(err);
-      } else {
-        console.log('Success saving entry to server');
-        return 'The entry has been saved'; 
+  addEntry: function (data) {
+    // create a new entry from the model
+    var newEntry = Food.Entry({
+      type: data.type,
+      notes: data.notes,
+      rating: data.rating,
+      ancestors: {
+        user: data.userID,
+        category: data.categoryID,
+        subcategory: data.subcategoryID
       }
     });
+    
+    // save that new entry to the db, and return whatever its callback returns
+    return newEntry.save(function(err, savedEntry) {
+      if (err) {
+        console.log("err in controller addEntry fn: ", err);
+        return err;
+      }
+      console.log('Success saving entry to db: ', savedEntry);
+      // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
+    });
   }
-
 };

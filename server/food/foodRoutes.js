@@ -1,54 +1,90 @@
 var foodControl = require('./foodController.js');
-var Food = require('./foodModel.js');
 
 module.exports = function(app) {
 
-  //main food route 
-  app.route('/')
-    //Not sure what to use this for just yet
+  app.route('/category')
+    // Get categories for the given userID
     .get(function(req, res) {
-      res.send(foodControl.foodFightTest);
+      foodControl.getCategories(req.query.userID).then(function(categories) {
+        res.status(200).send(categories);
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
+      });
     })
-
-    //Not sure what to use this for just yet
+    // Add category to db
     .post(function(req, res) {
-      res.send(foodControl.foodFightTest);
+      // Add the category to the database
+      foodControl.addCategory(req.body).then(function() {
+        // Query the database for all the categories with that userID (which will include the one we just added)
+        foodControl.getCategories(req.body.userID).then(function(categories) {
+          // Send success response status along with those categories
+          res.status(201).send(categories);
+        }, function(err) {
+          console.log("err in route: ", err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
+      });
     });
 
-  app.route('/subcat')
-    //Get subcategories for the given categoryID
+
+  app.route('/subcategory')
+    // Get subcategories for the given categoryID
     .get(function(req, res) {
-      // TO ADD: capture and respond to errors
-      // TO CHANGE: we'll have to see how the parent categoryID is sent
-      foodControl.getSubcats(req.query.categoryID).then(function(subcategories) {
+      foodControl.getSubcategories(req.query.categoryID).then(function(subcategories) {
         res.status(200).send(subcategories);
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
       });
 
     })
-    //Add subcategory to db
+    // Add subcategory to db
     .post(function(req, res) {
-      // TO ADD: capture and respond to errors
-      // TO CHANGE: we'll have to see how the parent categoryID is sent
-      // Possilby refactor as promises (like the Gets)
-      var successResponse = foodControl.addSubcat(req.body);
-      res.status(201).send(successResponse);
+      // Add the subcategory to the database
+      foodControl.addSubcategory(req.body).then(function() {
+        // Query the database for all the subcategories with that categoryID (which will include the one we just added)
+        foodControl.getSubcategories(req.body.categoryID).then(function(subcategories) {
+          // Send success response status along with those subcategories
+          res.status(201).send(subcategories);
+        }, function(err) {
+          console.log("err in route: ", err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
+      });
     });
 
   app.route('/entry')
-    //Get subcategories for the given categoryID
+    // Get entries for the given subcategoryID
     .get(function(req, res) {
-      // TO ADD: capture and respond to errors
-      // TO CHANGE: we'll have to see how the parent subcatID is sent
-      foodControl.getEntriesForSubcat(req.query.subcatID).then(function(entries) {
+      foodControl.getEntries(req.query.subcategoryID).then(function(entries) {
         res.status(200).send(entries);
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
       });
     })
-    //Add subcategory to db
+    // Add entry to db, and return all entries for the given subcategoryID
     .post(function(req, res) {
-      // TO ADD: capture and respond to errors
-      // TO CHANGE: we'll have to see how the parent categoryID is sent
-      // Possilby refactor as promises (like the Gets)
-      var successResponse = foodControl.addEntry(req.body);
-      res.status(201).send(successResponse);
+      // Add the entry to the database
+      foodControl.addEntry(req.body).then(function() {
+        // Query the database for all the entries with that subcategoryID (which will include the one we just added)
+        foodControl.getEntries(req.body.subcategoryID).then(function(entries) {
+          // Send success response status along with those entries
+          res.status(201).send(entries);
+        }, function(err) {
+          console.log("err in route: ", err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log("err in route: ", err);
+        res.status(204).send(err);
+      });
     });
 };

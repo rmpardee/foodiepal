@@ -1,0 +1,89 @@
+[{
+ "_id": "entry1",
+ "type": "cabot clothbound",
+ "notes": "crumbly and hearty",
+ "rating": 4,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e0"
+}, {
+ "_id": "entry2",
+ "type": "montgomery",
+ "notes": "from neal's yard, small batch.",
+ "rating": 3,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e0"
+}, {
+ "_id": "entry3",
+ "type": "prairie breeze",
+ "notes": "american, tangy and sharp, my favorite I've had.",
+ "rating": 5,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e0"
+}, {
+ "_id": "entry4",
+ "type": "brie de mieux",
+ "notes": "mushroomy and pungeant, not your grocery store brie.",
+ "rating": 5,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e1"
+}, {
+ "_id": "entry5",
+ "type": "ile de france le brie",
+ "notes": "very mild and disappointing.",
+ "rating": 1,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e1"
+}, {
+ "_id": "entry6",
+ "type": "narragansett",
+ "notes": "good package to preserve freshness, thicker curd.",
+ "rating": 4,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e2"
+}, {
+ "_id": "entry7",
+ "type": "calabro",
+ "notes": "from the cheese board, standard, on the creamier side.",
+ "rating": 3,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa054",
+  "subcategoryID": "57818979c27ea1635b3e95e2"
+}, {
+ "_id": "entry8",
+ "type": "mezzetta",
+ "notes": "mild and oily",
+ "rating": 4,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055",
+  "subcategoryID": "57818979c27ea1635b3e95e9"
+}, {
+ "_id": "entry9",
+ "type": "cento",
+ "notes": "grocery store, jarred. Fine for cooking.",
+ "rating": 3,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055",
+  "subcategoryID": "57818979c27ea1635b3e95ea"
+}, {
+ "_id": "entry10",
+ "type": "roland",
+ "notes": "jarred but still tastes fresh and flavorful.",
+ "rating": 4,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055",
+  "subcategoryID": "57818979c27ea1635b3e95ea"
+}, {
+ "_id": "entry11",
+ "type": "from bklyn larder in bulk.",
+ "notes": "Tastiest kind for eating by themselves. Very strong flavor.",
+ "rating": 5,
+  "userID": "57818817750c620d5bdb1b7e",
+  "categoryID": "578188deb04583455b0fa055",
+  "subcategoryID": "57818979c27ea1635b3e95ec"
+}]

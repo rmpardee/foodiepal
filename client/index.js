@@ -15,12 +15,12 @@ import routes from './routes/index.js';
 
 import rootReducer from './reducers';
 
-import App from './components/app';
+// import App from './components/app';
 
 const mount = document.getElementById('app')
 const store = applyMiddleware(thunk)(createStore)(rootReducer);
 
-console.log('GLOBAL INITIAL STATE:', store.getState());
+// console.log('GLOBAL INITIAL STATE:', store.getState());
 
 
 
