@@ -15,7 +15,7 @@ const INITIAL_STATE = {
     isLoggedIn: true
   },
   user: {
-    id: '577ee365c84865705e05497c', // hardcoded for now
+    id: '57818817750c620d5bdb1b7e', // hardcoded for now
     name: ''
   },
   category: {

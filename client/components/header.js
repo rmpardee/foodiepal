@@ -9,7 +9,7 @@ export default class Header extends Component {
           <div
             className="mobile-quick-nav"
             onClick={ this.context.router.goBack }>
-            Back
+            <div className="mobile-chevron chevron-left"></div>Back
           </div>
 
           <div className="portal">
