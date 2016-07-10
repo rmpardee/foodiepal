@@ -73,7 +73,6 @@ class SubcategoryList extends Component {
             </Link>
           </li>
         </ul>
-        <button onClick={ this.openEntryForm }>Add Subcategory</button> 
       </div>
     );
   }

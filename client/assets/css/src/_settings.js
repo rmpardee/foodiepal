@@ -30,11 +30,5 @@ module.exports = {
         }
       }
     }]
-  },
-
-  grid: {
-    columns: 12,
-    maxWidth: 1040,
-    gutter: 20
   }
 }
