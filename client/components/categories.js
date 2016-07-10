@@ -8,7 +8,7 @@ export default class Category extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h3>Categories</h3>
         <CategoryList />
       </div>

@@ -19,7 +19,9 @@ class SubcategoryList extends Component {
     this.props.setCurrentSubcategory(subcategory);
   }
 
-  openEntryForm(subcategory) {
+  openEntryForm(e) {
+    e.preventDefault();
+
     modal.add(AddSubcategory, {
       title: 'Add Subcategory',
       size: 'small',
@@ -43,11 +45,14 @@ class SubcategoryList extends Component {
       }
 
       return (
-        <li key={ subcategory._id }>
+        <li key={ subcategory._id } className='grid-links-block'>
           <Link
             to={`/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
-            { subcategory.name }
+            <div className="grid-link-container">
+              <span className='grid-link-icon'>x</span>
+              <span className='grid-link-name'>{ subcategory.name }</span>
+            </div>
           </Link>
         </li>
       );
@@ -57,10 +62,18 @@ class SubcategoryList extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul className='grid-links'>
           { this.renderSubcategories() }
+          <li key='add-subcategory' className='grid-links-block'>
+            <Link to='#' onClick={ this.openEntryForm.bind(this) }>
+              <div className="grid-link-container">
+                <span className='grid-link-icon'>+</span>
+                <span className='grid-link-name'>Add New</span>
+              </div>
+            </Link>
+          </li>
         </ul>
-        <button onClick={ this.openEntryForm.bind(this) }>Add Subcategory</button> 
+        <button onClick={ this.openEntryForm }>Add Subcategory</button> 
       </div>
     );
   }

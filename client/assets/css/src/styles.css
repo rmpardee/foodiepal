@@ -1,0 +1,120 @@
+@import '_variables';
+@import '_typography';
+
+@reset-global mobile;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $max-width;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.portal {
+  text-indent: -9999em;
+}
+
+.portal a {
+  background: url('../img/logo-small.png') no-repeat top center;
+  background-size: contain;
+  display: block;
+  height: 27px;
+  width: 100%;
+
+  @media mq('small') {
+    background-image: url('../img/logo-large.png');
+    height: 34px;
+  }
+}
+
+.mobile-quick-nav {
+  color: #00B6EE;
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 5px 10px;
+}
+
+.mobile-chevron {
+  border-style: solid;
+  border-width: 4px 0 0 4px;
+  height: 12px;
+  position: relative;
+  top: 1px;
+  width: 12px;
+  transform: rotate(-45deg);
+}
+
+.mobile-chevron.chevron-left {
+  display: inline-block;
+}
+
+.grid {
+  grid-column: 12/12;
+}
+
+.grid-links {
+  /*display: table;*/
+  list-style-type: none;
+  text-align: center;
+}
+
+.grid-links-block {
+  border: solid 1px $lighter-gray;
+  grid-column: 4/12 !last;
+  min-height: 100px;
+}
+
+.grid-links-block a {
+  border-collapse: collapse;
+  display: block;
+  font-size: 0.85em;
+  height: 100px;
+  line-height: ;
+}
+
+.grid-links-block a:hover {
+  background: #eee;
+}
+
+.grid-link-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.grid-link-icon,
+.grid-link-name {
+  display: block;
+}
+
+.grid-link-icon {
+  font-size: 3em;
+  font-weight: $bold-weight;
+}
+
+nav::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.react-rater a {
+  cursor: pointer;
+  color: #ccc;
+}
+
+.react-rater a.is-active,
+.react-rater a.will-be-active {
+  color: #fc6;
+}
