@@ -50,7 +50,6 @@ class SubcategoryList extends Component {
             to={`/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
-              <span className='grid-link-icon'>x</span>
               <span className='grid-link-name'>{ subcategory.name }</span>
             </div>
           </Link>
@@ -61,13 +60,13 @@ class SubcategoryList extends Component {
 
   render() {
     return (
-      <div>
+      <div className='grid-container'>
         <ul className='grid-links'>
           { this.renderSubcategories() }
           <li key='add-subcategory' className='grid-links-block'>
             <Link to='#' onClick={ this.openEntryForm.bind(this) }>
               <div className="grid-link-container">
-                <span className='grid-link-icon'>+</span>
+                <div className='grid-link-icon'>+</div>
                 <span className='grid-link-name'>Add New</span>
               </div>
             </Link>

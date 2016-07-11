@@ -15,10 +15,8 @@ export default class Subcategory extends Component {
   render() {
     return (
       <div className='container'>
-        <h3>Select a subcategory</h3>
-        <div className='grid'>
-          <SubcategoryList />
-        </div>
+        <h6 className='grid-title'>Subcategories</h6>
+        <SubcategoryList />
       </div>
     );
   };

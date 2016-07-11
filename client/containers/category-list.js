@@ -36,7 +36,7 @@ class CategoryList extends Component {
             to={ `${ category.name }` }
             onClick={ () => this.setCategory(categoryInfo) }>
             <div className="grid-link-container">
-              <span className='grid-link-icon'>x</span>
+              <div className={ `grid-link-icon grid-link-icon-${ category.name }` }></div>
               <span className='grid-link-name'>{ category.name }</span>
             </div>
           </Link>
@@ -47,9 +47,11 @@ class CategoryList extends Component {
 
   render() {
     return (
-      <ul className='grid-links'>
-        { this.renderCategories() }
-      </ul>
+      <div className='grid-container'>
+        <ul className='grid-links'>
+          { this.renderCategories() }
+        </ul>
+      </div>
     );
   }
 }

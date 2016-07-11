@@ -9,7 +9,7 @@ export default class Category extends Component {
   render() {
     return (
       <div className='container'>
-        <h3>Categories</h3>
+        <h6 className='grid-title'>Categories</h6>
         <CategoryList />
       </div>
     );
