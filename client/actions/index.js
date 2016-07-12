@@ -1,21 +1,10 @@
 // Actions
-import axios from 'axios'
+import axios from 'axios';
 
 const API_URL = 'http://localhost:3000';
 const API_CATEGORY = `${API_URL}/api/food/category`;
 const API_SUBCATEGORY = `${API_URL}/api/food/subcategory`;
 const API_ENTRY = `${API_URL}/api/food/entry`;
-const API_USER = `${API_URL}/api/user`;
-
-// Authentication
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-
-
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 // Category
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';
