@@ -10,6 +10,8 @@ var CategorySchema = new mongoose.Schema({
   ancestors: {
     user: String
   }
+}, {
+  timestamps: true
 });
 
 // Subcategory Model
@@ -25,6 +27,8 @@ var SubcategorySchema = new mongoose.Schema({
     user: String,
     category: String
   }
+}, {
+  timestamps: true
 });
 
 // Entry Model
@@ -46,6 +50,8 @@ var EntrySchema = new mongoose.Schema({
     category: String,
     subcategory: String
   }
+}, {
+  timestamps: true
 });
 
 module.exports.Category = mongoose.model('Category', CategorySchema);
