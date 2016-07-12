@@ -31,7 +31,6 @@ class Detail extends Component {
   openEntryForm(subcategory) {
     modal.add(AddEntry, {
       title: 'Add Entry',
-      size: 'medium',
       closeOnOutsideClick: true,
       hideCloseButton: false
     });

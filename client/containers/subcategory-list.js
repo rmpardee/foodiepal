@@ -24,7 +24,6 @@ class SubcategoryList extends Component {
 
     modal.add(AddSubcategory, {
       title: 'Add Subcategory',
-      size: 'small',
       closeOnOutsideClick: true,
       hideCloseButton: false
     });

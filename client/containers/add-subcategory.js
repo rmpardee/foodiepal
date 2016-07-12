@@ -40,20 +40,22 @@ class AddSubcategory extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.onFormSubmit }>
-        <input 
-          value={ this.state.name }
-          onChange={ this.onNameChange.bind(this) }
-          type="text"
-          placeholder="Name"
-        />
-        <textarea 
-          value={ this.state.description }
-          onChange={ this.onDescriptionChange }
-          placeholder="Description"
-        />
-        <button type="submit">Add Subcategory</button>
-      </form>
+      <div className='form-container'>
+        <form onSubmit={ this.onFormSubmit }>
+          <input 
+            value={ this.state.name }
+            onChange={ this.onNameChange.bind(this) }
+            type='text'
+            placeholder='Name'
+          />
+          <textarea 
+            value={ this.state.description }
+            onChange={ this.onDescriptionChange }
+            placeholder='Description'
+          />
+          <button type='submit' className='btn btn-primary'>Add Subcategory</button>
+        </form>
+      </div>
     );
   }
 }
