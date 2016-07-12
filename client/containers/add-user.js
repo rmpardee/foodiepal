@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
 
-import Welcome from '../components/auth.js';
+import User from '../components/users.js';
 import { addUserRequest } from '../actions/auth.js';
 import { asyncValidate, resetValidateUserFields } from '../actions/auth.js';
+
 
 
 //Client side validation
@@ -12,20 +13,20 @@ function validate(values) {
   var errors = {};
   var hasErrors = false;
 
-  if(!values.email || values.email.trim() === '') {
+  if (!values.email || values.email.trim() === '') {
     errors.email = 'Enter email';
     hasErrors = true;
   }
-  if(!values.password || values.password.trim() === '') {
+  if (!values.password || values.password.trim() === '') {
     errors.password = 'Enter password';
     hasErrors = true;
   }
-  if(!values.confirmPassword || values.confirmPassword.trim() === '') {
+  if (!values.confirmPassword || values.confirmPassword.trim() === '') {
     errors.confirmPassword = 'Re-enter password';
     hasErrors = true;
   }
 
-  if(values.confirmPassword  && values.confirmPassword.trim() !== '' && values.password  && values.password.trim() !== '' && values.password !== values.confirmPassword) {
+  if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
     errors.password = 'Password And Re-entered Password don\'t match';
     errors.password = 'Password And Re-entered Password don\'t match';
     hasErrors = true;
@@ -37,7 +38,7 @@ function validate(values) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUpUser: asyncValidate,
+    signUpUser: addUserRequest,
     resetMe: () =>{
       dispatch(resetValidateUserFields());
     }
@@ -58,6 +59,5 @@ export default reduxForm({
   form: 'SignUpForm', 
   fields: ['email', 'password', 'confirmPassword'], 
   asyncValidate,
-  asyncBlurFields: ['username', 'email'],
   validate 
-}, mapStateToProps, mapDispatchToProps)(SignUpForm);
+}, mapStateToProps, mapDispatchToProps)(User);

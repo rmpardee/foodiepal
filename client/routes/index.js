@@ -11,10 +11,13 @@ import AddEntry from '../containers/add-entry';
 import Categories from '../components/categories';
 import Subcategories from '../containers/subcategories';
 import Detail from '../containers/detail';
+import User from '../components/user';
+// import Welcome from '../components/welcome';
 
 export default (
   <Route component={ App }>
     <Route path="/" component={ Main }>
+      <Route path="signup" component={ User } />
       <IndexRoute component={ Categories } />
       <Route path=":name">
         <IndexRoute component={ Subcategories } />
