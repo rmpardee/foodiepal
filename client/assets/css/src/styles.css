@@ -86,7 +86,7 @@ nav {
 
 .grid-title {
   border-bottom: solid 1px $lighter-gray;
-  color: $light-gray;
+  color: $gray;
   font-size: 0.85em;
   letter-spacing: 3px;
   margin-bottom: 2em;
@@ -113,7 +113,7 @@ nav {
 }
 
 .grid-links-block {
-  background: $lighter-gray;
+  background: transparent;
   border: solid 1px #fff;
   lost-waffle: 1/3 3 0;
   margin-left: -1px;
@@ -131,11 +131,11 @@ nav {
   color: $gray;
   display: block;
   font-size: 0.85em;
-  height: 100px;
+  height: 120px;
   transition: all 0.3s ease-out;
 
   @media mq('small') {
-    height: 120px;
+    height: 140px;
   }
 }
 
@@ -162,7 +162,7 @@ nav {
   filter: grayscale(100%);
   font-size: 3em;
   font-weight: $bold-weight;
-  height: 48px;
+  height: 64px;
   margin-bottom: 10px;
   transition: all 0.3s ease-out;
   width: auto;
@@ -219,6 +219,15 @@ nav {
 .react-rater a.is-active,
 .react-rater a.will-be-active {
   color: #fc6;
+}
+
+.react-rater a.read-only {
+  cursor: default;
+  padding: 5px;
+}
+
+.entry-listing .react-rater {
+  text-align: left;
 }
 
 
@@ -404,4 +413,44 @@ textarea {
 
 .btn-primary:hover {
   background-color: color($blue l(-10%) s(-5%));
+}
+
+.add-new-block {
+  background: $lighter-gray;
+  border: solid 1px $light-gray;
+  color: $gray;
+  padding: 20px;
+  text-align: center;
+}
+
+.breadcrumbs-separator {
+  font-size: 1.2em;
+}
+
+
+.fade-in-enter {
+  opacity: 0;
+}
+
+.fade-in-enter.fade-in-enter-active {
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.fade-in-leave {
+  opacity: 1;
+}
+
+.fade-in-leave.fade-in-leave-active {
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.fade-in-appear {
+  opacity: 0;
+}
+
+.fade-in-appear.fade-in-appear-active {
+  opacity: 1;
+  transition: all 0.3s ease-out;
 }

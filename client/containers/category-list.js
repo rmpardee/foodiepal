@@ -21,7 +21,7 @@ class CategoryList extends Component {
     const categories = this.props.categories;
 
     if (!categories.length) {
-      return 'No categories.';
+      return;
     }
 
     return categories.map((category) => {

@@ -403,7 +403,7 @@ nav {
 }
 .grid-title {
   border-bottom: solid 1px rgb(230, 230, 230);
-  color: rgb(204, 204, 204);
+  color: #999;
   font-size: 0.85em;
   letter-spacing: 3px;
   margin-bottom: 2em;
@@ -423,7 +423,7 @@ nav {
  .grid-links:after { content: ''; display: table; clear: both; } }
 @media mq('medium') {}
 .grid-links-block {
-  background: rgb(230, 230, 230);
+  background: transparent;
   border: solid 1px #fff;
   width: calc(99.9% * 1/3);
   height: calc(99.9% * 1/3);
@@ -444,12 +444,12 @@ nav {
   color: #999;
   display: block;
   font-size: 0.85em;
-  height: 100px;
+  height: 120px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 @media only screen and ( min-width: 35.5em ) {
- .grid-links-block a { height: 120px; } }
+ .grid-links-block a { height: 140px; } }
 .grid-links-block a:hover {
   background: #fff;
   color: rgb(73, 73, 73);
@@ -473,7 +473,7 @@ nav {
           filter: grayscale(100%);
   font-size: 3em;
   font-weight: 700;
-  height: 48px;
+  height: 64px;
   margin-bottom: 10px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -520,6 +520,13 @@ nav {
 .react-rater a.is-active,
 .react-rater a.will-be-active {
   color: #fc6;
+}
+.react-rater a.read-only {
+  cursor: default;
+  padding: 5px;
+}
+.entry-listing .react-rater {
+  text-align: left;
 }
 /* React-Redux Modal overrides */
 .react-redux-modal {
@@ -675,4 +682,44 @@ textarea {
 }
 .btn-primary:hover {
   background-color: rgb(60, 118, 226);
+}
+.add-new-block {
+  background: rgb(230, 230, 230);
+  border: solid 1px rgb(204, 204, 204);
+  color: #999;
+  padding: 20px;
+  text-align: center;
+}
+.breadcrumbs-separator {
+  font-size: 1.2em;
+}
+.fade-in-enter {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+}
+.fade-in-enter.fade-in-enter-active {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.fade-in-leave {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+}
+.fade-in-leave.fade-in-leave-active {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.fade-in-appear {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  opacity: 0;
+}
+.fade-in-appear.fade-in-appear-active {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  opacity: 1;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }

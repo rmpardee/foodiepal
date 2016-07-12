@@ -31,6 +31,7 @@
     "morgan": "^1.7.0",
     "node": "0.0.0",
     "react": "^0.14.0",
+    "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
     "react-rater": "^0.3.2",
     "react-redux": "^4.4.5",
