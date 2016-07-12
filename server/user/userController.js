@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -13,11 +14,25 @@ module.exports = {
     });
   },
 
+  // given a userName, return that user
+  getUserSignIn: function(email) {
+    return User.findOne({'email': email}, function(err, user) {
+      if (err) {
+        console.log("err in controller getUser fn: ", err);
+        return err;
+      }
+      return user;
+    });
+  },
+
+
+
   addUser: function(data) {
+    var hash = bcrypt.hashSync(data.password.trim(), 10);
     var newUser = User({
-     email: data.email,
-     password: data.password,
-     salt: data.salt
+     email: data.email.trim(),
+     password: hash
+     // salt: data.salt
     });
 
     return newUser.save(function(err, savedUser) {

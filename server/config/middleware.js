@@ -4,12 +4,16 @@ var bodyParser = require('body-parser');
 // var helpers = require('./helpers.js'); //Custom middleware
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
+var expressJwt = require('express-jwt');
+// var expJTW = require('./config.js');
 
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
   var userRouter = express.Router();
   var foodRouter = express.Router();
+
+  // app.use(expressJwt({ secret: expJTW.scrt }));
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
