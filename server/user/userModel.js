@@ -20,6 +20,8 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 // FOR FUTURE USE WITH AUTHENTICATION:
