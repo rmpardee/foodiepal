@@ -30,18 +30,17 @@ module.exports = function(app) {
 
   //In middleware.js for now
   // app.use(expressJwt({ secret: 'keyboard cat' }));
+  process.env.JWT_SECRET = 'keyboard cat';
 
   //Generate JWT Token: Signup Route
   app.route('/signup')
-    .post(function(req, res, next) {
-      userControl.addUser(req.body).then(function() {
-        user.save(function(err, user) {  // <-- Save User
-          if (err) { throw err; }
-          var token = utils.generateToken(user); //<----- Generate Token
-          res.json({
-            user: user,   //  <----- Return both user and token
-            token: token
-          });
+    .post(function(req, res) {
+      userControl.addUser(req.body).then(function(user) {
+        var token = utils.generateToken(user); //<----- Generate Token
+        user = utils.getCleanUser(user);
+        res.status(201).json({
+          user: user,   //  <----- Return both user and token
+          token: token
         });
       });
     });
@@ -83,14 +82,18 @@ module.exports = function(app) {
   //get current user from token
   app.route('/me/from/token') //TODO: check path
     .get(function(req, res, next) {
+    console.log('REQ.BODY: ', req.body);
+    console.log('REQ.QUERY: ', req.query);
+    console.log(process.env.JWT_SECRET);
     // check header or url parameters or post parameters for token
       var token = req.body.token || req.query.token;
+      // var token = 'keyboard cat'; // this line used for testing
       if (!token) {
         return res.status(401).json({message: 'Must pass token'});
       }
     // Check token that was passed by decoding token using secret
-      jwt.verify(token, 'keyboard cat', function(err, user) {
-      // jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
+      // jwt.verify(token, 'keyboard cat', function(err, user) {
+      jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
         if (err) { throw err; }
         //return user using the id from w/in JWTToken
         User.findById({
@@ -115,10 +118,10 @@ module.exports = function(app) {
   app.route('/test')
     // .post(expressJwt({secret: expJTW.scrt}), function(req, res, next) {
     // });
-    // .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
-    // });
-    .post(expressJwt({secret: 'keyboard cat'}), function(req, res, next) {
+    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
     });
+    // .post(expressJwt({secret: 'keyboard cat'}), function(req, res, next) {
+    // });
 
 
 };

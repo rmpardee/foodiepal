@@ -21,13 +21,20 @@ module.exports = {
     });
   },
 
-  //thie can be tweeked to send client what we want about the user (note that password is omitted)
+  //this can be tweeked to send client what we want about the user (note that password is omitted.
   getCleanUser: function(user) {
-    var u = {
-      _id: user._id,
-      email: user.email
+    var u = user.toJSON();
+    return {
+      _id: u._id,
+      // name: u.name,
+      // username: u.username,
+      email: u.email
+      // admin: u.admin,
+      // createdAt: u.createdAt,
+      // updatedAt: u.updatedAt,
+      // image: u.image,
+      // isEmailVerified: u.isEmailVerified
     };
-    return u;
   }
 
 };
