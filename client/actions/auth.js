@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3000';
 const API_USER = `${API_URL}/api/user/`;
-const API_VALIDATE = `${API_URL}/users/validate/fields`;
+const API_ADD_USER = `${API_USER}signup`;
+// const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
 
 //Add user (sign up)
@@ -10,30 +11,30 @@ export const ADD_USER_REQUEST = 'ADD_USER_REQUEST';
 export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
 
-export function addUserRequest(user) {
-  return dispatch => {
-    dispatch(addUser());
-
+export function addUserRequest(user, dispatch) {
+  return new Promise ((reject, resolve) => {
+  //   dispatch(addUser());
     return axios({
       method: 'POST',
-      url: API_USER,
+      url: API_ADD_USER,
       data: user
     })
     .then(response => {
-      if (response.payload.status !== 200) {
-        dispatch(addUserFailure(response.payload));
-        reject(response.payload.data);
+      if (response.status !== 200) {
+        dispatch(addUserFailure(response.data));
+        reject(response.data);
       } else {
-        sessionStorage.setItem('jwtToken', response.payload.data.token);
+        sessionStorage.setItem('jwtToken', response.data.token);
         dispatch(addUserSuccess(response.data));
         resolve();
       }
     })
     .catch(response => console.error('user POST error:', response));
-  };
+  });
 }
 
 export function addUser() {
+  console.log("addUser called");
   return {
     type: ADD_USER_REQUEST
   };
@@ -55,57 +56,57 @@ function addUserFailure(user) {
 
 
 //Validation
-export const VALIDATE_USER_FIELDS = 'VALIDATE_USER_FIELDS';
-export const VALIDATE_USER_FIELDS_SUCCESS = 'VALIDATE_USER_FIELDS_SUCCESS';
-export const VALIDATE_USER_FIELDS_FAILURE = 'VALIDATE_USER_FIELDS_FAILURE';
-export const RESET_VALIDATE_USER_FIELDS = 'RESET_VALIDATE_USER_FIELDS';
+// export const VALIDATE_USER_FIELDS = 'VALIDATE_USER_FIELDS';
+// export const VALIDATE_USER_FIELDS_SUCCESS = 'VALIDATE_USER_FIELDS_SUCCESS';
+// export const VALIDATE_USER_FIELDS_FAILURE = 'VALIDATE_USER_FIELDS_FAILURE';
+// export const RESET_VALIDATE_USER_FIELDS = 'RESET_VALIDATE_USER_FIELDS';
 
-export function asyncValidate(values) {
-  return dispatch => {
-    dispatch(validateUserFields(values));
-    return axios({
-      method: 'POST',
-      url: API_VALIDATE,
-      data: values
-    })
-    .then((response) => {
-      let data = response.payload.data;
-      if (response.payload.status !== 200 || data.username || data.email) {
-        dispatch(validateUserFieldsFailure(response.payload));
-        reject(data);
-      } else {
-        dispatch(validateUserFieldsSuccess(response.payload));
-        resolve();
-      }
-    });
-  };
-}
+// export function asyncValidate(values) {
+//   return dispatch => {
+//     dispatch(validateUserFields(values));
+//     return axios({
+//       method: 'POST',
+//       url: API_VALIDATE,
+//       data: values
+//     })
+//     .then((response) => {
+//       let data = response.payload.data;
+//       if (response.payload.status !== 200 || data.username || data.email) {
+//         dispatch(validateUserFieldsFailure(response.payload));
+//         reject(data);
+//       } else {
+//         dispatch(validateUserFieldsSuccess(response.payload));
+//         resolve();
+//       }
+//     });
+//   };
+// }
 
-function validateUserFields(values) {
-  return {
-    type: VALIDATE_USER_FIELDS,
-    payload: request
-  };
-}
+// function validateUserFields(values) {
+//   return {
+//     type: VALIDATE_USER_FIELDS,
+//     payload: request
+//   };
+// }
 
-function validateUserFieldsSuccess() {
-  return {
-    type: VALIDATE_USER_FIELDS_SUCCESS
-  };
-}
+// function validateUserFieldsSuccess() {
+//   return {
+//     type: VALIDATE_USER_FIELDS_SUCCESS
+//   };
+// }
 
-function validateUserFieldsFailure(error) {
-  return {
-    type: VALIDATE_USER_FIELDS_FAILURE,
-    payload: error
-  };
-}
+// function validateUserFieldsFailure(error) {
+//   return {
+//     type: VALIDATE_USER_FIELDS_FAILURE,
+//     payload: error
+//   };
+// }
 
-export function resetValidateUserFields() {
-  return {
-    type: RESET_VALIDATE_USER_FIELDS
-  };
-}
+// export function resetValidateUserFields() {
+//   return {
+//     type: RESET_VALIDATE_USER_FIELDS
+//   };
+// }
 
 //Get current user(me) from token in localStorage
 export const ME_FROM_TOKEN = 'ME_FROM_TOKEN';

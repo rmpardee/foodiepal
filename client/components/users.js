@@ -6,18 +6,18 @@ export default class User extends Component {
   componentWillMount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
     //always reset that global state back to null when you REMOUNT
-    console.log("this.props in user component: ", this.props);
-    this.props.resetMe();
+    // console.log("this.props in user component: ", this.props);
+    // this.props.resetMe();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.status === 'authenticated' && nextProps.user.user && !nextProps.user.error) {
-      this.context.router.push('/');
-    }
-  }
+  // asyncValidating, 
+
+  // <div className="help-block">
+  //   {asyncValidating === 'email' ? 'validating..': ''}
+  // </div>
 
   render() {
-    const {asyncValidating, fields: { email, password, confirmPassword }, handleSubmit, submitting } = this.props;
+    const {fields: { email, password, confirmPassword }, handleSubmit, submitting } = this.props;
 
     return (
       <div className="container">
@@ -27,9 +27,6 @@ export default class User extends Component {
           <input type="email" className="form-control" {...email} />
           <div className="help-block">
             {email.touched ? email.error : ''}
-          </div>
-          <div className="help-block">
-            {asyncValidating === 'email' ? 'validating..': ''}
           </div>
         </div>
 

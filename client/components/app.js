@@ -7,7 +7,7 @@ import { meFromToken, meFromTokenSuccess, meFromTokenFailure, resetToken } from 
 class App extends Component {
 
   componentWillMount() {
-   console.log("this.props in app component: ", this.props);
+   // console.log("this.props in app component: ", this.props);
     this.props.loadUserFromToken();
   }
 
@@ -25,9 +25,9 @@ class App extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     loadUserFromToken: () => {
-      console.log("loadUserFromToken is called");
+      // console.log("loadUserFromToken is called");
       let token = sessionStorage.getItem('jwtToken');
-      console.log("token: ", token);
+      // console.log("token: ", token);
       if (!token || token === '') {
         return;  //if there is no token, dont bother
       }

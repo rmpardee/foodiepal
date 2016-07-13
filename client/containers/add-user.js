@@ -39,12 +39,13 @@ function validate(values) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    signUpUser: addUserRequest,
-    resetMe: () => {
-      console.log("resetMe in user container");
-      return bindActionCreators({ resetValidateUserFields }, dispatch);
-      // dispatch(resetValidateUserFields);
-    }
+    signUpUser: addUserRequest
+    // ,
+    // resetMe: () => {
+    //   console.log("resetMe in user container");
+    //   return bindActionCreators({ resetValidateUserFields }, dispatch);
+    //   // dispatch(resetValidateUserFields);
+    // }
   };
 };
 
@@ -61,7 +62,7 @@ function mapStateToProps(state, ownProps) {
 export default reduxForm({
   form: 'User',
   fields: ['email', 'password', 'confirmPassword'], 
-  asyncValidate,
+  // asyncValidate,
   validate 
 }, mapStateToProps, mapDispatchToProps)(User);
 
