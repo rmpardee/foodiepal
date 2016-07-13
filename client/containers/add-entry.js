@@ -53,24 +53,26 @@ class AddEntry extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.onFormSubmit }>
-        <input 
-          value={ this.state.type }
-          onChange={ this.onTypeChange }
-          type="text"
-          placeholder="Type"
-        />
-        <textarea 
-          value={ this.state.notes }
-          onChange={ this.onNotesChange }
-          placeholder="Notes"
-        />
-        <Rater
-          onRate={ this.onRating.bind(this) }
-          interactive={true}
-        />
-        <button type="submit">Add Entry</button>
-      </form>
+      <div className='form-container'>
+        <form onSubmit={ this.onFormSubmit }>
+          <input 
+            value={ this.state.type }
+            onChange={ this.onTypeChange }
+            type="text"
+            placeholder="Type"
+          />
+          <textarea 
+            value={ this.state.notes }
+            onChange={ this.onNotesChange }
+            placeholder="Notes"
+          />
+          <Rater
+            onRate={ this.onRating.bind(this) }
+            interactive={true}
+          />
+          <button type="submit" className='btn btn-primary'>Add Entry</button>
+        </form>
+      </div>
     );
   }
 }

@@ -9,7 +9,7 @@ import Main from '../components/main'; // Main (user) layout
 
 import AddEntry from '../containers/add-entry';
 import Categories from '../components/categories';
-import Subcategories from '../components/subcategories';
+import Subcategories from '../containers/subcategories';
 import Detail from '../containers/detail';
 
 export default (

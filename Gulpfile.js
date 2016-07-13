@@ -13,7 +13,7 @@ var nested = require('postcss-nested');
 var map = require('postcss-map');
 var calc = require('postcss-calc');
 var clearfix = require('postcss-clearfix');
-var grid = require('postcss-grid');
+var grid = require('lost');
 
 var settings = require('./client/assets/css/src/_settings');
 
@@ -28,7 +28,7 @@ var processors = [
   color,
   calc,
   autoprefixer({ browsers: ["last 2 version", "safari 5", "ie > 9", "opera 12.1", "ios 6", "android 2.3"] }),
-  grid(settings.grid),
+  grid,
   reset
 ];
 

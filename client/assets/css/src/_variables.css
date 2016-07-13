@@ -12,6 +12,7 @@ $dark-gray: color(#000 w(+40%) s(0));
 $gray: #999;
 $light-gray: color(#fff w(-40%) s(0));
 $lighter-gray: color(#fff w(-20%) s(0));
+$lightest-gray: color(#fff w(-9%) s(0));
 
 /* FONT WEIGHTS */
 $light-weight: 300;
@@ -67,13 +68,3 @@ $nav-bg: rgba(255, 255, 255, 0.90);
 
 $footer-bg: rgba(0, 0, 0, 0.3);
 $footer-color: #fff;
-
-
-/* BRANDING */
-$twitter-blue: #55acee;
-$twitter-darker-gray: #292f33;
-$twitter-dark-gray: #66757f;
-$twitter-gray: #ccd6dd;
-$twitter-light-gray: #e1e8ed;
-
-$instagram-pink: #e1306c;
