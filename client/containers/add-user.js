@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
 
 import User from '../components/users.js';
 import { addUserRequest } from '../actions/auth.js';
@@ -36,11 +37,13 @@ function validate(values) {
 } 
 
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps(dispatch) {
   return {
     signUpUser: addUserRequest,
-    resetMe: () =>{
-      dispatch(resetValidateUserFields());
+    resetMe: () => {
+      console.log("resetMe in user container");
+      return bindActionCreators({ resetValidateUserFields }, dispatch);
+      // dispatch(resetValidateUserFields);
     }
   };
 };
@@ -56,8 +59,9 @@ function mapStateToProps(state, ownProps) {
 // connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
 // reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
-  form: 'SignUpForm', 
+  form: 'User',
   fields: ['email', 'password', 'confirmPassword'], 
   asyncValidate,
   validate 
 }, mapStateToProps, mapDispatchToProps)(User);
+

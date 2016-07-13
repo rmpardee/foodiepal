@@ -33,7 +33,7 @@ export function addUserRequest(user) {
   };
 }
 
-function addUser() {
+export function addUser() {
   return {
     type: ADD_USER_REQUEST
   };
@@ -101,7 +101,7 @@ function validateUserFieldsFailure(error) {
   };
 }
 
-function resetValidateUserFields() {
+export function resetValidateUserFields() {
   return {
     type: RESET_VALIDATE_USER_FIELDS
   };

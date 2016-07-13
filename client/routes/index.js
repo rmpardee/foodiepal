@@ -11,14 +11,14 @@ import AddEntry from '../containers/add-entry';
 import Categories from '../components/categories';
 import Subcategories from '../containers/subcategories';
 import Detail from '../containers/detail';
-import User from '../components/user';
+import User from '../containers/add-user';
 // import Welcome from '../components/welcome';
 
 export default (
   <Route component={ App }>
     <Route path="/" component={ Main }>
-      <Route path="signup" component={ User } />
       <IndexRoute component={ Categories } />
+      <Route path="signup" component={ User } />
       <Route path=":name">
         <IndexRoute component={ Subcategories } />
         <Route path=":name" component={ Detail } />
@@ -26,6 +26,7 @@ export default (
       <Route path="login" />
     </Route>
   </Route>
+);
 
   /*<Route path="/" component={App}>
     <IndexRoute component={Main} />
@@ -36,4 +37,3 @@ export default (
       
     </Route>
   </Route>*/
-);

@@ -2,13 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 export default class User extends Component {
-  static contextTypes = {
-    router: PropTypes.object
-  }
 
   componentWillMount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
     //always reset that global state back to null when you REMOUNT
+    console.log("this.props in user component: ", this.props);
     this.props.resetMe();
   }
 
@@ -23,7 +21,7 @@ export default class User extends Component {
 
     return (
       <div className="container">
-      <form onSubmit={handleSubmit(this.props.addUser.bind(this))}>
+      <form onSubmit={ handleSubmit(this.props.signUpUser) }>
         <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
           <label className="control-label">Email*</label>
           <input type="email" className="form-control" {...email} />
@@ -55,4 +53,8 @@ export default class User extends Component {
       </div>
     );
   }
+}
+
+User.contextTypes = {
+  router: PropTypes.object
 }
