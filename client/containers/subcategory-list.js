@@ -24,7 +24,6 @@ class SubcategoryList extends Component {
 
     modal.add(AddSubcategory, {
       title: 'Add Subcategory',
-      size: 'small',
       closeOnOutsideClick: true,
       hideCloseButton: false
     });
@@ -33,10 +32,6 @@ class SubcategoryList extends Component {
   renderSubcategories() {
     const category = this.props.current.category.name;
     const subcategories = this.props.subcategories;
-
-    if (!subcategories.length) {
-      return 'No subcategories.';
-    }
 
     return subcategories.map((subcategory) => {
       let subcategoryInfo = {
@@ -50,7 +45,6 @@ class SubcategoryList extends Component {
             to={`/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
-              <span className='grid-link-icon'>x</span>
               <span className='grid-link-name'>{ subcategory.name }</span>
             </div>
           </Link>
@@ -59,21 +53,46 @@ class SubcategoryList extends Component {
     })
   }
 
+  renderAddNewButtonGrid() {
+    if (this.props.subcategories.length) {
+      return (
+        <li key='add-subcategory' className='grid-links-block'>
+          <Link to='#' onClick={ this.openEntryForm.bind(this) }>
+            <div className="grid-link-container">
+              <div className='grid-link-icon'>+</div>
+              <span className='grid-link-name'>Add New</span>
+            </div>
+          </Link>
+        </li>
+      );
+    }
+  }
+
+  renderAddNewBlock() {
+    if (!this.props.subcategories.length) {
+      return (
+        <div className='add-new-block'>
+          <h4>Oh noes!</h4>
+          <p>You haven't added any types of { this.props.current.category.name }!</p>
+          <Link to='#' onClick={ this.openEntryForm.bind(this) }>
+            <div className="grid-link-container">
+              <div className='grid-link-icon'>+</div>
+              <span className='grid-link-name'>Add New</span>
+            </div>
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div className='grid-container'>
         <ul className='grid-links'>
-          { this.renderSubcategories() }
-          <li key='add-subcategory' className='grid-links-block'>
-            <Link to='#' onClick={ this.openEntryForm.bind(this) }>
-              <div className="grid-link-container">
-                <span className='grid-link-icon'>+</span>
-                <span className='grid-link-name'>Add New</span>
-              </div>
-            </Link>
-          </li>
+          { this.props.subcategories.length ? this.renderSubcategories() : '' }
+          { this.renderAddNewButtonGrid() }
         </ul>
-        <button onClick={ this.openEntryForm }>Add Subcategory</button> 
+        { this.renderAddNewBlock() }
       </div>
     );
   }
