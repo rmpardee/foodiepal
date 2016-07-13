@@ -42,7 +42,7 @@ module.exports = function(app) {
     });
 
 
-  //Generate JWT Token: LogIn Route
+  //Generate JWT Token: SignIn Route
   app.route('/login') 
     .post(function(req, res) {
       userControl.getUserLogIn(req.body.email)  // <-- Check username

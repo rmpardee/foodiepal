@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 
-import User from '../components/users.js';
+import SignUp from '../components/signup.js';
 import { addUserRequest } from '../actions/auth.js';
 import { asyncValidate, resetValidateUserFields } from '../actions/auth.js';
 
@@ -64,5 +64,5 @@ export default reduxForm({
   fields: ['email', 'password', 'confirmPassword'], 
   // asyncValidate,
   validate 
-}, mapStateToProps, mapDispatchToProps)(User);
+}, mapStateToProps, mapDispatchToProps)(SignUp);
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3000';
 const API_USER = `${API_URL}/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
+const API_LOGIN_USER = `${API_USER}login`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
 
@@ -147,6 +148,50 @@ export function resetToken() {//used for logout
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export function loginRequest(user, dispatch) {
+  return new Promise ((reject, resolve) => {
+  //   dispatch(login());
+    return axios({
+      method: 'POST',
+      url: API_LOGIN_USER,
+      data: user
+    })
+    .then(response => {
+      if (response.status !== 200) {
+        dispatch(loginFailure(response.data));
+        reject(response.data);
+      } else {
+        sessionStorage.setItem('jwtToken', response.data.token);
+        dispatch(loginSuccess(response.data));
+        resolve();
+      }
+    })
+    .catch(response => console.error('login POST error: ', response));
+  });
+}
+
+export function login() {
+  console.log("login called");
+  return {
+    type: LOGIN_REQUEST
+  };
+}
+
+function loginSuccess(user) {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: user
+  };
+}
+
+function loginFailure(user) {
+  return {
+    type: LOGIN_FAILURE,
+    payload: user
+  };
+}
+
 
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';

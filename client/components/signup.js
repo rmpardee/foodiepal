@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class User extends Component {
+export default class SignUp extends Component {
 
   componentWillMount() {
     //Important! If your component is navigating based on some global state(from say componentWillReceiveProps)
@@ -52,6 +52,6 @@ export default class User extends Component {
   }
 }
 
-User.contextTypes = {
+SignUp.contextTypes = {
   router: PropTypes.object
 }
