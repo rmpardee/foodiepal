@@ -5,6 +5,7 @@ import {
   getCurrentSubcategory,
   getEntriesRequest
 } from '../actions';
+import TimeAgo from 'react-timeago';
 
 class EntryList extends Component {
   componentWillMount() {
@@ -33,6 +34,14 @@ class EntryList extends Component {
     });
   }
 
+  renderDate(timestamp) {
+    var newTimestamp = new Date(timestamp);
+
+    console.log('le date: ', newTimestamp);
+    console.log('le date type: ', typeof newTimestamp);
+    return newTimestamp;
+  }
+
   renderEntries() {
     const entries = this.props.entries;
 
@@ -51,7 +60,7 @@ class EntryList extends Component {
           <div className='react-rater'>
             { this.renderRating(entry.rating) }
           </div>
-          le date: { entry.date }
+          <TimeAgo date={ this.renderDate(entry.createdAt) } minPeriod={5} title={ entry.createdAt } />
         </li>
       );
     })
