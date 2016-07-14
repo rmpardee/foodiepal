@@ -8,7 +8,6 @@ var expressJwt = require('express-jwt');
 // var expJwt = require('./config.js');
 
 
-
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
   var userRouter = express.Router();
@@ -16,11 +15,15 @@ module.exports = function (app, express) {
 
   // app.use(expressJwt({ secret: expJwt.scrt }));
   process.env.JWT_SECRET = 'keyboard cat';
-  app.use(function (err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
-      res.status(401).send('invalid token...');
-    }
-  });
+  app.use(expressJwt({
+      secret: process.env.JWT_SECRET,
+      getToken: function(req) {
+        return req.query.token;
+      }
+    }).unless({
+      path: ['/api/user/login', '/api/user/signup']
+    })
+  );
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
