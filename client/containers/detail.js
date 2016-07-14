@@ -9,25 +9,13 @@ import { getCurrentSubcategory } from '../actions';
 import ReactCSS from 'react-addons-css-transition-group'
 
 class Detail extends Component {
-  componentWillMount() {
-    // this.setState({
-    //   subcategory: this.props.getCurrentSubcategory()
-    // });
-    // console.log('Detail STATE: ', this.state);
-  }
-  constructor(props) {
-    super(props);
-    // console.log('DETAIL this.props: ', this.props);
-    // // this.state = {
-    // //   subcategoryID: this.props.params.id, // comes from route
-    // //   subcategories: this.props.subcategories,
-    // //   entries: this.props.entries
-    // // }
+  // componentWillMount() {
 
-
-
-    // // this.openEntryForm = this.openEntryForm.bind(this);
-  }
+  // }
+  
+  // constructor(props) {
+  //   super(props);
+  // }
 
   openEntryForm(subcategory) {
     modal.add(AddEntry, {
@@ -43,7 +31,7 @@ class Detail extends Component {
     return (
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
         <div className='container'>
-          <h3>{ subcategory.name }</h3>
+          <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> { subcategory.name }</h6>
           
           <button onClick={ this.openEntryForm.bind(this) } className='btn btn-primary'>Add New Entry</button>
 

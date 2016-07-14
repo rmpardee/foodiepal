@@ -325,6 +325,9 @@ nav {
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title .rr-title-actions {
   width: auto;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   text-align: right;
   float: right;
 }
@@ -336,7 +339,7 @@ nav {
   line-height: 40px;
   position: relative;
   border: 1px solid transparent;
-  float: right;
+  /*float: right;*/
   background-color: transparent;
   text-align: center;
   padding: 0;
@@ -384,6 +387,10 @@ textarea {
 .form-container textarea {
   display: block;
   margin-bottom: 20px;
+}
+
+.form-container textarea {
+  min-height: 120px;
 }
 
 .btn {
@@ -453,4 +460,13 @@ textarea {
 .fade-in-appear.fade-in-appear-active {
   opacity: 1;
   transition: all 0.3s ease-out;
+}
+
+
+.spinner {
+  background: url('../img/spinner.gif') center center no-repeat transparent;
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
 }

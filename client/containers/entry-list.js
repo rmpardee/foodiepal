@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -22,10 +23,8 @@ class EntryList extends Component {
       } else {
         ratingStars.push('');
       }
-      // ratingBlock.push({ (rating > 0) ? 'is-active' : '' });
       rating--;
     }
-    // ratingBlock.push(ratingElement);
 
     return ratingStars.map((active, i) => {
       return (
@@ -37,19 +36,11 @@ class EntryList extends Component {
   renderDate(timestamp) {
     var newTimestamp = new Date(timestamp);
 
-    console.log('le date: ', newTimestamp);
-    console.log('le date type: ', typeof newTimestamp);
     return newTimestamp;
   }
 
   renderEntries() {
-    const entries = this.props.entries;
-
-    if (!entries.length) {
-      return 'You have not logged any tastings yet. Go out and be a foodie!';
-    }
-
-    console.log('entries: ', entries);
+    const entries = this.props.entries.data;
 
     return entries.map((entry) => {
       return (
@@ -66,10 +57,20 @@ class EntryList extends Component {
     })
   }
 
+  renderAddNewBlock() {
+    return (
+      <div className='add-new-block'>
+        <h4>What have you tried lately?</h4>
+        <p>Looks like you haven't added any logs for { this.props.current.subcategory.name }!</p>
+      </div>
+    );
+  }
+
   render() {
     return (
       <ul>
-        { this.renderEntries() }
+        { !this.props.entries.isFetching ? this.renderEntries() : <div className='spinner'></div> }
+        { !this.props.entries.isFetching && !this.props.entries.data.length ? this.renderAddNewBlock() : '' }
       </ul>
     );
   }
