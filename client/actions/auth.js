@@ -162,6 +162,7 @@ export function loginRequest(user, dispatch) {
         dispatch(loginFailure(response.data));
         reject(response.data);
       } else {
+        console.log("response.data: ", response.data);
         sessionStorage.setItem('jwtToken', response.data.token);
         dispatch(loginSuccess(response.data));
         resolve();
@@ -179,6 +180,7 @@ export function login() {
 }
 
 function loginSuccess(user) {
+  console.log("user in loginSuccess: ", user);
   return {
     type: LOGIN_SUCCESS,
     payload: user

@@ -8,7 +8,7 @@ class App extends Component {
 
   componentWillMount() {
    // console.log("this.props in app component: ", this.props);
-    this.props.loadUserFromToken();
+    // this.props.loadUserFromToken();
   }
 
   render() {
