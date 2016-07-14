@@ -35,7 +35,8 @@ export default (
     </Route>
     <Route path="/u" component={ Main } onEnter={ requireAuth }>
       <IndexRoute component={ Categories } />
-      <Route path=":name" component={ Subcategories }>
+      <Route path=":name">
+        <IndexRoute component={ Subcategories } />
         <Route path=":name" component={ Detail } />
       </Route>
     </Route>

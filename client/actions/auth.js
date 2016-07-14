@@ -22,12 +22,13 @@ export function addUserRequest(user, dispatch) {
       data: user
     })
     .then(response => {
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         dispatch(addUserFailure(response.data));
         reject(response.data);
       } else {
         sessionStorage.setItem('jwtToken', response.data.token);
         dispatch(addUserSuccess(response.data));
+        browserHistory.push('login');
         resolve();
       }
     })
