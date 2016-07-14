@@ -30,7 +30,7 @@ mongoose.connect(db.url);
 app.listen(port);               
 
 // App server confirmation                     
-console.log('FoodiePal running on port: ' + port);
+console.log('Gourmand running on port: ' + port);
 
 // expose app - use for testing         
 exports = module.exports = app; 

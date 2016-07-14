@@ -11,6 +11,7 @@ module.exports = {
         console.log("err in controller getCategories fn: ", err);
         return err;
       }
+      // console.log('TEST IN GETCATAGORIES');
       return categories;
     });
   },

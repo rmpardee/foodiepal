@@ -33,7 +33,7 @@ class CategoryList extends Component {
       return (
         <li key={ category._id } className='grid-links-block'>
           <Link
-            to={ `${ category.name }` }
+            to={ `u/${ category.name }` }
             onClick={ () => this.setCategory(categoryInfo) }>
             <div className="grid-link-container">
               <div className={ `grid-link-icon grid-link-icon-${ category.name }` }></div>

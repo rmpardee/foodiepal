@@ -42,7 +42,7 @@ class SubcategoryList extends Component {
       return (
         <li key={ subcategory._id } className='grid-links-block'>
           <Link
-            to={`/${ category }/${ subcategory.name }`}
+            to={`/u/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
               <span className='grid-link-name'>{ subcategory.name }</span>
