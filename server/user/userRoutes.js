@@ -2,7 +2,7 @@ var userControl = require('./userController.js');
 var utils = require('../config/utils.js');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
-var expJTW = require('../config/config.js');
+var expJwt = require('../config/config.js');
 var bcrypt = require('bcrypt');
 
 module.exports = function(app) {
@@ -28,28 +28,24 @@ module.exports = function(app) {
     });
 
 
-  //In middleware.js for now
-  // app.use(expressJwt({ secret: 'keyboard cat' }));
-  process.env.JWT_SECRET = 'keyboard cat';
-
-  //Generate JWT Token: Signup Route
+  //Generate JWT Token: Signup Route TODO: Check if user already exists
   app.route('/signup')
     .post(function(req, res) {
       userControl.addUser(req.body).then(function(user) {
         var token = utils.generateToken(user); //<----- Generate Token
         user = utils.getCleanUser(user);
         res.status(201).json({
-          user: user,   //  <----- Return both user and token
+          user: user,   //  <----- Return both cleaned up user and token
           token: token
         });
       });
     });
 
 
-  //Generate JWT Token: SignIn Route
-  app.route('/signin') 
+  //Generate JWT Token: LogIn Route
+  app.route('/login') 
     .post(function(req, res) {
-      userControl.getUserSignIn(req.body.email)  // <-- Check username
+      userControl.getUserLogIn(req.body.email)  // <-- Check username
       .exec(function(err, user) {
         if (err) { throw err; }
         if (!user) {
@@ -82,17 +78,12 @@ module.exports = function(app) {
   //get current user from token
   app.route('/me/from/token') //TODO: check path
     .get(function(req, res, next) {
-    console.log('REQ.BODY: ', req.body);
-    console.log('REQ.QUERY: ', req.query);
-    console.log(process.env.JWT_SECRET);
     // check header or url parameters or post parameters for token
       var token = req.body.token || req.query.token;
-      // var token = 'keyboard cat'; // this line used for testing
       if (!token) {
         return res.status(401).json({message: 'Must pass token'});
       }
     // Check token that was passed by decoding token using secret
-      // jwt.verify(token, 'keyboard cat', function(err, user) {
       jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
         if (err) { throw err; }
         //return user using the id from w/in JWTToken
@@ -116,12 +107,8 @@ module.exports = function(app) {
 //Testing
 //Pass secret to expressJWt
   app.route('/test')
-    // .post(expressJwt({secret: expJTW.scrt}), function(req, res, next) {
-    // });
     .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
     });
-    // .post(expressJwt({secret: 'keyboard cat'}), function(req, res, next) {
-    // });
 
 
 };

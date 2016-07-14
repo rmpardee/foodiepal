@@ -5,7 +5,8 @@ var bodyParser = require('body-parser');
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
 var expressJwt = require('express-jwt');
-// var expJTW = require('./config.js');
+// var expJwt = require('./config.js');
+
 
 
 module.exports = function (app, express) {
@@ -13,7 +14,13 @@ module.exports = function (app, express) {
   var userRouter = express.Router();
   var foodRouter = express.Router();
 
-  // app.use(expressJwt({ secret: expJTW.scrt }));
+  // app.use(expressJwt({ secret: expJwt.scrt }));
+  process.env.JWT_SECRET = 'keyboard cat';
+  app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send('invalid token...');
+    }
+  });
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));

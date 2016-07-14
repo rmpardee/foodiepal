@@ -16,7 +16,7 @@ module.exports = {
       _id: user._id.toString(),
       // image: user.image
     };
-    return token = jwt.sign(u, 'keyboard cat', {
+    return token = jwt.sign(u, process.env.JWT_SECRET, {
       expiresIn: 60 * 60 * 24 * 365 // expires in 365 days
     });
   },
