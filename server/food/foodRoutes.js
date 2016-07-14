@@ -6,9 +6,6 @@ module.exports = function(app) {
   app.route('/category')
     // Get categories for the given userID
     .get(function(req, res) {
-    // console.log('process.env.JWT_SECRET: ', process.env.JWT_SECRET); //keyboard cat
-    // console.log('req.query: ', req.query); //keyboard cat
-    // .get(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
       foodControl.getCategories(req.query.userID).then(function(categories) {
         res.status(200).send(categories);
       }, function(err) {

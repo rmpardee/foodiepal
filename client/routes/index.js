@@ -15,29 +15,25 @@ import Detail from '../containers/detail';
 // import AddEntry from '../containers/add-entry';
 
 function requireAuth(nextState, replace, callback) {
-  if (3 < 4) {
+  if (!sessionStorage.getItem('jwtToken')) {
     replace({
       pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    });
-  } else {
-    replace({
-      pathname: '/u/cheese',
       state: { nextPathname: nextState.location.pathname }
     });
   }
   callback();
 }
+
 export default (
   <Route component={ App }>
     <Route path="/">
-      <IndexRoute component={ Welcome } onEnter={ requireAuth }/>
+      <IndexRoute component={ Welcome }/>
       <Route component={ Public }>
         <Route path="login" component={ Login } />
         <Route path="signup" component={ SignUp } />
       </Route>
     </Route>
-    <Route path="/u" component={ Main }>
+    <Route path="/u" component={ Main } onEnter={ requireAuth }>
       <IndexRoute component={ Categories } />
       <Route path=":name" component={ Subcategories }>
         <Route path=":name" component={ Detail } />

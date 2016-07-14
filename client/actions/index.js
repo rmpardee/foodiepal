@@ -13,13 +13,16 @@ export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE';
 export function getCategoriesRequest(userID) {
   return dispatch => {
     dispatch(getCategories());
-    var token = sessionStorage.getItem('jwtToken');
+    let token = sessionStorage.getItem('jwtToken');
+    
     return axios({
       method: 'GET',
       url: API_CATEGORY,
       params: {
-        userID: userID,
-        token: token
+        userID: userID
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
       }
     })
     .then(response => dispatch(getCategoriesSuccess(response.data)))
@@ -47,11 +50,15 @@ export const ADD_SUBCATEGORY_FAILURE = 'ADD_SUBCATEGORY_FAILURE';
 export function addSubcategoryRequest(subcategory) {
   return dispatch => {
     dispatch(addSubcategory());
-
+    let token = sessionStorage.getItem('jwtToken');
+    
     return axios({
       method: 'POST',
       url: API_SUBCATEGORY,
-      data: subcategory
+      data: subcategory,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     .then(response => dispatch(addSubcategorySuccess(response.data)))
     .catch(response => console.error('subcategories POST error:', response));
@@ -77,12 +84,16 @@ export const GET_SUBCATEGORIES_FAILURE = 'GET_SUBCATEGORIES_FAILURE';
 export function getSubcategoriesRequest(categoryID) {
   return dispatch => {
     dispatch(getSubcategories());
-
+    let token = sessionStorage.getItem('jwtToken');
+    
     return axios({
       method: 'GET',
       url: API_SUBCATEGORY,
       params: {
         categoryID: categoryID
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
       }
     })
     .then(response => dispatch(getSubcategoriesSuccess(response.data)))
@@ -114,12 +125,16 @@ export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 export function addEntryRequest(entry) {
   return dispatch => {
     dispatch(addEntry(entry));
-
+    let token = sessionStorage.getItem('jwtToken');
+    
     return axios({
       method: 'POST',
       url: API_ENTRY,
       data: entry,
-      contentType: 'application/json'
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     .then(response => {
       var res = JSON.parse(response.config.data);
@@ -152,12 +167,16 @@ export const GET_ENTRIES_FAILURE = 'GET_ENTRIES_FAILURE';
 export function getEntriesRequest(subcategory) {
   return dispatch => {
     dispatch(getEntries());
-
+    let token = sessionStorage.getItem('jwtToken');
+    
     return axios({
       method: 'GET',
       url: API_ENTRY,
       params: {
         subcategoryID: subcategory
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
       }
     })
     .then(response => dispatch(getEntriesSuccess(response.data.reverse())))

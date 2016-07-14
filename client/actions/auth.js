@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 const API_URL = 'http://localhost:3000';
 const API_USER = `${API_URL}/api/user/`;
@@ -162,9 +163,9 @@ export function loginRequest(user, dispatch) {
         dispatch(loginFailure(response.data));
         reject(response.data);
       } else {
-        console.log("response.data: ", response.data);
         sessionStorage.setItem('jwtToken', response.data.token);
         dispatch(loginSuccess(response.data));
+        browserHistory.push('u');
         resolve();
       }
     })
