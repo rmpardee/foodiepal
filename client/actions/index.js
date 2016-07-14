@@ -13,12 +13,13 @@ export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE';
 export function getCategoriesRequest(userID) {
   return dispatch => {
     dispatch(getCategories());
-
+    var token = sessionStorage.getItem('jwtToken');
     return axios({
       method: 'GET',
       url: API_CATEGORY,
       params: {
-        userID: userID
+        userID: userID,
+        token: token
       }
     })
     .then(response => dispatch(getCategoriesSuccess(response.data)))
