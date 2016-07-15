@@ -36,6 +36,45 @@ module.exports = {
     });
   },
 
+  standardCategories: {
+    cheese: {
+      name: 'Cheese',
+      userID: null
+    },
+    olives: {
+      name: 'Olives',
+      userID: null
+    },
+    chocolate: {
+      name: 'Chocolate',
+      userID: null
+    },
+    beer: {
+      name: 'Beer',
+      userID: null
+    },
+    wine: {
+      name: 'Wine',
+      userID: null
+    },
+    coffee: {
+      name: 'Coffee',
+      userID: null
+    },
+    charcuterie: {
+      name: 'Charcuterie',
+      userID: null
+    },
+    cocktails: {
+      name: 'Cocktails',
+      userID: null
+    },
+    oliveOil: {
+      name: 'Olive Oil',
+      userID: null
+    }
+  },
+
 // SUBCATEGORIES:
   // the input is the categoryID, which in this case will be the parent of the subcats we want
   getSubcategories: function (categoryID) {

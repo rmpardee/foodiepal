@@ -1,4 +1,5 @@
 var userControl = require('./userController.js');
+var foodControl = require('../food/foodController.js');
 var utils = require('../config/utils.js');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
@@ -8,10 +9,9 @@ var bcrypt = require('bcrypt');
 module.exports = function(app) {
 
 
-  //Generate JWT Token: Signup Route TODO: Check if user already exists
   app.route('/signup')
     .post(function(req, res) {
-      userControl.doesUserExist(req.body.email).then(function(boolean) { // <-- not closed
+      userControl.doesUserExist(req.body.email).then(function(boolean) {
         if (boolean) {
           return res.status(204).json({
             error: true,
@@ -19,6 +19,13 @@ module.exports = function(app) {
           });  
         } else {
         userControl.addUser(req.body).then(function(user) {
+          // add all the standard categories to the new user
+          for (category in foodControl.standardCategories) {
+            var food = foodControl.standardCategories[category];
+            food.userID = user._id;
+            foodControl.addCategory(food);
+          }
+          // generate a token for authentication to send back to the client
           var token = utils.generateToken(user); //<----- Generate Token
           user = utils.getCleanUser(user);
           res.status(201).json({

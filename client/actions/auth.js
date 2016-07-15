@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { setCurrentUser } from './index.js';
 
 const API_URL = 'http://localhost:3000';
 const API_USER = `${API_URL}/api/user/`;
@@ -26,7 +27,6 @@ export function addUserRequest(user, dispatch) {
         dispatch(addUserFailure(response.data));
         reject(response.data);
       } else {
-        sessionStorage.setItem('jwtToken', response.data.token);
         dispatch(addUserSuccess(response.data));
         browserHistory.push('login');
         resolve();
@@ -165,7 +165,9 @@ export function loginRequest(user, dispatch) {
         reject(response.data);
       } else {
         sessionStorage.setItem('jwtToken', response.data.token);
+        dispatch(setCurrentUser(response.data.user));
         dispatch(loginSuccess(response.data));
+        //NOTE: Might need promise here of some kind
         browserHistory.push('u');
         resolve();
       }
@@ -175,14 +177,12 @@ export function loginRequest(user, dispatch) {
 }
 
 export function login() {
-  console.log("login called");
   return {
     type: LOGIN_REQUEST
   };
 }
 
 function loginSuccess(user) {
-  console.log("user in loginSuccess: ", user);
   return {
     type: LOGIN_SUCCESS,
     payload: user
