@@ -16,24 +16,24 @@ module.exports = function(app) {
             message: 'User already exists' 
           });  
         } else {
-        userControl.addUser(req.body).then(function(user) {
-          // add all the standard categories to the new user
-          for (category in foodControl.standardCategories) {
-            var food = foodControl.standardCategories[category];
-            food.userID = user._id;
-            foodControl.addCategory(food);
-          }
-          // generate a token for authentication to send back to the client
-          var token = utils.generateToken(user); //<----- Generate Token
-          user = utils.getCleanUser(user);
-          res.status(201).json({
-            user: user,   //  <----- Return both cleaned up user and token
-            token: token
-          });
-        }, function(err) {
-          console.log('err in route api/user/signup POST: ', err);
-          res.status(204).send(err);
-        });  
+          userControl.addUser(req.body).then(function(user) {
+            // add all the standard categories to the new user
+            for (category in foodControl.standardCategories) {
+              var food = foodControl.standardCategories[category];
+              food.userID = user._id;
+              foodControl.addCategory(food);
+            }
+            // generate a token for authentication to send back to the client
+            var token = utils.generateToken(user); //<----- Generate Token
+            user = utils.getCleanUser(user);
+            res.status(201).json({
+              user: user,   //  <----- Return both cleaned up user and token
+              token: token
+            });
+          }, function(err) {
+            console.log('err in route api/user/signup POST: ', err);
+            res.status(204).send(err);
+          });  
         }
       });
     });

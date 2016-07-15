@@ -1,5 +1,4 @@
-// May be required for Authentication, not in package.json yet...
-// var jwt = require('jwt-simple');
+// Not in current use
 
 module.exports = {
   errorLogger: function (error, req, res, next) {
