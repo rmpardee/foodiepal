@@ -11,19 +11,27 @@ module.exports = function(app) {
   //Generate JWT Token: Signup Route TODO: Check if user already exists
   app.route('/signup')
     .post(function(req, res) {
-      userControl.addUser(req.body).then(function(user) {
-        var token = utils.generateToken(user); //<----- Generate Token
-        user = utils.getCleanUser(user);
-        res.status(201).json({
-          user: user,   //  <----- Return both cleaned up user and token
-          token: token
-        });
-      }, function(err) {
-        console.log('err in route api/user/signup POST: ', err);
-        res.status(204).send(err);
+      userControl.doesUserExist(req.body.email).then(function(boolean) { // <-- not closed
+        if (boolean) {
+          return res.status(204).json({
+            error: true,
+            message: 'User already exists' 
+          });  
+        } else {
+        userControl.addUser(req.body).then(function(user) {
+          var token = utils.generateToken(user); //<----- Generate Token
+          user = utils.getCleanUser(user);
+          res.status(201).json({
+            user: user,   //  <----- Return both cleaned up user and token
+            token: token
+          });
+        }, function(err) {
+          console.log('err in route api/user/signup POST: ', err);
+          res.status(204).send(err);
+        });  
+        }
       });
     });
-
 
   //Generate JWT Token: SignIn Route
   app.route('/login') 
@@ -85,13 +93,5 @@ module.exports = function(app) {
         });
       });
     });
-
-
-//Testing
-//Pass secret to expressJWt
-  app.route('/test')
-    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
-    });
-
 
 };
