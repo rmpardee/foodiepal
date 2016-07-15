@@ -10,6 +10,7 @@ import {
 
 class CategoryList extends Component {
   componentWillMount() {
+    console.log("this.props in CategoryList: ", this.props);
     this.props.getCategoriesRequest(this.props.current.user.id);
   }
 
@@ -18,6 +19,7 @@ class CategoryList extends Component {
   }
 
   renderCategories() {
+
     const categories = this.props.categories;
 
     if (!categories.length) {
@@ -25,6 +27,7 @@ class CategoryList extends Component {
     }
 
     return categories.map((category) => {
+      let categoryClassName = category.name.replace(/(\s+?)/g,"-").toLowerCase();
       let categoryInfo = {
         id: category._id,
         name: category.name
@@ -36,7 +39,7 @@ class CategoryList extends Component {
             to={ `u/${ category.name }` }
             onClick={ () => this.setCategory(categoryInfo) }>
             <div className="grid-link-container">
-              <div className={ `grid-link-icon grid-link-icon-${ category.name }` }></div>
+              <div className={ `grid-link-icon grid-link-icon-${ categoryClassName }` }></div>
               <span className='grid-link-name'>{ category.name }</span>
             </div>
           </Link>
