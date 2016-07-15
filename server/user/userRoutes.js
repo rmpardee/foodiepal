@@ -4,8 +4,8 @@ var utils = require('../config/utils.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 
-module.exports = function(app) {
 
+module.exports = function(app) {
 
   app.route('/signup')
     .post(function(req, res) {
