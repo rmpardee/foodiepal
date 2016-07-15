@@ -14,6 +14,17 @@ module.exports = {
     });
   },
 
+  // given a userName, return that user
+  getUserLogIn: function(email) {
+    return User.findOne({'email': email}, function(err, user) {
+      if (err) {
+        console.log('err in controller getUserLogIn fn: ', err);
+        return err;
+      }
+      return user;
+    });
+  },
+
   addUser: function(data) {
     var hash = bcrypt.hashSync(data.password.trim(), 10);
     var newUser = User({
