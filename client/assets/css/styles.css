@@ -338,6 +338,8 @@ body {
   position: relative;
   overflow: hidden;
 }
+.container:before { content: ''; display: table; }
+.container:after { content: ''; display: table; clear: both; }
 nav:after { content: ''; display: block; clear: both; }
 nav {
   background: #fff;
@@ -401,6 +403,13 @@ nav {
   -webkit-box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.5);
           box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.5);
 }
+.content {
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content:before { content: ''; display: table; }
+.content:after { content: ''; display: table; clear: both; }
 .grid-title {
   border-bottom: solid 1px rgb(230, 230, 230);
   color: #999;
@@ -507,6 +516,12 @@ nav {
 .grid-link-icon-coffee {
   background-image: url('../img/coffee.svg');
 }
+.grid-link-icon-cocktails {
+  background-image: url('../img/glass.svg');
+}
+.grid-link-icon-olive-oil {
+  background-image: url('../img/olive-oil.svg');
+}
 .react-rater {
   margin-bottom: 20px;
   text-align: center;
@@ -523,10 +538,43 @@ nav {
 }
 .react-rater a.read-only {
   cursor: default;
-  padding: 5px;
 }
-.entry-listing .react-rater {
+.entry-list {
+  list-style-type: none;
+}
+.entry-listing {
+  border-bottom: solid 1px rgb(245, 245, 245);
+  margin-bottom: 20px;
+}
+.entry-listing-header:before { content: ''; display: table; }
+.entry-listing-header:after { content: ''; display: table; clear: both; }
+.entry-listing-title {
+  width: calc(99.9% * 8/12 - (30px - 30px * 8/12));
+  margin: 0;
+}
+.entry-listing-title:nth-child(1n) { float: left; margin-right: 30px; clear: none; }
+.entry-listing-title:last-child { margin-right: 0; }
+.entry-listing-title:nth-child(12n) { margin-right: 0; float: right; }
+.entry-listing-title:nth-child(12n + 1) { clear: both; }
+.entry-listing-timestamp {
+  color: rgb(204, 204, 204);
+  width: calc(99.9% * 4/12 - (30px - 30px * 4/12));
+  text-align: right;
+}
+.entry-listing-timestamp:nth-child(1n) { float: left; margin-right: 30px; clear: none; }
+.entry-listing-timestamp:last-child { margin-right: 0; }
+.entry-listing-timestamp:nth-child(12n) { margin-right: 0; float: right; }
+.entry-listing-timestamp:nth-child(12n + 1) { clear: both; }
+.entry-listing-rating {
+  margin-bottom: 0;
   text-align: left;
+}
+.entry-listing-rating a {
+  font-size: 1.2em;
+  padding: 5px 0;
+}
+.detail-header {
+  margin-bottom: 20px;
 }
 /* React-Redux Modal overrides */
 .react-redux-modal {
@@ -607,6 +655,9 @@ nav {
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title .rr-title-actions {
   width: auto;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   text-align: right;
   float: right;
 }
@@ -617,7 +668,7 @@ nav {
   line-height: 40px;
   position: relative;
   border: 1px solid transparent;
-  float: right;
+  /*float: right;*/
   background-color: transparent;
   text-align: center;
   padding: 0;
@@ -658,6 +709,9 @@ textarea {
 .form-container textarea {
   display: block;
   margin-bottom: 20px;
+}
+.form-container textarea {
+  min-height: 120px;
 }
 .btn {
   background: transparent;
@@ -722,4 +776,11 @@ textarea {
   opacity: 1;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
+}
+.spinner {
+  background: url('../img/spinner.gif') center center no-repeat transparent;
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
 }

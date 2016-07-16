@@ -45,13 +45,20 @@ class EntryList extends Component {
     return entries.map((entry) => {
       return (
         <li key={ entry._id } className='entry-listing'>
-          <p><strong>Type</strong>: {entry.type}</p>
-          <p><strong>notes</strong>: {entry.notes}</p>
-          <p><strong>Rating</strong>: {entry.rating}</p>
-          <div className='react-rater'>
-            { this.renderRating(entry.rating) }
+          <div className='entry-listing-container'>
+            <div className='entry-listing-header'>
+              <h6 className='entry-listing-title'>{ entry.type }</h6>
+              <div className='entry-listing-timestamp'>
+                <TimeAgo date={ this.renderDate(entry.createdAt) } minPeriod={5} title={ entry.createdAt } />
+              </div>
+            </div>
+            <div className='entry-listing-content'>
+              <div className='entry-listing-rating react-rater'>
+                { this.renderRating(entry.rating) }
+              </div>
+              <p>{ entry.notes }</p>
+            </div>
           </div>
-          <TimeAgo date={ this.renderDate(entry.createdAt) } minPeriod={5} title={ entry.createdAt } />
         </li>
       );
     })
@@ -60,15 +67,15 @@ class EntryList extends Component {
   renderAddNewBlock() {
     return (
       <div className='add-new-block'>
-        <h4>What have you tried lately?</h4>
-        <p>Looks like you haven't added any logs for { this.props.current.subcategory.name }!</p>
+        <h4>Uh oh!</h4>
+        <p>Looks like you haven't logged any entries for { this.props.current.subcategory.name }!</p>
       </div>
     );
   }
 
   render() {
     return (
-      <ul>
+      <ul className='entry-list'>
         { !this.props.entries.isFetching ? this.renderEntries() : <div className='spinner'></div> }
         { !this.props.entries.isFetching && !this.props.entries.data.length ? this.renderAddNewBlock() : '' }
       </ul>

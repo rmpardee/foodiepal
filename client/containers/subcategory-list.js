@@ -69,13 +69,11 @@ class SubcategoryList extends Component {
   renderAddNewBlock() {
     return (
       <div className='add-new-block'>
-        <h4>Oh noes!</h4>
-        <p>You haven't added any types of { this.props.current.category.name }!</p>
+        <h4>Whoops!</h4>
+        <p>You haven't added any types of { this.props.current.category.name }.</p>
         <Link to='#' onClick={ this.openEntryForm.bind(this) }>
-          <div className="grid-link-container">
-            <div className='grid-link-icon'>+</div>
-            <span className='grid-link-name'>Add New</span>
-          </div>
+          <button className='btn btn-primary'>Add New Subcategory</button>
+          
         </Link>
       </div>
     );
