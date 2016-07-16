@@ -1,8 +1,10 @@
 var userControl = require('./userController.js');
 var foodControl = require('../food/foodController.js');
 var utils = require('../config/utils.js');
+var email = require('../config/email.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
+var expressJwt = require('express-jwt');
 
 
 module.exports = function(app) {
@@ -66,6 +68,53 @@ module.exports = function(app) {
               token: token
             });
           });
+      });
+    });
+
+//----------------------------------------------------------------------
+
+  //send a validation email
+  app.route('/resendValidationEmail')
+    .get(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+      User.findById({
+        '_id': req.user._id
+      }, function(err, user) {
+        if (err) { throw err; }
+
+        //send welcome email w/ verification token
+        email.sendWelcomeEmail(user, req.headers.host, function(err) {
+          if (err) {
+            res.status(404).json(err);
+          } else {
+            res.send({
+              message: 'Email was resent'
+            });
+          }
+        });
+      });
+    });
+
+
+  app.route('/updateEmail')
+    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
+
+      var newEmail = req.body.email && req.body.email.trim();
+
+      User.findOneAndUpdate({
+        '_id': req.user._id
+      }, {
+        email: newEmail
+      }, {
+        new: true
+      }, function(err, user) {
+        if (err) throw err;
+
+        console.dir(user.toJSON());
+        //send welcome email w/ verification token
+        email.sendWelcomeEmail(user, req.headers.host);
+
+        res.json({message: 'Email was updated'});
+
       });
     });
 

@@ -16,6 +16,10 @@ module.exports = function (app, express) {
     .unless({path: ['/api/user/login', '/api/user/signup']})
   );
 
+  process.env.FROM_EMAIL = expJwt.gouremail.email;
+  console.log('process.env.FROM_EMAIL: ', process.env.FROM_EMAIL);
+  app.use(process.env.FROM_EMAIL);
+
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
