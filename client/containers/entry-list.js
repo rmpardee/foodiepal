@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -22,10 +23,8 @@ class EntryList extends Component {
       } else {
         ratingStars.push('');
       }
-      // ratingBlock.push({ (rating > 0) ? 'is-active' : '' });
       rating--;
     }
-    // ratingBlock.push(ratingElement);
 
     return ratingStars.map((active, i) => {
       return (
@@ -37,39 +36,50 @@ class EntryList extends Component {
   renderDate(timestamp) {
     var newTimestamp = new Date(timestamp);
 
-    console.log('le date: ', newTimestamp);
-    console.log('le date type: ', typeof newTimestamp);
     return newTimestamp;
   }
 
   renderEntries() {
-    const entries = this.props.entries;
-
-    if (!entries.length) {
-      return 'You have not logged any tastings yet. Go out and be a foodie!';
-    }
-
-    console.log('entries: ', entries);
+    const entries = this.props.entries.data;
 
     return entries.map((entry) => {
       return (
         <li key={ entry._id } className='entry-listing'>
-          <p><strong>Type</strong>: {entry.type}</p>
-          <p><strong>notes</strong>: {entry.notes}</p>
-          <p><strong>Rating</strong>: {entry.rating}</p>
-          <div className='react-rater'>
-            { this.renderRating(entry.rating) }
+          <div className='entry-listing-container'>
+            <div className='entry-listing-header'>
+              <h6 className='entry-listing-title'>{ entry.type }</h6>
+              <div className='entry-listing-timestamp'>
+                <TimeAgo date={ this.renderDate(entry.createdAt) } minPeriod={5} title={ entry.createdAt } />
+              </div>
+            </div>
+            <div className='entry-listing-content'>
+              <div className='entry-listing-rating react-rater'>
+                { this.renderRating(entry.rating) }
+              </div>
+              <p>{ entry.notes }</p>
+            </div>
           </div>
-          <TimeAgo date={ this.renderDate(entry.createdAt) } minPeriod={5} title={ entry.createdAt } />
         </li>
       );
     })
   }
 
+  renderAddNewBlock() {
+    let subcategoryName = this.props.current.subcategory.name.toLowerCase();
+
+    return (
+      <div className='add-new-block'>
+        <h4>{ subcategoryName }? None here yet!</h4>
+        <p>Looks like you haven\'t logged any entries for { this.props.current.subcategory.name }!</p>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <ul>
-        { this.renderEntries() }
+      <ul className='entry-list'>
+        { !this.props.entries.isFetching ? this.renderEntries() : <div className='spinner'></div> }
+        { !this.props.entries.isFetching && !this.props.entries.data.length ? this.renderAddNewBlock() : '' }
       </ul>
     );
   }

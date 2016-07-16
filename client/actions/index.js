@@ -139,10 +139,10 @@ export function addEntryRequest(entry) {
     .then(response => {
       var res = JSON.parse(response.config.data);
 
-      dispatch(addEntrySuccess(response.config.data));
+      dispatch(addEntrySuccess(response.data));
       dispatch(getEntriesRequest(res.subcategoryID));
     })
-    .catch(response => console.error('le error:', response));
+    .catch(response => console.error('le error in addEntryRequest:', response));
   };
 }
 
@@ -153,10 +153,10 @@ function addEntry(entry) {
   };
 }
 
-function addEntrySuccess(entry) {
+function addEntrySuccess(entries) {
   return {
     type: ADD_ENTRY_SUCCESS,
-    payload: JSON.parse(entry)
+    payload: entries
   }
 }
 

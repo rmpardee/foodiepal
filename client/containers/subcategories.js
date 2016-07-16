@@ -19,8 +19,10 @@ class Subcategory extends Component {
     return (
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
       <div className='container'>
-        <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> Subcategories</h6>
-        <SubcategoryList />
+        <div className='content'>
+          <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> Subcategories</h6>
+          <SubcategoryList />
+        </div>
       </div>
       </ReactCSS>
     );
