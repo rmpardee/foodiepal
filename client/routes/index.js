@@ -15,7 +15,7 @@ import Detail from '../containers/detail';
 // import AddEntry from '../containers/add-entry';
 
 function requireAuth(nextState, replace, callback) {
-  if (!sessionStorage.getItem('jwtToken')) {
+  if (!localStorage.getItem('jwtToken')) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
