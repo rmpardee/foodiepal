@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 import { setCurrentUser } from './index.js';
 
 const API_URL = 'http://localhost:3000';
@@ -28,7 +27,7 @@ export function addUserRequest(user, dispatch) {
         reject(response.data);
       } else {
         dispatch(addUserSuccess(response.data));
-        browserHistory.push('login');
+        window.location = '/login';
         resolve();
       }
     })
@@ -164,11 +163,11 @@ export function loginRequest(user, dispatch) {
         dispatch(loginFailure(response.data));
         reject(response.data);
       } else {
-        sessionStorage.setItem('jwtToken', response.data.token);
+        localStorage.setItem('jwtToken', response.data.token);
         dispatch(setCurrentUser(response.data.user));
         dispatch(loginSuccess(response.data));
         //NOTE: Might need promise here of some kind
-        browserHistory.push('u');
+        window.location = '/u';
         resolve();
       }
     })

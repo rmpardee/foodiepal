@@ -13,7 +13,7 @@ export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE';
 export function getCategoriesRequest(userID) {
   return dispatch => {
     dispatch(getCategories());
-    let token = sessionStorage.getItem('jwtToken');
+    let token = localStorage.getItem('jwtToken');
     
     return axios({
       method: 'GET',
@@ -50,7 +50,7 @@ export const ADD_SUBCATEGORY_FAILURE = 'ADD_SUBCATEGORY_FAILURE';
 export function addSubcategoryRequest(subcategory) {
   return dispatch => {
     dispatch(addSubcategory());
-    let token = sessionStorage.getItem('jwtToken');
+    let token = localStorage.getItem('jwtToken');
     
     return axios({
       method: 'POST',
@@ -84,7 +84,7 @@ export const GET_SUBCATEGORIES_FAILURE = 'GET_SUBCATEGORIES_FAILURE';
 export function getSubcategoriesRequest(categoryID) {
   return dispatch => {
     dispatch(getSubcategories());
-    let token = sessionStorage.getItem('jwtToken');
+    let token = localStorage.getItem('jwtToken');
     
     return axios({
       method: 'GET',
@@ -125,7 +125,7 @@ export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 export function addEntryRequest(entry) {
   return dispatch => {
     dispatch(addEntry(entry));
-    let token = sessionStorage.getItem('jwtToken');
+    let token = localStorage.getItem('jwtToken');
     
     return axios({
       method: 'POST',
@@ -167,7 +167,7 @@ export const GET_ENTRIES_FAILURE = 'GET_ENTRIES_FAILURE';
 export function getEntriesRequest(subcategory) {
   return dispatch => {
     dispatch(getEntries());
-    let token = sessionStorage.getItem('jwtToken');
+    let token = localStorage.getItem('jwtToken');
     
     return axios({
       method: 'GET',

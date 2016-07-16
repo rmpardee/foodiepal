@@ -10,7 +10,6 @@ import {
 
 class CategoryList extends Component {
   componentWillMount() {
-    console.log("this.props in CategoryList: ", this.props);
     this.props.getCategoriesRequest(this.props.current.user.id);
   }
 

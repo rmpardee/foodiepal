@@ -9,7 +9,6 @@ import Subcategories from './reducer-subcategory';
 import Entry from './reducer-entry';
 import Auth from './reducer-auth';
 
-
 export default combineReducers({
   current: Current,
   modals: ModalReducer,
