@@ -24,17 +24,22 @@ export default function(state = INITIAL_STATE, action) {
     return Object.assign({}, state, {
       isFetching: false,
       data: action.payload
-    })
+    });
 
   case ADD_ENTRY_REQUEST:
     // return action.payload;
     return state;
+    // return Object.assign({}, state, {
+    //   // data: action.payload
+    //   isFetching: true
+    // });
 
   case ADD_ENTRY_SUCCESS:
     // return state;
     return Object.assign({}, state, {
-      data: action.payload
-    })
+      data: action.payload,
+      isFetching: false
+    });
 
 
   default:
