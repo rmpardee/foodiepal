@@ -65,10 +65,12 @@ class EntryList extends Component {
   }
 
   renderAddNewBlock() {
+    let subcategoryName = this.props.current.subcategory.name.toLowerCase();
+
     return (
       <div className='add-new-block'>
-        <h4>Uh oh!</h4>
-        <p>Looks like you haven't logged any entries for { this.props.current.subcategory.name }!</p>
+        <h4>{ subcategoryName }? None here yet!</h4>
+        <p>Looks like you haven\'t logged any entries for { this.props.current.subcategory.name }!</p>
       </div>
     );
   }
