@@ -71,7 +71,7 @@ class SubcategoryList extends Component {
 
     return (
       <div className='add-new-block'>
-        <h4>Looks like you've got some { categoryName } to try!</h4>
+        <h4>Got some { categoryName } to try?</h4>
         <p>You haven't added any types of { categoryName }.</p>
         <Link to='#' onClick={ this.openEntryForm.bind(this) }>
           <button className='btn btn-primary'>Add New Subcategory</button>
