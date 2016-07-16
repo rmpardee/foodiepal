@@ -1,8 +1,8 @@
-// var postmark = require('postmark')(process.env.POSTMARK_API_TOKEN); //NOT WORKING
-// var async = require('async');
-// var crypto = require('crypto');
+var postmark = require('postmark')('01824264-d650-45a3-9c8a-217457dfea68')//(process.env.POSTMARK_API_TOKEN); //NOT WORKING
+var async = require('async');
+var crypto = require('crypto');
 
-if (!process.env.FROM_EMAIL) {  //NOT WORKING
+if (!'protoluxgourmand@gmail.com') {//(!process.env.FROM_EMAIL) {  //NOT WORKING
   console.log('Please set: FROM_EMAIL environment variable. This is a validated email address to send emails from to other users for email verification, reset pwd etc');
   console.log('TEST!!!!!!!!! ', process.env.FROM_EMAIL);
   process.exit();
