@@ -8,8 +8,6 @@ class AddEntry extends Component {
   constructor(props) {
     super(props);
 
-    console.log('AddEntry props:', this.props);
-
     this.state = {
       type: '',
       notes: '',
@@ -46,7 +44,7 @@ class AddEntry extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log('submitting:', this.state);
+
     this.props.addEntryRequest(this.state);
     this.closeModal();
   }

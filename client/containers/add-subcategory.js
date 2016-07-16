@@ -33,7 +33,7 @@ class AddSubcategory extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log('Adding subcategory:', this.state);
+
     this.props.addSubcategoryRequest(this.state);
     this.closeModal();
   }

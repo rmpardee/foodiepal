@@ -69,8 +69,8 @@ class EntryList extends Component {
 
     return (
       <div className='add-new-block'>
-        <h4>{ subcategoryName }? None here yet!</h4>
-        <p>Looks like you haven\'t logged any entries for { this.props.current.subcategory.name }!</p>
+        <h4>Nothing here yet!</h4>
+        <p>Looks like you haven't logged any entries for { this.props.current.subcategory.name }.</p>
       </div>
     );
   }
