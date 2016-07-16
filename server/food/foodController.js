@@ -11,6 +11,7 @@ module.exports = {
         console.log("err in controller getCategories fn: ", err);
         return err;
       }
+      // console.log('TEST IN GETCATAGORIES');
       return categories;
     });
   },
@@ -33,6 +34,45 @@ module.exports = {
       console.log('Success saving category to db: ', savedCategory);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
+  },
+
+  standardCategories: {
+    cheese: {
+      name: 'Cheese',
+      userID: null
+    },
+    olives: {
+      name: 'Olives',
+      userID: null
+    },
+    chocolate: {
+      name: 'Chocolate',
+      userID: null
+    },
+    beer: {
+      name: 'Beer',
+      userID: null
+    },
+    wine: {
+      name: 'Wine',
+      userID: null
+    },
+    coffee: {
+      name: 'Coffee',
+      userID: null
+    },
+    charcuterie: {
+      name: 'Charcuterie',
+      userID: null
+    },
+    cocktails: {
+      name: 'Cocktails',
+      userID: null
+    },
+    oliveOil: {
+      name: 'Olive Oil',
+      userID: null
+    }
   },
 
 // SUBCATEGORIES:

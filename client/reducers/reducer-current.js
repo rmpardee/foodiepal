@@ -15,7 +15,7 @@ const INITIAL_STATE = {
     isLoggedIn: true
   },
   user: {
-    id: '57818817750c620d5bdb1b7e', // hardcoded for now
+    id: '',
     name: ''
   },
   category: {
@@ -32,7 +32,10 @@ export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
   case SET_CURRENT_USER:
     return Object.assign({}, state, {
-      user: action.payload
+      user: {
+        id: action.payload._id,
+        name: action.payload.email
+      } 
     });
   
   case SET_CURRENT_CATEGORY:

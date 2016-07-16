@@ -5,25 +5,42 @@ import {
   GET_ENTRIES_SUCCESS
  } from '../actions';
 
-const INITIAL_STATE = []
+// const INITIAL_STATE = [];
+const INITIAL_STATE = {
+  isFetching: false,
+  data: []
+};
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
+  case GET_ENTRIES_REQUEST:
+    // return state;
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+
+  case GET_ENTRIES_SUCCESS:
+    // return action.payload;
+    return Object.assign({}, state, {
+      isFetching: false,
+      data: action.payload
+    });
+
   case ADD_ENTRY_REQUEST:
     // return action.payload;
     return state;
+    // return Object.assign({}, state, {
+    //   // data: action.payload
+    //   isFetching: true
+    // });
 
   case ADD_ENTRY_SUCCESS:
-    return state;
+    // return state;
+    return Object.assign({}, state, {
+      data: action.payload,
+      isFetching: false
+    });
 
-  case GET_ENTRIES_REQUEST:
-    return state;
-
-  case GET_ENTRIES_SUCCESS:
-    // return Object.assign({}, state, {
-    //   entries: action.payload
-    // });
-    return action.payload;
 
   default:
     return state;

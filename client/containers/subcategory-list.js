@@ -31,7 +31,7 @@ class SubcategoryList extends Component {
 
   renderSubcategories() {
     const category = this.props.current.category.name;
-    const subcategories = this.props.subcategories;
+    const subcategories = this.props.subcategories.data;
 
     return subcategories.map((subcategory) => {
       let subcategoryInfo = {
@@ -42,7 +42,7 @@ class SubcategoryList extends Component {
       return (
         <li key={ subcategory._id } className='grid-links-block'>
           <Link
-            to={`/${ category }/${ subcategory.name }`}
+            to={`/u/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
               <span className='grid-link-name'>{ subcategory.name }</span>
@@ -54,45 +54,41 @@ class SubcategoryList extends Component {
   }
 
   renderAddNewButtonGrid() {
-    if (this.props.subcategories.length) {
-      return (
-        <li key='add-subcategory' className='grid-links-block'>
-          <Link to='#' onClick={ this.openEntryForm.bind(this) }>
-            <div className="grid-link-container">
-              <div className='grid-link-icon'>+</div>
-              <span className='grid-link-name'>Add New</span>
-            </div>
-          </Link>
-        </li>
-      );
-    }
+    return (
+      <li key='add-subcategory' className='grid-links-block'>
+        <Link to='#' onClick={ this.openEntryForm.bind(this) }>
+          <div className="grid-link-container">
+            <div className='grid-link-icon'>+</div>
+            <span className='grid-link-name'>Add New</span>
+          </div>
+        </Link>
+      </li>
+    );
   }
 
   renderAddNewBlock() {
-    if (!this.props.subcategories.length) {
-      return (
-        <div className='add-new-block'>
-          <h4>Oh noes!</h4>
-          <p>You haven't added any types of { this.props.current.category.name }!</p>
-          <Link to='#' onClick={ this.openEntryForm.bind(this) }>
-            <div className="grid-link-container">
-              <div className='grid-link-icon'>+</div>
-              <span className='grid-link-name'>Add New</span>
-            </div>
-          </Link>
-        </div>
-      );
-    }
+    let categoryName = this.props.current.category.name.toLowerCase();
+
+    return (
+      <div className='add-new-block'>
+        <h4>Got some { categoryName } to try?</h4>
+        <p>You haven't added any types of { categoryName }.</p>
+        <Link to='#' onClick={ this.openEntryForm.bind(this) }>
+          <button className='btn btn-primary'>Add New Subcategory</button>
+          
+        </Link>
+      </div>
+    );
   }
 
   render() {
     return (
       <div className='grid-container'>
         <ul className='grid-links'>
-          { this.props.subcategories.length ? this.renderSubcategories() : '' }
-          { this.renderAddNewButtonGrid() }
+          { !this.props.subcategories.isFetching ? this.renderSubcategories() : <div className='spinner'></div> }
+          { !this.props.subcategories.isFetching && this.props.subcategories.data.length ? this.renderAddNewButtonGrid() : '' }
         </ul>
-        { this.renderAddNewBlock() }
+        { !this.props.subcategories.isFetching && !this.props.subcategories.data.length ? this.renderAddNewBlock() : '' }
       </div>
     );
   }

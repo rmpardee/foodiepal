@@ -4,12 +4,19 @@ var bodyParser = require('body-parser');
 // var helpers = require('./helpers.js'); //Custom middleware
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
+var expressJwt = require('express-jwt');
+// var expJwt = require('./config.js');
 
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
   var userRouter = express.Router();
   var foodRouter = express.Router();
+
+  process.env.JWT_SECRET = 'keyboard cat';
+  app.use(expressJwt({secret: process.env.JWT_SECRET})
+    .unless({path: ['/api/user/login', '/api/user/signup']})
+  );
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
@@ -20,7 +27,7 @@ module.exports = function (app, express) {
     res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Credentials', false);
     res.header('Access-Control-Max-Age', '86400');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
     // the next() function continues execution and will move onto the requested URL/URI
     next();
   });

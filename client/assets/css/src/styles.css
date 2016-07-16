@@ -14,6 +14,7 @@ body {
 }
 
 .container {
+  lost-utility: clearfix;
   margin: 0 auto;
   max-width: $max-width;
   padding: 0 20px;
@@ -83,6 +84,9 @@ nav {
   box-shadow: inset 0 0 100px 100px color(#fff a(50%));
 }
 
+.content {
+  lost-center: 360px;
+}
 
 .grid-title {
   border-bottom: solid 1px $lighter-gray;
@@ -204,6 +208,14 @@ nav {
   background-image: url('../img/coffee.svg');
 }
 
+.grid-link-icon-cocktails {
+  background-image: url('../img/glass.svg');
+}
+
+.grid-link-icon-olive-oil {
+  background-image: url('../img/olive-oil.svg');
+}
+
 .react-rater {
   margin-bottom: 20px;
   text-align: center;
@@ -223,12 +235,47 @@ nav {
 
 .react-rater a.read-only {
   cursor: default;
-  padding: 5px;
 }
 
-.entry-listing .react-rater {
+.entry-list {
+  list-style-type: none;
+}
+
+.entry-listing {
+  border-bottom: solid 1px $lightest-gray;
+  margin-bottom: 20px;
+}
+
+.entry-listing-header {
+  lost-utility: clearfix;
+}
+
+.entry-listing-title {
+  lost-column: 8/12;
+  margin: 0;
+}
+
+.entry-listing-timestamp {
+  color: $light-gray;
+  lost-column: 4/12;
+  text-align: right;
+}
+
+.entry-listing-rating {
+  margin-bottom: 0;
   text-align: left;
 }
+
+.entry-listing-rating a {
+  font-size: 1.2em;
+  padding: 5px 0;
+}
+
+.detail-header {
+  margin-bottom: 20px;
+}
+
+
 
 
 /* React-Redux Modal overrides */
@@ -325,6 +372,9 @@ nav {
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title .rr-title-actions {
   width: auto;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   text-align: right;
   float: right;
 }
@@ -336,7 +386,7 @@ nav {
   line-height: 40px;
   position: relative;
   border: 1px solid transparent;
-  float: right;
+  /*float: right;*/
   background-color: transparent;
   text-align: center;
   padding: 0;
@@ -384,6 +434,10 @@ textarea {
 .form-container textarea {
   display: block;
   margin-bottom: 20px;
+}
+
+.form-container textarea {
+  min-height: 120px;
 }
 
 .btn {
@@ -453,4 +507,13 @@ textarea {
 .fade-in-appear.fade-in-appear-active {
   opacity: 1;
   transition: all 0.3s ease-out;
+}
+
+
+.spinner {
+  background: url('../img/spinner.gif') center center no-repeat transparent;
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
 }
