@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setCurrentUser } from './index.js';
+import { push } from 'react-router-redux';
 
 const API_URL = 'http://localhost:3000';
 const API_USER = `${API_URL}/api/user/`;
@@ -27,7 +28,7 @@ export function addUserRequest(user, dispatch) {
         reject(response.data);
       } else {
         dispatch(addUserSuccess(response.data));
-        window.location = '/login';
+        dispatch(push('/u'));
         resolve();
       }
     })
@@ -166,8 +167,7 @@ export function loginRequest(user, dispatch) {
         localStorage.setItem('jwtToken', response.data.token);
         dispatch(setCurrentUser(response.data.user));
         dispatch(loginSuccess(response.data));
-        //NOTE: Might need promise here of some kind
-        window.location = '/u';
+        dispatch(push('/u'));
         resolve();
       }
     })

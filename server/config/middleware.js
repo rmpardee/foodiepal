@@ -1,11 +1,8 @@
-var morgan = require('morgan'); // used for logging incoming request
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override'); //Not needed yet
-// var helpers = require('./helpers.js'); //Custom middleware
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
 var expressJwt = require('express-jwt');
-// var expJwt = require('./config.js');
 
 
 module.exports = function (app, express) {
@@ -13,10 +10,6 @@ module.exports = function (app, express) {
   var userRouter = express.Router();
   var foodRouter = express.Router();
 
-  process.env.JWT_SECRET = 'keyboard cat';
-  app.use(expressJwt({secret: process.env.JWT_SECRET})
-    .unless({path: ['/api/user/login', '/api/user/signup']})
-  );
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
@@ -31,6 +24,11 @@ module.exports = function (app, express) {
     // the next() function continues execution and will move onto the requested URL/URI
     next();
   });
+
+  process.env.JWT_SECRET = 'keyboard cat';
+  app.use(expressJwt({secret: process.env.JWT_SECRET})
+    .unless({path: ['/api/user/login', '/api/user/signup']})
+  );
 
   //inject routes into Router
   userRoutes(userRouter);
