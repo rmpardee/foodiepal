@@ -14,8 +14,7 @@ module.exports = function(app) {
       });
     })
     // Add category to db
-    // .post(function(req, res) {
-    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+    .post(function(req, res) {
       // Add the category to the database
       foodControl.addCategory(req.body).then(function() {
         // Query the database for all the categories with that userID (which will include the one we just added)
@@ -34,9 +33,7 @@ module.exports = function(app) {
 
 
   app.route('/subcategory')
-    // Get subcategories for the given categoryID
-    // .get(function(req, res) {
-    .get(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+    .get(function(req, res) {
       foodControl.getSubcategories(req.query.categoryID).then(function(subcategories) {
         res.status(200).send(subcategories);
       }, function(err) {
@@ -46,8 +43,7 @@ module.exports = function(app) {
 
     })
     // Add subcategory to db
-    // .post(function(req, res) {
-    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+    .post(function(req, res) {
       // Add the subcategory to the database
       foodControl.addSubcategory(req.body).then(function() {
         // Query the database for all the subcategories with that categoryID (which will include the one we just added)
@@ -66,8 +62,7 @@ module.exports = function(app) {
 
   app.route('/entry')
     // Get entries for the given subcategoryID
-    // .get(function(req, res) {
-    .get(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+    .get(function(req, res) {
       foodControl.getEntries(req.query.subcategoryID).then(function(entries) {
         res.status(200).send(entries);
       }, function(err) {
@@ -76,8 +71,7 @@ module.exports = function(app) {
       });
     })
     // Add entry to db, and return all entries for the given subcategoryID
-    // .post(function(req, res) {
-    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
+    .post(function(req, res) {
       // Add the entry to the database
       foodControl.addEntry(req.body).then(function() {
         // Query the database for all the entries with that subcategoryID (which will include the one we just added)

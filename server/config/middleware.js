@@ -13,10 +13,11 @@ module.exports = function (app, express) {
   var foodRouter = express.Router();
 
   app.use(expressJwt({secret: secret})
-    .unless({path: ['/api/user/login', '/api/user/signup']})
+    .unless({path: ['/api/user/login', '/api/user/signup', '/api/user/testingemail', '/api/user/forgotPasword']})
   );
 
   process.env['FROM_EMAIL'] = expJwt.gouremail.email;
+  // console.log(process.env['FROM_EMAIL']);
   // app.use(process.env.FROM_EMAIL);
   // process.env.POSTMARK_API_TOKEN = expJwt.precess.processAPI;
 

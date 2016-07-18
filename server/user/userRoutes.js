@@ -5,6 +5,14 @@ var email = require('../config/email.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var expressJwt = require('express-jwt');
+var expJwt = require('../config/config.js');
+
+
+//----PostMark------------------------------------------------------------>
+var postmark = require('postmark');
+var client = new postmark.Client('5192dc2f-aa00-4c75-a611-03b7da2eb542');
+process.env['FROM_EMAIL'] = expJwt.gouremail.email;
+//----PostMark------------------------------------------------------------>
 
 
 module.exports = function(app) {
@@ -36,7 +44,7 @@ module.exports = function(app) {
             console.log('err in route api/user/signup POST: ', err);
             res.status(204).send(err);
           });  
-        }
+        }  // TODO!! Send validation email
       });
     });
 
@@ -73,30 +81,56 @@ module.exports = function(app) {
 
 //----------------------------------------------------------------------
 
-  //send a validation email
-  app.route('/resendValidationEmail')
-    .get(expressJwt({secret: process.env.JWT_SECRET}), function(req, res) {
-      User.findById({
-        '_id': req.user._id
-      }, function(err, user) {
-        if (err) { throw err; }
-
-        //send welcome email w/ verification token
-        email.sendWelcomeEmail(user, req.headers.host, function(err) {
-          if (err) {
-            res.status(404).json(err);
-          } else {
-            res.send({
-              message: 'Email was resent'
-            });
-          }
-        });
+  //send a validation email -> WORKS!
+  app.route('/testingemail')
+    .get(function(req, res) {
+      console.log('TEST!:', client);
+      client.sendEmail({
+        "From": "hello@gourmandapp.com",
+        "To": "protoluxgourmand@gmail.com",
+        "Subject": "Test", 
+        "TextBody": "Hello from Postmark!"
+      }, function(error, success) {
+        if (error) {
+          console.error("Unable to send via postmark: " + error.message);
+          res.send(error);
+        }
+        console.info("Sent to postmark for delivery: " + success);
+        res.send(success);
       });
     });
 
 
+  //send a validation email
+  app.route('/forgotPasword')
+    .post(function(req, res) {
+      userControl.doesUserExist(req.body.email).then(function(boolean) {
+        if (!boolean) {
+          return res.status(204).json({
+            message: 'User does not exist' 
+          });  
+        } else {
+        //call getUserLogin(req.body.email) (returns full user with ID)
+          //use userID to generate token
+          
+        //send forgot pasword email w/ verification token
+          email.forgotPaswordEmail(req.body, function(err) {
+            if (err) {
+              res.status(404).json(err);
+            } else {
+              res.send({
+                message: 'Email was resent'
+              });
+            }
+          });
+        }
+      });
+    });
+    
+
+  // Not set up yet...
   app.route('/updateEmail')
-    .post(expressJwt({secret: process.env.JWT_SECRET}), function(req, res, next) {
+    .post(function(req, res, next) {
 
       var newEmail = req.body.email && req.body.email.trim();
 
@@ -118,6 +152,10 @@ module.exports = function(app) {
       });
     });
 
+
+
+
+//----------------------------------------------------------------------
 
   //Generate JWT Token: Re-Authenticate Route
   //get current user from token
