@@ -8,21 +8,22 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-  REQUEST_PASSWORD_RESET_REQUEST,
-  REQUEST_PASSWORD_RESET_SUCCESS,
-  REQUEST_PASSWORD_RESET_FAILURE
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE
 } from '../actions/auth';
 
 const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
-  // console.log("action inside reducer-auth: ", action);
   switch(action.type) {
 
   case ADD_USER_REQUEST:
     return state;
   case ADD_USER_SUCCESS:
     return action.payload;
+  case ADD_USER_FAILURE:
+    return state;
 
   case LOGIN_REQUEST:
     return state;
@@ -31,13 +32,11 @@ export default function(state = INITIAL_STATE, action) {
   case LOGIN_FAILURE:
     return state;
 
-  case REQUEST_PASSWORD_RESET_REQUEST:
+  case RESET_PASSWORD_REQUEST:
     return state;
-  
-  case REQUEST_PASSWORD_RESET_SUCCESS:
-    return state;
-
-  case REQUEST_PASSWORD_RESET_FAILURE:
+  case RESET_PASSWORD_SUCCESS:
+    return action.payload;
+  case RESET_PASSWORD_FAILURE:
     return state;
 
   default:

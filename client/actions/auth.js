@@ -12,6 +12,7 @@ const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
 // const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
+const API_RESETPW_USER = `${API_USER}forgotpassword`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
 
@@ -234,46 +235,42 @@ function logoutSuccess() {
   }
 }
 
+//Forgot password
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
-export const REQUEST_PASSWORD_RESET_REQUEST = 'REQUEST_PASSWORD_RESET_REQUEST';
-export const REQUEST_PASSWORD_RESET_SUCCESS = 'REQUEST_PASSWORD_RESET_SUCCESS';
-export const REQUEST_PASSWORD_RESET_FAILURE = 'REQUEST_PASSWORD_RESET_FAILURE';
-
-export function requestPasswordResetRequest(email, dispatch) {
+export function resetPasswordRequest(user, dispatch) {
   return new Promise ((reject, resolve) => {
-    dispatch(requestPasswordReset());
     return axios({
       method: 'POST',
-      url: API_REQUEST_PASSWORD_RESET,
-      data: email
+      url: API_RESETPW_USER,
+      data: user
     })
     .then(response => {
-      if (response.status !== 200) {
-        dispatch(requestPasswordResetFailure());
+      if (response.status !== 201) {
+        dispatch(resetPasswordFailure(response.data));
         reject(response.data);
       } else {
-        dispatch(requestPasswordResetSuccess());
+        dispatch(resetPasswordSuccess(response.data));
+        dispatch(push('/u'));
         resolve();
       }
     })
-    .catch(response => console.error('Request Password Reset POST error: ', response));
+    .catch(response => console.error('user POST error:', response));
   });
 }
 
-function requestPasswordReset() {
+function resetPasswordSuccess(user) {
   return {
-    type: REQUEST_PASSWORD_RESET_REQUEST
-  }
+    type: RESET_PASSWORD_SUCCESS,
+    payload: user
+  };
 }
 
-function requestPasswordResetSuccess() {
+function resetPasswordFailure(user) {
   return {
-    type: REQUEST_PASSWORD_RESET_SUCCESS
-  }
-}
-
-function requestPasswordResetFailure() {
-  return {
-    type: REQUEST_PASSWORD_RESET_FAILURE
-  }
+    type: RESET_PASSWORD_FAILURE,
+    payload: user
+  };
 }

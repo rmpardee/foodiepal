@@ -7,6 +7,7 @@ import Welcome from '../components/welcome';
 import Public from '../components/public';
 import SignUp from '../containers/signup';
 import Login from '../containers/login';
+import ForgotPassword from '../containers/forgotpw';
 
 import Main from '../components/main'; // Main (user) layout
 import Categories from '../components/categories';
@@ -31,6 +32,7 @@ export default (
       <Route component={ Public }>
         <Route path="login" component={ Login } />
         <Route path="signup" component={ SignUp } />
+        <Route path="forgotpassword" component={ ForgotPassword } />
       </Route>
     </Route>
     <Route path="/u" component={ Main } onEnter={ requireAuth }>
