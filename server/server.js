@@ -4,16 +4,13 @@ var mongoose = require('mongoose');
 
 var middleware = require('./config/middleware.js'); 
 var db = require('./db/db');
+var port = require('./config/env.js').port;
 
 
 // configuration ===========================================
  
 //Set up Middleware and Routes
 middleware(app, express);
-
-// set port
-var port = process.env.PORT || 3000; 
-
 
 // connect to mongoDB database 
 mongoose.connect(db.url);

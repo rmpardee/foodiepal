@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { setCurrentUser } from './index.js';
 import { push } from 'react-router-redux';
+import { port } from '../../server/config/env.js';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:' + port;
 const API_USER = `${API_URL}/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
@@ -154,6 +155,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export function loginRequest(user, dispatch) {
   return new Promise ((reject, resolve) => {
   //   dispatch(login());
+  console.log("port: ", port);
     return axios({
       method: 'POST',
       url: API_LOGIN_USER,
