@@ -19,7 +19,7 @@ body {
   max-width: $max-width;
   padding: 0 20px;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 nav {
@@ -28,6 +28,8 @@ nav {
   clear: fix;
   margin-bottom: 1em;
   padding: 10px 0;
+  position: relative;
+  z-index: 100;
 }
 
 .mobile-quick-nav {
@@ -43,6 +45,14 @@ nav {
   color: $darker-gray;
 }
 
+.mobile-nav-left {
+  text-align: left;
+}
+
+.mobile-nav-right {
+  text-align: right;
+}
+
 .mobile-chevron {
   border-style: solid;
   border-width: 4px 0 0 4px;
@@ -51,14 +61,47 @@ nav {
   top: 1px;
   width: 12px;
   transform: rotate(-45deg);
-
-  @media mq('small') {
-    content: 'Back';
-  }
 }
 
 .mobile-chevron.chevron-left {
   display: inline-block;
+}
+
+.mobile-account-nav,
+.mobile-account-subnav {
+  list-style-type: none;
+}
+
+.mobile-account-nav {
+  position: relative;
+}
+
+.mobile-account-subnav {
+  display: none;
+  position: absolute;
+  top: 36px;
+  right: -20px;
+  transition: all 0.3s ease-out;
+}
+
+.mobile-account-subnav.active {
+  background: #fff;
+  border: solid 1px $lightest-gray;
+  border-top-color: #fff;
+  border-radius: 0 0 5px 5px;
+  display: block;
+  min-width: 120px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.mobile-account-subnav li {
+  padding: 10px 20px;
+  transition: all 0.3s ease-out;
+}
+
+.mobile-account-subnav li:hover {
+  background: $lightest-gray;
 }
 
 .portal {
@@ -269,6 +312,10 @@ nav {
 .entry-listing-rating a {
   font-size: 1.2em;
   padding: 5px 0;
+}
+
+.entry-listing-notes {
+  white-space: pre-line;
 }
 
 .detail-header {

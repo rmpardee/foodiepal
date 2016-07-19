@@ -336,10 +336,12 @@ body {
   max-width: 1040px;
   padding: 0 20px;
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
-.container:before { content: ''; display: table; }
-.container:after { content: ''; display: table; clear: both; }
+.container:before {
+ /*overflow: hidden;*/ content: ''; display: table; }
+.container:after {
+ /*overflow: hidden;*/ content: ''; display: table; clear: both; }
 nav:after { content: ''; display: block; clear: both; }
 nav {
   background: #fff;
@@ -347,6 +349,8 @@ nav {
           box-shadow: 0 0 5px rgba(153, 153, 153, 0.4);
   margin-bottom: 1em;
   padding: 10px 0;
+  position: relative;
+  z-index: 100;
 }
 .mobile-quick-nav {
   color: #999;
@@ -364,6 +368,12 @@ nav {
 .mobile-quick-nav:hover {
   color: rgb(42, 43, 43);
 }
+.mobile-nav-left {
+  text-align: left;
+}
+.mobile-nav-right {
+  text-align: right;
+}
 .mobile-chevron {
   border-style: solid;
   border-width: 4px 0 0 4px;
@@ -374,10 +384,41 @@ nav {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
-@media only screen and ( min-width: 35.5em ) {
- .mobile-chevron { content: 'Back'; } }
 .mobile-chevron.chevron-left {
   display: inline-block;
+}
+.mobile-account-nav,
+.mobile-account-subnav {
+  list-style-type: none;
+}
+.mobile-account-nav {
+  position: relative;
+}
+.mobile-account-subnav {
+  display: none;
+  position: absolute;
+  top: 36px;
+  right: -20px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.mobile-account-subnav.active {
+  background: #fff;
+  border: solid 1px rgb(245, 245, 245);
+  border-top-color: #fff;
+  border-radius: 0 0 5px 5px;
+  display: block;
+  min-width: 120px;
+  padding: 20px 0;
+  text-align: center;
+}
+.mobile-account-subnav li {
+  padding: 10px 20px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.mobile-account-subnav li:hover {
+  background: rgb(245, 245, 245);
 }
 .portal {
   width: calc(99.9% * 8/12);
@@ -572,6 +613,9 @@ nav {
 .entry-listing-rating a {
   font-size: 1.2em;
   padding: 5px 0;
+}
+.entry-listing-notes {
+  white-space: pre-line;
 }
 .detail-header {
   margin-bottom: 20px;

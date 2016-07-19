@@ -33,6 +33,7 @@
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
     "node": "0.0.0",
+    "path": "^0.12.7",
     "react": "^0.14.0",
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
