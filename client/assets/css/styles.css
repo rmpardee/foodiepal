@@ -632,9 +632,9 @@ nav {
   width: 90%;
 }
 @media only screen and ( min-width: 35.5em ) {
- .rrm-content { width: 60%; } }
+ .rrm-content { width: 70%; } }
 @media only screen and ( min-width: 48em ) {
- .rrm-content { width: 40%; } }
+ .rrm-content { width: 60%; } }
 .react-redux-modal button:focus {
   outline: 0;
 }
@@ -685,16 +685,18 @@ nav {
   height: auto;
   position: relative;
 }
+.react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title:before { content: ''; display: table; }
+.react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title:after { content: ''; display: table; clear: both; }
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title h2 {
   float: left;
-  font-size: 2em;
+  /*font-size: 2em;
   height: 60px;
-  line-height: 2;
+  line-height: 2;*/
   margin: 0;
-  padding: 0 20px;
-  overflow: hidden;
+  padding: 10px 20px;
+  /*overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap;*/
 }
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title .rr-title-actions {
   width: auto;
@@ -725,7 +727,7 @@ nav {
 }
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-body {
   width: 100%;
-  padding: 20px;
+  padding: 0 20px 20px;
 }
 .react-redux-modal .rrm-holder .rrm-shadow {
   width: 100%;

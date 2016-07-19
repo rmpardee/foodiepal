@@ -10,6 +10,8 @@ const API_LOGIN_USER = `${API_USER}login`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
 
+const API_REQUEST_PASSWORD_RESET = `${API_USER}forgotpassword`;
+
 //Add user (sign up)
 export const ADD_USER_REQUEST = 'ADD_USER_REQUEST';
 export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
@@ -201,3 +203,47 @@ function loginFailure(user) {
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+
+
+export const REQUEST_PASSWORD_RESET_REQUEST = 'REQUEST_PASSWORD_RESET_REQUEST';
+export const REQUEST_PASSWORD_RESET_SUCCESS = 'REQUEST_PASSWORD_RESET_SUCCESS';
+export const REQUEST_PASSWORD_RESET_FAILURE = 'REQUEST_PASSWORD_RESET_FAILURE';
+
+export function requestPasswordResetRequest(email, dispatch) {
+  return new Promise ((reject, resolve) => {
+    dispatch(requestPasswordReset());
+    return axios({
+      method: 'POST',
+      url: API_REQUEST_PASSWORD_RESET,
+      data: email
+    })
+    .then(response => {
+      if (response.status !== 200) {
+        dispatch(requestPasswordResetFailure());
+        reject(response.data);
+      } else {
+        dispatch(requestPasswordResetSuccess());
+        resolve();
+      }
+    })
+    .catch(response => console.error('Request Password Reset POST error: ', response));
+  });
+}
+
+function requestPasswordReset() {
+  return {
+    type: REQUEST_PASSWORD_RESET_REQUEST
+  }
+}
+
+function requestPasswordResetSuccess() {
+  return {
+    type: REQUEST_PASSWORD_RESET_SUCCESS
+  }
+}
+
+function requestPasswordResetFailure() {
+  return {
+    type: REQUEST_PASSWORD_RESET_FAILURE
+  }
+}

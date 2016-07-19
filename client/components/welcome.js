@@ -5,9 +5,13 @@ export default class Welcome extends Component {
   render() {
     return (
       <div>
-        Welcome!
-        { this.props.children }
-        <Link to='/login'>Login</Link>
+        <div className='container'>
+          <h1 className='welcome-logo'>Gourmand</h1>
+          <h6>Your Personal Tasting Log</h6>
+
+          <Link to='/signup' className='btn btn-primary'>Sign Up</Link>
+          <Link to='/login' className='btn'>Login</Link>
+        </div>
       </div>
     );
   }

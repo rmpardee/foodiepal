@@ -336,11 +336,11 @@ nav {
   width: 90%;
 
   @media mq('small') {
-    width: 60%;
+    width: 70%;
   }
 
   @media mq('medium') {
-    width: 40%;
+    width: 60%;
   }
 }
 
@@ -402,18 +402,19 @@ nav {
   width: 100%;
   height: auto;
   position: relative;
+  lost-utility: clearfix;
 }
 
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title h2 {
   float: left;
-  font-size: 2em;
+  /*font-size: 2em;
   height: 60px;
-  line-height: 2;
+  line-height: 2;*/
   margin: 0;
-  padding: 0 20px;
-  overflow: hidden;
+  padding: 10px 20px;
+  /*overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap;*/
 }
 
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title .rr-title-actions {
@@ -448,7 +449,7 @@ nav {
 
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-body {
   width: 100%;
-  padding: 20px;
+  padding: 0 20px 20px;
 }
 
 .react-redux-modal .rrm-holder .rrm-shadow {
