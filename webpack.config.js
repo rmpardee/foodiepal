@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: false,
     hot: true,
     contentBase: './client/'
   },

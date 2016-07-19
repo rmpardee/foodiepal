@@ -15,12 +15,16 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 
 const mount = document.getElementById('app');
 
+// const browserHistory = useRouterHistory(createHistory)({
+//   basename: "/"
+// });
+
 const persistedState = loadState();
 export const store = createStore(rootReducer, persistedState, applyMiddleware(thunk, routerMiddleware(browserHistory)));
 // save the state in localStorage everytime it changes
 store.subscribe( () => saveState(store.getState()));
 
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, { adjustUrlOnReplay: false });
 
 render (
   <Provider store={ store }>
