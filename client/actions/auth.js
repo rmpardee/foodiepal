@@ -12,7 +12,7 @@ const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
 // const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
-const API_RESETPW_USER = `${API_USER}forgotpassword`;
+const API_RESETPW_USER = `${API_USER}resetPassword`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
 
