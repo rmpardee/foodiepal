@@ -8,6 +8,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAILURE,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILURE
@@ -30,6 +33,20 @@ export default function(state = INITIAL_STATE, action) {
   case LOGIN_SUCCESS:
     return action.payload;
   case LOGIN_FAILURE:
+    return state;
+
+  case LOGOUT_REQUEST:
+    return state;
+  case LOGOUT_SUCCESS:
+    return state;
+  case LOGOUT_FAILURE:
+    return state;
+
+  case FORGOT_PASSWORD_REQUEST:
+    return state;
+  case FORGOT_PASSWORD_SUCCESS:
+    return action.payload;
+  case FORGOT_PASSWORD_FAILURE:
     return state;
 
   case RESET_PASSWORD_REQUEST:

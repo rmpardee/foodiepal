@@ -40,7 +40,7 @@ var forgotPasswordEmail = function(user, next) {
     "TemplateModel": {
       "product_name": "Gourmand",
       "name": user.email,
-      "action_url": "https://gourmandapp.herokuapp.com/changePasword" + user._id,  //add /changePasword
+      "action_url": "https://gourmandapp.herokuapp.com/resetPassword?" + user._id,  //add /changePasword
       "sender_name": "Gourmand",
       "product_address_line1": "One Market",
       "product_address_line2": "San Francisco"

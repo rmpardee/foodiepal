@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class ForgotPassword extends Component {
+export default class ResetPassword extends Component {
 
   render() {
     const {fields: { email, password, confirmPassword }, handleSubmit, submitting } = this.props;
@@ -40,6 +40,6 @@ export default class ForgotPassword extends Component {
   }
 }
 
-ForgotPassword.contextTypes = {
+ResetPassword.contextTypes = {
   router: PropTypes.object
 }

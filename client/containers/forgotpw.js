@@ -1,62 +1,60 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-import { reduxForm } from 'redux-form';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { forgotPasswordRequest } from '../actions/auth';
 
-import ForgotPassword from '../components/forgotpw.js';
-import { resetPasswordRequest } from '../actions/auth.js';
-import { asyncValidate, resetValidateUserFields } from '../actions/auth.js';
+class ForgotPassword extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      email: ''
+    }
 
-
-//Client side validation
-function validate(values) {
-  var errors = {};
-  var hasErrors = false;
-
-  if (!values.email || values.email.trim() === '') {
-    errors.email = 'Enter email';
-    hasErrors = true;
-  }
-  if (!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
-    hasErrors = true;
-  }
-  if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Re-enter password';
-    hasErrors = true;
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-    errors.password = 'Password And Re-entered Password don\'t match';
-    errors.password = 'Password And Re-entered Password don\'t match';
-    hasErrors = true;
+  closeModal() {
+    this.props.removeModal();
   }
-  
-  return hasErrors && errors;
-} 
 
+  onEmailChange(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+
+    this.props.forgotPasswordRequest(this.state);
+    this.closeModal();
+  }
+
+  render() {
+    return (
+      <div className='form-container'>
+        <p>Don't worry! It happens to the best of us.</p>
+        <p>Enter your email address and we'll send you a link to reset your password.</p>
+        <form onSubmit={ this.onFormSubmit }>
+          <input 
+            value={ this.state.email }
+            onChange={ this.onEmailChange }
+            type="email"
+            placeholder="Email"
+          />
+          <button type="submit" className='btn btn-primary'>Request Reset Password Email</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return state;
+}
 
 function mapDispatchToProps(dispatch) {
-  return {
-    resetPassword: resetPasswordRequest
-  };
-};
+  return bindActionCreators({ forgotPasswordRequest }, dispatch);
+}
 
-function mapStateToProps(state, ownProps) {
-  return { 
-    user: state.user,
-    validateFields: state.validateFields
-  };
-};
-
-
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-export default reduxForm({
-  form: 'User',
-  fields: ['email', 'password', 'confirmPassword'], 
-  // asyncValidate,
-  validate 
-}, mapStateToProps, mapDispatchToProps)(ForgotPassword);
-
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
