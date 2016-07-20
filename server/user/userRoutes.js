@@ -16,11 +16,10 @@ module.exports = function(app) {
       // doesUserExist should return a boolean, but seems to pass the user to the promise, unclear why...
       userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
         if (verifiedUser) {
-          return res.status(204).json({
-            error: true,
-            message: 'User already exists' 
-          });  
+          console.log('User already exists');
+          res.sendStatus(204);
         } else {
+          email.sendWelcomeEmail(req.body); //TODO: Use with callback??
           userControl.addUser(req.body).then(function(user) {
             // add all the standard categories to the new user
             for (category in foodControl.standardCategories) {
@@ -28,18 +27,10 @@ module.exports = function(app) {
               food.userID = user._id;
               foodControl.addCategory(food);
             }
-            // generate a token for authentication to send back to the client
-            var token = utils.generateToken(user); //<----- Generate Token
-            user = utils.getCleanUser(user);
-            res.status(201).json({
-              user: user,   //  <----- Return both cleaned up user and token
-              token: token
-            });
-          }, function(err) {
-            console.log('err in route api/user/signup POST: ', err);
-            res.status(204).send(err);
+            console.log('NEW USER CREATED!!');
+            res.sendStatus(201);
           });  
-        }  // TODO!! Send validation email
+        }
       });
     });
 
@@ -71,27 +62,6 @@ module.exports = function(app) {
               token: token
             });
           });
-      });
-    });
-
-//----------------------------------------------------------------------
-
-  //send a validation email -> WORKS!
-  app.route('/testingemail')
-    .get(function(req, res) {
-      console.log('TEST!:', client);
-      client.sendEmail({
-        "From": "hello@gourmandapp.com",
-        "To": "protoluxgourmand@gmail.com",
-        "Subject": "Test Email", 
-        "TextBody": "Hello from Gourmand!"
-      }, function(error, success) {
-        if (error) {
-          console.error("Unable to send via postmark: " + error.message);
-          res.send(error);
-        }
-        console.info("Sent to postmark for delivery: " + success);
-        res.send(success);
       });
     });
 
@@ -140,6 +110,27 @@ module.exports = function(app) {
             }
           });
         }
+      });
+    });
+
+//----------------------------------------------------------------------
+
+  //send a validation email -> WORKS!
+  app.route('/testingemail')
+    .get(function(req, res) {
+      console.log('TEST!:', client);
+      client.sendEmail({
+        "From": "hello@gourmandapp.com",
+        "To": "protoluxgourmand@gmail.com",
+        "Subject": "Test Email", 
+        "TextBody": "Hello from Gourmand!"
+      }, function(error, success) {
+        if (error) {
+          console.error("Unable to send via postmark: " + error.message);
+          res.send(error);
+        }
+        console.info("Sent to postmark for delivery: " + success);
+        res.send(success);
       });
     });
 

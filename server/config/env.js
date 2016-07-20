@@ -10,10 +10,14 @@ module.exports = {
 
 // LOCAL version:
 // module.exports = {
-//   jwtSecret: require('./config.js').expJwt.scrt,
+//   jwtSecret: process.env.JWT_SECRET,
 //   mlab: {
 //     dbuser: require('./config.js').mlab.dbuser,
 //     dbpassword: require('./config.js').mlab.dbpassword
 //   },
 //   postmark: require('./config.js').postmark
+// };
+//     dbuser: process.env.MLAB_DBUSER,
+//     dbpassword: process.env.MLAB_DBPASSWORD
+//   }
 // };

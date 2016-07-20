@@ -10,6 +10,7 @@ module.exports = function (app, express) {
   var userRouter = express.Router();
   var foodRouter = express.Router();
 
+
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
@@ -30,7 +31,7 @@ module.exports = function (app, express) {
       '/api/user/forgotPassword',
       '/api/user/resetPassword'
     ]})
-  );
+
 
   //inject routes into Router
   userRoutes(userRouter);
