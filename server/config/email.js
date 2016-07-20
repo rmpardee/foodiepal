@@ -5,16 +5,16 @@ var client = new postmark.Client(postmarkClientKey);
 
 // This email should be sent on User SignUp after checkougn for duplicate users.
 // Possible use: no token or access until responding to email (link to login)
-var sendWelcomeEmail =  function(req, res) {  // This Sends Email with template
+var sendWelcomeEmail =  function(user) {  // This Sends Email with template
   client.sendEmailWithTemplate({
     "From": "hello@gourmandapp.com",
-    "To": req.email,
+    "To": user.email,
     "TemplateId": 782101,
     "TemplateModel": {
       "product_name": "Gourmand",
-      "name": req.email,
+      "name": user.email,
       "action_url": "https://gourmandapp.herokuapp.com/login", //add /login
-      "username": req.email,
+      "username": user.email,
       "product_address_line1": "One Market",
       "product_address_line2": "San Francisco",
       "sender_name": "Gourmand"
@@ -40,7 +40,7 @@ var forgotPasswordEmail = function(user, next) {
     "TemplateModel": {
       "product_name": "Gourmand",
       "name": user.email,
-      "action_url": "https://gourmandapp.herokuapp.com/changePasword" + user._id,  //add /changePasword
+      "action_url": "https://gourmandapp.herokuapp.com/resetPassword?" + user._id,  //add /changePasword
       "sender_name": "Gourmand",
       "product_address_line1": "One Market",
       "product_address_line2": "San Francisco"
