@@ -1,6 +1,8 @@
+var port = process.env.PORT || 3000;
+
 // DEPLOYED version:
 module.exports = {
-  port: process.env.PORT,
+  port: port,
   jwtSecret: process.env.JWT_SECRET,
   mlab: {
     dbuser: process.env.MLAB_DBUSER,
