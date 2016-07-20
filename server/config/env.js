@@ -1,6 +1,6 @@
 var port = process.env.PORT || 3000;
-console.log("process.env.HTTP_PORT: ", process.env.HTTP_PORT);
-console.log("process.env.HTTPS_PORT: ", process.env.HTTPS_PORT);
+console.log("process.env: ", process.env);
+console.log("process.env.PORT: ", process.env.PORT);
 
 // DEPLOYED version:
 module.exports = {
