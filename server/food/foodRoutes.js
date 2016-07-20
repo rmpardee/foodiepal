@@ -1,5 +1,4 @@
 var foodControl = require('./foodController.js');
-var expressJwt = require('express-jwt');
 
 module.exports = function(app) {
 

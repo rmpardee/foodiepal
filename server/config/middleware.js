@@ -13,7 +13,7 @@ module.exports = function (app, express) {
   var foodRouter = express.Router();
 
   app.use(expressJwt({secret: secret})
-    .unless({path: ['/api/user/login', '/api/user/signup', '/api/user/testingemail', '/api/user/forgotPasword']})
+    .unless({path: ['/api/user/login', '/api/user/signup', '/api/user/forgotPassword', '/api/user/resetPassword']})
   );
 
   process.env['FROM_EMAIL'] = expJwt.gouremail.email;

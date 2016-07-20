@@ -4,7 +4,6 @@ var client = new postmark.Client('5192dc2f-aa00-4c75-a611-03b7da2eb542');
 process.env['FROM_EMAIL'] = expJwt.gouremail.email;
 
 
-
 if (!'hello@gourmandapp.com') {  //NOT WORKING
   console.log('Please set: FROM_EMAIL environment variable. This is a validated email address to send emails from to other users for email verification, reset pwd etc');
   process.exit();
@@ -37,37 +36,33 @@ var sendWelcomeEmail =  function(req, res) {  // This Sends Email with template
 };
 
 
-
 // Should send redirect to change pasword screen
-var forgotPaswordEmail = function(req, res, finalCB) {
-  // TODO: call function to generate token with userID
+var forgotPasswordEmail = function(user, next) {
 
   client.sendEmailWithTemplate({    //template id 782081
     "From": "hello@gourmandapp.com",
-    "To": req.email,
+    "To": user.email,
     "TemplateId": 782081,
     "TemplateModel": {
       "product_name": "Gourmand",
-      "name": req.email,
-      "action_url": "https://gourmandapp.herokuapp.com/changePasword",  //add /changePasword
+      "name": user.email,
+      "action_url": "https://gourmandapp.herokuapp.com/changePasword" + user._id,  //add /changePasword
       "sender_name": "Gourmand",
       "product_address_line1": "One Market",
       "product_address_line2": "San Francisco"
     }
   }, function(err) {
     if (err) {
-      console.log('Could not send welcome email to: ' + req.email);
+      console.log('Could not send welcome email to: ' + user.email);
       console.error(err);
-      if (finalCB) {
-        finalCB({
-          message: 'Could not send welcome email to: ' + req.email
+      if (next) {
+        next({
+          message: 'Could not send welcome email to: ' + user.email
         });
       }
     } else {
-      if (finalCB) {
-        finalCB({
-          message: 'Success sending email to: ' + req.email
-        });
+      if (next) {
+        next();
       }
     }
   });
@@ -76,5 +71,5 @@ var forgotPaswordEmail = function(req, res, finalCB) {
 
 module.exports = {
   sendWelcomeEmail: sendWelcomeEmail,
-  forgotPaswordEmail: forgotPaswordEmail
+  forgotPasswordEmail: forgotPasswordEmail
 };

@@ -36,46 +36,5 @@ module.exports = {
       // isEmailVerified: u.isEmailVerified
     };
   }
-  // ,
-
-
-  // validateSignUpForm: function(values, callback) {
-  //   var errors = {};
-  //   var hasErrors = false;
-
-  //   if (!values.name || values.name.trim() === '') {
-  //     errors.name = 'Enter a name';
-  //     hasErrors = true;
-  //   }
-  //   if (!values.username || values.username.trim() === '') {
-  //     errors.username = 'Enter username';
-  //     hasErrors = true;
-  //   }
-  //   if (!values.email || values.email.trim() === '') {
-  //     errors.email = 'Enter email';
-  //     hasErrors = true;
-  //   }
-  //   if (!values.password || values.password.trim() === '') {
-  //     errors.password = 'Enter password';
-  //     hasErrors = true;
-  //   }
-  //   if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-  //     errors.confirmPassword = 'Enter Confirm Password';
-  //     hasErrors = true;
-  //   }
-
-  //   if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-  //     errors.password = 'Password And Confirm Password don\'t match';
-  //     errors.password = 'Password And Confirm Password don\'t match';
-  //     hasErrors = true;
-  //   }
-
-  //   if (callback) {
-  //     callback(hasErrors && errors);
-  //   } else {
-  //     return hasErrors && errors;
-  //   }
-  // }
-
 
 };

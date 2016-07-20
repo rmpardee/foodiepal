@@ -4,7 +4,6 @@ var utils = require('../config/utils.js');
 var email = require('../config/email.js');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
-var expressJwt = require('express-jwt');
 var expJwt = require('../config/config.js');
 
 
@@ -19,8 +18,9 @@ module.exports = function(app) {
 
   app.route('/signup')
     .post(function(req, res) {
-      userControl.doesUserExist(req.body.email).then(function(boolean) {
-        if (boolean) {
+      // doesUserExist should return a boolean, but seems to pass the user to the promise, unclear why...
+      userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
+        if (verifiedUser) {
           return res.status(204).json({
             error: true,
             message: 'User already exists' 
@@ -88,8 +88,8 @@ module.exports = function(app) {
       client.sendEmail({
         "From": "hello@gourmandapp.com",
         "To": "protoluxgourmand@gmail.com",
-        "Subject": "Test", 
-        "TextBody": "Hello from Postmark!"
+        "Subject": "Test Email", 
+        "TextBody": "Hello from Gourmand!"
       }, function(error, success) {
         if (error) {
           console.error("Unable to send via postmark: " + error.message);
@@ -102,88 +102,51 @@ module.exports = function(app) {
 
 
   //send a validation email
-  app.route('/forgotPasword')
+  app.route('/forgotPassword')
     .post(function(req, res) {
-      userControl.doesUserExist(req.body.email).then(function(boolean) {
-        if (!boolean) {
-          return res.status(204).json({
-            message: 'User does not exist' 
-          });  
+      // doesUserExist should return a boolean, but seems to pass the user to the promise, unclear why...
+      userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
+        if (!verifiedUser) {
+          console.log('Not a verified user');
+          res.sendStatus(204);
         } else {
-        //call getUserLogin(req.body.email) (returns full user with ID)
-          //use userID to generate token
-          
-        //send forgot pasword email w/ verification token
-          email.forgotPaswordEmail(req.body, function(err) {
+          email.forgotPasswordEmail(verifiedUser, function(err) {
             if (err) {
-              res.status(404).json(err);
+              console.log('Could not send email: ', err);
+              res.sendStatus(204);
             } else {
-              res.send({
-                message: 'Email was resent'
+              res.status(201).json({
+                message: 'Email was sent'
               });
             }
           });
         }
       });
     });
-    
-
-  // Not set up yet...
-  app.route('/updateEmail')
-    .post(function(req, res, next) {
-
-      var newEmail = req.body.email && req.body.email.trim();
-
-      User.findOneAndUpdate({
-        '_id': req.user._id
-      }, {
-        email: newEmail
-      }, {
-        new: true
-      }, function(err, user) {
-        if (err) throw err;
-
-        console.dir(user.toJSON());
-        //send welcome email w/ verification token
-        email.sendWelcomeEmail(user, req.headers.host);
-
-        res.json({message: 'Email was updated'});
-
-      });
-    });
 
 
-
-
-//----------------------------------------------------------------------
-
-  //Generate JWT Token: Re-Authenticate Route
-  //get current user from token
-  app.route('/me/from/token') //TODO: check path
-    .get(function(req, res, next) {
-    // check header or url parameters or post parameters for token
-      var token = req.body.token || req.query.token;
-      if (!token) {
-        return res.status(401).json({message: 'Must pass token'});
-      }
-    // Check token that was passed by decoding token using secret
-      jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
-        if (err) { throw err; }
-        //return user using the id from w/in JWTToken
-        User.findById({
-          '_id': user._id
-        }, function(err, user) {
-          if (err) { throw err; }
-          user = utils.getCleanUser(user); 
-          //Note: you can renew token by creating new token(i.e.    
-          //refresh it)w/ new expiration time at this point, or not...
-          var token = utils.generateToken(user);
-          res.json({
-            user: user,  //  <--- return both user and token
-            token: token
+  app.route('/resetPassword')
+    .post(function(req, res) {
+      userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
+      //change email to userid from forgotpswd email paramiter 
+        if (!verifiedUser) {
+          console.log('Not a verified user');
+          res.sendStatus(204);
+        } else {
+          userControl.resetPassword(req.body, verifiedUser, function(err) {
+            if (err) {
+              res.status(204).json({
+                message: 'Could not change password'
+              });
+            } else {
+              res.status(201).json({
+                message: 'Password Changed'
+              });
+            }
           });
-        });
+        }
       });
     });
+
 
 };
