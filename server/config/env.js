@@ -1,6 +1,6 @@
 var port = process.env.PORT || 3000;
-console.log("process.env: ", process.env);
-console.log("process.env.PORT: ", process.env.PORT);
+console.log("process.env in ENV.JS: ", process.env);
+console.log("process.env.PORT in ENV.JS: ", process.env.PORT);
 
 // DEPLOYED version:
 module.exports = {

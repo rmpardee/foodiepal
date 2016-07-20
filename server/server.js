@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var middleware = require('./config/middleware.js'); 
 var db = require('./db/db');
-var port = require('./config/env.js').port;
+// var port = require('./config/env.js').port;
 
 
 // configuration ===========================================
@@ -22,6 +22,9 @@ mongoose.connect(db.url);
 // db.seedSubcategories();
 // db.seedEntries();
 
+var port = process.env.PORT || 3000;
+console.log("process.env in SERVER.JS: ", process.env);
+console.log("process.env.PORT in SERVER.JS: ", process.env.PORT);
 
 app.listen(port);               
 
