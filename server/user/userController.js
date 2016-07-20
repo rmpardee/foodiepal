@@ -1,5 +1,6 @@
 var User = require('./userModel.js');
 var bcrypt = require('bcrypt');
+var mongoose = require('mongoose');
 
 module.exports = {
 
@@ -58,6 +59,27 @@ module.exports = {
         return false;
       }
     });
+  },
+
+
+  resetPassword: function(newPswd, user, next) {
+    console.log('newPswd: ', newPswd);
+
+    var hash = bcrypt.hashSync(newPswd.password.trim(), 10);
+    var query = {'_id': user._id};
+    // console.log('QUERY: ', query);
+    // console.log('HASH: ', hash);
+    return User.update(query, {'password': hash}, null, function(err, savedUser) {
+      if (err) {
+        console.log('err in controller resetPassword fn: ', err);
+        next(err);
+        return;
+      }
+      console.log('Success saving user to db: ', savedUser);
+      next();
+      return;
+    });
   }
+
 
 };
