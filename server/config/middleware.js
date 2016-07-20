@@ -31,7 +31,7 @@ module.exports = function (app, express) {
       '/api/user/forgotPassword',
       '/api/user/resetPassword'
     ]})
-  );
+
 
   //inject routes into Router
   userRoutes(userRouter);
