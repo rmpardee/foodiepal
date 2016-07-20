@@ -138,6 +138,10 @@ nav {
 
 .content {
   lost-center: 320px;
+
+  @media mq('small') {
+    lost-center: 480px;
+  }
 }
 
 .welcome-header-container {
@@ -197,6 +201,10 @@ nav {
   background: $yellow;
   font-size: 1.25em;
   margin-bottom: 40px;
+}
+
+.link-signup:hover {
+  background: color($yellow l(-5%));
 }
 
 .link-login {

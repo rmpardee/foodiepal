@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { setCurrentUser } from './index.js';
+import {
+  setCurrentUser,
+  removeCurrentUser,
+  removeCurrentCategory,
+  removeCurrentSubcategory
+} from './index.js';
 import { push } from 'react-router-redux';
 
 const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
@@ -203,6 +208,31 @@ function loginFailure(user) {
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+
+export function logoutRequest() {
+  return dispatch => {
+    dispatch(logout());
+    localStorage.removeItem('jwtToken');
+    // Dispatch for removing current state variables?
+    dispatch(removeCurrentUser());
+    dispatch(removeCurrentCategory());
+    dispatch(removeCurrentSubcategory());
+    dispatch(logoutSuccess());
+    dispatch(push('/login'));
+  }
+}
+
+function logout() {
+  return {
+    type: LOGOUT_REQUEST
+  }
+}
+
+function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
 
 
 export const REQUEST_PASSWORD_RESET_REQUEST = 'REQUEST_PASSWORD_RESET_REQUEST';

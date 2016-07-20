@@ -1,4 +1,9 @@
 var foodControl = require('./foodController.js');
+<<<<<<< b83042a241f85e28cdd31636e52aeb0d0bfcef6a
+=======
+var expressJwt = require('express-jwt');
+var secret = require('../config/env.js').jwtSecret;
+>>>>>>> (dev) Adds logout functionality
 
 module.exports = function(app) {
 

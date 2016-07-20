@@ -11,9 +11,6 @@ import {
  } from '../actions';
 
 const INITIAL_STATE = {
-  auth: {
-    isLoggedIn: true
-  },
   user: {
     id: '',
     name: ''
