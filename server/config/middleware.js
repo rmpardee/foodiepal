@@ -1,11 +1,10 @@
-var morgan = require('morgan'); // used for logging incoming request
+var morgan = require('morgan');
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override'); //Not needed yet
-// var helpers = require('./helpers.js'); //Custom middleware
+var expressJwt = require('express-jwt');
+var path = require('path');
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
-var expressJwt = require('express-jwt');
-// var expJwt = require('./config.js');
+var secret = require('./env.js').jwtSecret;
 
 
 module.exports = function (app, express) {
@@ -13,24 +12,39 @@ module.exports = function (app, express) {
   var userRouter = express.Router();
   var foodRouter = express.Router();
 
-  process.env.JWT_SECRET = 'keyboard cat';
-  app.use(expressJwt({secret: process.env.JWT_SECRET})
-    .unless({path: ['/api/user/login', '/api/user/signup']})
-  );
-
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  app.use(express.static(__dirname + '/../../client'));
+  app.use(express.static(path.resolve(__dirname + '/../../client')));
+  
+
+  // app.all('*', function(req, res, next) {
+  //   res.header('Access-Control-Allow-Origin', req.headers.origin);
+  //   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  //   res.header('Access-Control-Allow-Credentials', false);
+  //   res.header('Access-Control-Max-Age', '86400');
+  //   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
+  //   // the next() function continues execution and will move onto the requested URL/URI
+  //   // next();
+  //   // res.sendFile(__dirname + '/../../client/index.html');
+  // });
+
+  // app.all('/u*', function(req, res, next) {
+  //   res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
+  // });
+
+  
   app.all('*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Credentials', false);
-    res.header('Access-Control-Max-Age', '86400');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization');
-    // the next() function continues execution and will move onto the requested URL/URI
-    next();
+    if (!req.url.match(/\/api\/*/g)) {
+      res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
+    } else {
+      next();
+    }
   });
+
+  app.use(expressJwt({secret: secret})
+    .unless({path: ['/api/user/login', '/api/user/signup']})
+  );
 
   //inject routes into Router
   userRoutes(userRouter);

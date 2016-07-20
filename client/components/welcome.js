@@ -7,6 +7,7 @@ export default class Welcome extends Component {
       <div>
         Welcome!
         { this.props.children }
+        <Link to='/login'>Login</Link>
       </div>
     );
   }

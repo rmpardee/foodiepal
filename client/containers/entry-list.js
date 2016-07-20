@@ -56,7 +56,7 @@ class EntryList extends Component {
               <div className='entry-listing-rating react-rater'>
                 { this.renderRating(entry.rating) }
               </div>
-              <p>{ entry.notes }</p>
+              <p className='entry-listing-notes'>{ entry.notes }</p>
             </div>
           </div>
         </li>

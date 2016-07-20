@@ -2,8 +2,6 @@ var userControl = require('./userController.js');
 var foodControl = require('../food/foodController.js');
 var utils = require('../config/utils.js');
 var jwt = require('jsonwebtoken');
-var expressJwt = require('express-jwt');
-var expJwt = require('../config/config.js');
 var bcrypt = require('bcrypt');
 
 module.exports = function(app) {

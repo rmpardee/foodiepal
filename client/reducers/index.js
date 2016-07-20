@@ -8,6 +8,7 @@ import Categories from './reducer-category';
 import Subcategories from './reducer-subcategory';
 import Entry from './reducer-entry';
 import Auth from './reducer-auth';
+import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
   current: Current,
@@ -16,5 +17,6 @@ export default combineReducers({
   subcategories: Subcategories,
   entries: Entry,
   auth: Auth,
-  form: formReducer
+  form: formReducer,
+  routing: routerReducer
 });

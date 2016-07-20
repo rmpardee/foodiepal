@@ -5,12 +5,6 @@ import { connect } from 'react-redux';
 import { meFromToken, meFromTokenSuccess, meFromTokenFailure, resetToken } from '../actions/auth.js';
 
 class App extends Component {
-
-  componentWillMount() {
-   // console.log("this.props in app component: ", this.props);
-    // this.props.loadUserFromToken();
-  }
-
   render() {
     return (
       <div>

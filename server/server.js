@@ -11,10 +11,6 @@ var db = require('./db/db');
 //Set up Middleware and Routes
 middleware(app, express);
 
-// set port
-var port = process.env.PORT || 3000; 
-
-
 // connect to mongoDB database 
 mongoose.connect(db.url);
 
@@ -25,8 +21,8 @@ mongoose.connect(db.url);
 // db.seedSubcategories();
 // db.seedEntries();
 
+var port = process.env.PORT || 3000;
 
-// startup our app at http://localhost:3000
 app.listen(port);               
 
 // App server confirmation                     
