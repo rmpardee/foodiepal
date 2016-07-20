@@ -7,10 +7,19 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  /*lost-utility: edit;*/
+}
+
+#app {
+  height: 100%;
+}
+
+.wrapper {
+  display: block;
+  height: 100%;
 }
 
 .container {
@@ -128,7 +137,76 @@ nav {
 }
 
 .content {
-  lost-center: 360px;
+  lost-center: 320px;
+}
+
+.welcome-header-container {
+  background: url('../img/food-salad-restaurant-person-blurred.jpg') center center no-repeat transparent;
+  background-size: cover;
+  min-height: 480px;
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.welcome-header {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-shadow: 0 1px 3px color(#000 a(-70%));
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+
+  @media mq('small') {
+    lost-center: 480px;
+  }
+}
+
+.welcome-header h4 {
+  color: #fff;
+  text-shadow: 0 1px 3px color(#000 a(-70%));
+}
+
+.welcome-logo img {
+  width: 100%;
+}
+
+.welcome-tagline {
+  margin: 40px auto;
+}
+
+.welcome-links {
+  width: 100%;
+
+  @media mq('small') {
+    lost-center: 240px;
+  }
+}
+
+.welcome-link {
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  margin: 20px auto;
+  padding: 15px 20px;
+  transition: all 0.3s ease-out;
+}
+
+.link-signup {
+  background: $yellow;
+  font-size: 1.25em;
+  margin-bottom: 40px;
+}
+
+.link-login {
+  border: solid 1px #fff;
+}
+
+.link-login:hover {
+  background: #fff;
+  color: $dark-gray;
+  text-shadow: none;
 }
 
 .grid-title {
