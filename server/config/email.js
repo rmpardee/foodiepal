@@ -1,12 +1,7 @@
-var expJwt = require('./config.js');
+var postmarkClientKey = require('../config/env.js').postmark;
 var postmark = require('postmark');
-var client = new postmark.Client('5192dc2f-aa00-4c75-a611-03b7da2eb542');
+var client = new postmark.Client(postmarkClientKey);
 
-
-if (!'hello@gourmandapp.com') {  //NOT WORKING
-  console.log('Please set: FROM_EMAIL environment variable. This is a validated email address to send emails from to other users for email verification, reset pwd etc');
-  process.exit();
-}
 
 // This email should be sent on User SignUp after checkougn for duplicate users.
 // Possible use: no token or access until responding to email (link to login)

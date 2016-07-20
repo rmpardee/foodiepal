@@ -2,16 +2,11 @@ var userControl = require('./userController.js');
 var foodControl = require('../food/foodController.js');
 var utils = require('../config/utils.js');
 var email = require('../config/email.js');
-var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
-var expJwt = require('../config/config.js');
 
-
-//----PostMark------------------------------------------------------------>
+var postmarkClientKey = require('../config/env.js').postmark;
 var postmark = require('postmark');
-var client = new postmark.Client('5192dc2f-aa00-4c75-a611-03b7da2eb542');
-process.env['FROM_EMAIL'] = expJwt.gouremail.email;
-//----PostMark------------------------------------------------------------>
+var client = new postmark.Client(postmarkClientKey);
 
 
 module.exports = function(app) {
