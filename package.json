@@ -1,11 +1,11 @@
 {
-  "name": "foodiepal",
+  "name": "gourmand",
   "version": "1.0.0",
   "description": "food journal",
   "main": "server/server.js",
   "scripts": {
     "test": "mocha tests/server/api_spec.js",
-    "build": "webpack --progress",
+    "postinstall": "webpack --progress",
     "start": "node server/server.js"
   },
   "engines": {
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/protolux/foodiepal"
+    "url": "https://github.com/protolux/gourmand"
   },
   "author": "Andrew Tsao, Ruth M. Pardee, Joel Schoolnik",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/protolux/foodiepal/issues"
+    "url": "https://github.com/protolux/gourmand/issues"
   },
-  "homepage": "https://github.com/protolux/foodiepal#readme",
+  "homepage": "https://github.com/protolux/gourmand#readme",
   "dependencies": {
     "axios": "^0.12.0",
     "babel-core": "^6.10.4",
