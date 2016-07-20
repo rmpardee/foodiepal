@@ -4,7 +4,13 @@ import {
   ADD_USER_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+  REQUEST_PASSWORD_RESET_REQUEST,
+  REQUEST_PASSWORD_RESET_SUCCESS,
+  REQUEST_PASSWORD_RESET_FAILURE
 } from '../actions/auth';
 
 const INITIAL_STATE = [];
@@ -24,7 +30,15 @@ export default function(state = INITIAL_STATE, action) {
     return action.payload;
   case LOGIN_FAILURE:
     return state;
+
+  case REQUEST_PASSWORD_RESET_REQUEST:
+    return state;
   
+  case REQUEST_PASSWORD_RESET_SUCCESS:
+    return state;
+
+  case REQUEST_PASSWORD_RESET_FAILURE:
+    return state;
 
   default:
     return state;

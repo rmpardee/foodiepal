@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { logoutRequest } from '../actions/auth';
 
-export default class Header extends Component {
+
+class Header extends Component {
   componentWillMount() {
     this.state = {
       account: {
@@ -9,6 +13,11 @@ export default class Header extends Component {
       }
     }
   }
+
+  constructor(props) {
+    super(props);
+  }
+
   onAccountClick() {
     var activeFlag = this.state.account.menuActive;
 
@@ -25,6 +34,10 @@ export default class Header extends Component {
         menuActive: false
       }
     });
+  }
+
+  onLogoutClick() {
+    this.props.logoutRequest();
   }
 
   render() {
@@ -46,7 +59,7 @@ export default class Header extends Component {
             <ul className='mobile-account-nav'>
               <li>Account &#x25BE;
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
-                  <li>Logout</li>
+                  <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>
             </ul>
@@ -57,6 +70,12 @@ export default class Header extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ logoutRequest }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Header);
 
 Header.contextTypes = {
   router: React.PropTypes.object
