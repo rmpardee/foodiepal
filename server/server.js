@@ -23,7 +23,6 @@ mongoose.connect(db.url);
 // db.seedEntries();
 
 
-// startup our app at http://localhost:3000
 app.listen(port);               
 
 // App server confirmation                     

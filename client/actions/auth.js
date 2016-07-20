@@ -3,7 +3,7 @@ import { setCurrentUser } from './index.js';
 import { push } from 'react-router-redux';
 import { port } from '../../server/config/env.js';
 
-const API_URL = 'http://localhost:' + port;
+const API_URL = 'https://localhost:' + port;
 const API_USER = `${API_URL}/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
