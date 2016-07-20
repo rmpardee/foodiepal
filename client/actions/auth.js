@@ -2,7 +2,9 @@ import axios from 'axios';
 import { setCurrentUser } from './index.js';
 import { push } from 'react-router-redux';
 
-const API_USER = `https://gourmand-app.herokuapp.com/api/user/`;
+const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
+//Local version:
+// const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
