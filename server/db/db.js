@@ -3,14 +3,14 @@ var categoriesSeed = require('./seeds/categories.json');
 var subcategoriesSeed = require('./seeds/subcategories.json');
 var entriesSeed = require('./seeds/entries.json');
 
-var config = require('../config/config.js');
-
 var foodControl = require('../food/foodController.js');
 var userControl = require('../user/userController.js');
+
+var mlab = require('../config/env.js').mlab;
   
 module.exports = {
   // url to mongo db named foodiepal, for server to connect to
-  url: 'mongodb://' + config.mlab.dbuser + ':' + config.mlab.dbpassword + '@ds017195.mlab.com:17195/gourmand',
+  url: 'mongodb://' + mlab.dbuser + ':' + mlab.dbpassword + '@ds017195.mlab.com:17195/gourmand',
 
   // adds the the seed data to our database:
   seedUsers: function() {

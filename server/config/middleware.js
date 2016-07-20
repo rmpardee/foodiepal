@@ -1,10 +1,11 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var expressJwt = require('express-jwt');
+var path = require('path');
 var foodRoutes = require('../food/foodRoutes.js');
 var userRoutes = require('../user/userRoutes.js');
-var expressJwt = require('express-jwt');
+var secret = require('./env.js').jwtSecret;
 
-var path = require('path');
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
@@ -40,8 +41,8 @@ module.exports = function (app, express) {
       next();
     }
   });
-  process.env.JWT_SECRET = 'keyboard cat';
-  app.use(expressJwt({secret: process.env.JWT_SECRET})
+
+  app.use(expressJwt({secret: secret})
     .unless({path: ['/api/user/login', '/api/user/signup']})
   );
 

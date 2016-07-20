@@ -2,8 +2,7 @@ import axios from 'axios';
 import { setCurrentUser } from './index.js';
 import { push } from 'react-router-redux';
 
-const API_URL = 'http://localhost:3000';
-const API_USER = `${API_URL}/api/user/`;
+const API_USER = `https://gourmand-app.herokuapp.com/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
@@ -152,6 +151,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export function loginRequest(user, dispatch) {
+  console.log("inside loginRequest");
   return new Promise ((reject, resolve) => {
   //   dispatch(login());
     return axios({

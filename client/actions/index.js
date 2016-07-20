@@ -1,10 +1,9 @@
-// Actions
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
-const API_CATEGORY = `${API_URL}/api/food/category`;
-const API_SUBCATEGORY = `${API_URL}/api/food/subcategory`;
-const API_ENTRY = `${API_URL}/api/food/entry`;
+const API_FOOD = `https://gourmand-app.herokuapp.com/api/food/`;
+const API_CATEGORY = `${API_FOOD}category`;
+const API_SUBCATEGORY = `${API_FOOD}subcategory`;
+const API_ENTRY = `${API_FOOD}entry`;
 
 // Category
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';

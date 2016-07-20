@@ -13,5 +13,10 @@ module.exports = {
         query: { presets: [ 'es2015', 'react' ] }
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: false,
+    hot: true,
+    contentBase: './client/'
   }
 };
