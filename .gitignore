@@ -34,5 +34,4 @@ client/libs/
 # Optional REPL history
 .node_repl_history
 
-/client/bundle.js
 server/config/config.js
