@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_FOOD = `/api/food/`;
+const API_FOOD = `https://gourmand-app.herokuapp.com/api/food/`;
 const API_CATEGORY = `${API_FOOD}category`;
 const API_SUBCATEGORY = `${API_FOOD}subcategory`;
 const API_ENTRY = `${API_FOOD}entry`;
