@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { setCurrentUser } from './index.js';
+import {
+  setCurrentUser,
+  removeCurrentUser,
+  removeCurrentCategory,
+  removeCurrentSubcategory
+} from './index.js';
 import { push } from 'react-router-redux';
 
 const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
@@ -7,8 +12,11 @@ const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
 // const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
+const API_RESETPW_USER = `${API_USER}resetPassword`;
 // const API_VALIDATE = `${API_URL}/users/validate/fields`;
 //note: we cant have /users/validateFields because it'll match /users/:id path!
+
+const API_REQUEST_PASSWORD_RESET = `${API_USER}forgotpassword`;
 
 //Add user (sign up)
 export const ADD_USER_REQUEST = 'ADD_USER_REQUEST';
@@ -201,3 +209,68 @@ function loginFailure(user) {
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+
+export function logoutRequest() {
+  return dispatch => {
+    dispatch(logout());
+    localStorage.removeItem('jwtToken');
+    // Dispatch for removing current state variables?
+    dispatch(removeCurrentUser());
+    dispatch(removeCurrentCategory());
+    dispatch(removeCurrentSubcategory());
+    dispatch(logoutSuccess());
+    dispatch(push('/login'));
+  }
+}
+
+function logout() {
+  return {
+    type: LOGOUT_REQUEST
+  }
+}
+
+function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
+//Forgot password
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
+
+export function resetPasswordRequest(user, dispatch) {
+  return new Promise ((reject, resolve) => {
+    return axios({
+      method: 'POST',
+      url: API_RESETPW_USER,
+      data: user
+    })
+    .then(response => {
+      if (response.status !== 201) {
+        dispatch(resetPasswordFailure(response.data));
+        reject(response.data);
+      } else {
+        dispatch(resetPasswordSuccess(response.data));
+        dispatch(push('/u'));
+        resolve();
+      }
+    })
+    .catch(response => console.error('user POST error:', response));
+  });
+}
+
+function resetPasswordSuccess(user) {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
+    payload: user
+  };
+}
+
+function resetPasswordFailure(user) {
+  return {
+    type: RESET_PASSWORD_FAILURE,
+    payload: user
+  };
+}

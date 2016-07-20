@@ -2,6 +2,7 @@
 //Generate Token using secret from process.env.JWT_SECRET
 
 var jwt = require('jsonwebtoken');
+var secret = require('../config/env.js').jwtSecret;
 
 module.exports = {
 
@@ -16,7 +17,7 @@ module.exports = {
       _id: user._id.toString(),
       // image: user.image
     };
-    return token = jwt.sign(u, process.env.JWT_SECRET, {
+    return token = jwt.sign(u, secret, {
       expiresIn: 60 * 60 * 24 * 365 // expires in 365 days
     });
   },

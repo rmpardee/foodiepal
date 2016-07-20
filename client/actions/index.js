@@ -258,3 +258,24 @@ export function getCurrentSubcategory() {
     // payload: subcategory
   }
 }
+
+export function removeCurrentUser() {
+  return {
+    type: REMOVE_CURRENT_USER,
+    // payload: user
+  }
+}
+
+export function removeCurrentCategory() {
+  return {
+    type: REMOVE_CURRENT_CATEGORY,
+    // payload: category
+  }
+}
+
+export function removeCurrentSubcategory() {
+  return {
+    type: REMOVE_CURRENT_SUBCATEGORY,
+    // payload: subcategory
+  }
+}

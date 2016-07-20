@@ -4,7 +4,8 @@ module.exports = {
   mlab: {
     dbuser: process.env.MLAB_DBUSER,
     dbpassword: process.env.MLAB_DBPASSWORD
-  }
+  },
+  postmark: process.env.POSTMARK
 };
 
 // LOCAL version:
@@ -13,5 +14,6 @@ module.exports = {
 //   mlab: {
 //     dbuser: require('./config.js').mlab.dbuser,
 //     dbpassword: require('./config.js').mlab.dbpassword
-//   }
+//   },
+//   postmark: require('./config.js').postmark
 // };
