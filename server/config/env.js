@@ -1,10 +1,5 @@
-var port = process.env.PORT || 3000;
-console.log("process.env in ENV.JS: ", process.env);
-console.log("process.env.PORT in ENV.JS: ", process.env.PORT);
-
 // DEPLOYED version:
 module.exports = {
-  port: port,
   jwtSecret: process.env.JWT_SECRET,
   mlab: {
     dbuser: process.env.MLAB_DBUSER,
@@ -14,7 +9,6 @@ module.exports = {
 
 // LOCAL version:
 // module.exports = {
-//   port: 3000,
 //   jwtSecret: require('./config.js').expJwt.scrt,
 //   mlab: {
 //     dbuser: require('./config.js').mlab.dbuser,

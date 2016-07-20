@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { port } from '../../server/config/env.js';
 
-const API_URL = 'https://localhost:' + port;
-const API_CATEGORY = `${API_URL}/api/food/category`;
-const API_SUBCATEGORY = `${API_URL}/api/food/subcategory`;
-const API_ENTRY = `${API_URL}/api/food/entry`;
+const API_FOOD = `/api/food/`;
+const API_CATEGORY = `${API_FOOD}category`;
+const API_SUBCATEGORY = `${API_FOOD}subcategory`;
+const API_ENTRY = `${API_FOOD}entry`;
 
 // Category
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';
