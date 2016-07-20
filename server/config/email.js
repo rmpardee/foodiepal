@@ -1,7 +1,6 @@
 var expJwt = require('./config.js');
 var postmark = require('postmark');
 var client = new postmark.Client('5192dc2f-aa00-4c75-a611-03b7da2eb542');
-process.env['FROM_EMAIL'] = expJwt.gouremail.email;
 
 
 if (!'hello@gourmandapp.com') {  //NOT WORKING
