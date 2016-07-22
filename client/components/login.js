@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import RequestPasswordReset from '../containers/request-password-reset';
+import ForgotPassword from '../containers/forgotpw';
 import { modal } from 'react-redux-modal';
 
 export default class Login extends Component {
@@ -8,7 +8,7 @@ export default class Login extends Component {
   openRequestForm(e) {
     e.preventDefault();
     
-    modal.add(RequestPasswordReset, {
+    modal.add(ForgotPassword, {
       title: 'Forgot your password?',
       closeOnOutsideClick: true,
       hideCloseButton: false

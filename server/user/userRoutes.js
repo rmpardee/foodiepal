@@ -11,17 +11,17 @@ var client = new postmark.Client(postmarkClientKey);
 
 module.exports = function(app) {
 
+  // Creates user account, adds default categories, sends welcome email
   app.route('/signup')
     .post(function(req, res) {
-      // doesUserExist should return a boolean, but seems to pass the user to the promise, unclear why...
       userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
         if (verifiedUser) {
           console.log('User already exists');
           res.sendStatus(204);
         } else {
-          email.sendWelcomeEmail(req.body); //TODO: Use with callback??
+          email.sendWelcomeEmail(req.body); // TODO: Use with callback??
           userControl.addUser(req.body).then(function(user) {
-            // add all the standard categories to the new user
+            // Add all the standard categories to the new user
             for (category in foodControl.standardCategories) {
               var food = foodControl.standardCategories[category];
               food.userID = user._id;
@@ -34,7 +34,7 @@ module.exports = function(app) {
       });
     });
 
-  //Generate JWT Token: SignIn Route
+  // Checks user and password, returns a JWT token
   app.route('/login') 
     .post(function(req, res) {
       userControl.getUserLogIn(req.body.email)  // <-- Check username
@@ -54,11 +54,10 @@ module.exports = function(app) {
                 message: 'Username or Password is Wrong'
               });
             }
-
-            var token = utils.generateToken(user); //  <-- Generate token
-            user = utils.getCleanUser(user);
+            var token = utils.generateToken(user); // Generate token
+            user = utils.getCleanUser(user); // Removes password from responce
             res.json({
-              user: user,  //  <--- Return both user and token
+              user: user,  // Return both user and token
               token: token
             });
           });
@@ -66,10 +65,9 @@ module.exports = function(app) {
     });
 
 
-  //send a validation email
+  // Sends an email with a link to the resetPassword route
   app.route('/forgotPassword')
     .post(function(req, res) {
-      // doesUserExist should return a boolean, but seems to pass the user to the promise, unclear why...
       userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
         if (!verifiedUser) {
           console.log('Not a verified user');
@@ -89,13 +87,15 @@ module.exports = function(app) {
       });
     });
 
-
+  // Currently unprotected route to allow user to reset password.  Link to this route is sent in email
   app.route('/resetPassword')
     .post(function(req, res) {
       userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
-      //change email to userid from forgotpswd email paramiter 
         if (!verifiedUser) {
           console.log('Not a verified user');
+          res.sendStatus(204);
+        } else if (req.body.userID.toString() !== verifiedUser._id.toString()) {
+          console.log('User ID does not match email');
           res.sendStatus(204);
         } else {
           userControl.resetPassword(req.body, verifiedUser, function(err) {
@@ -113,9 +113,33 @@ module.exports = function(app) {
       });
     });
 
+  // This process is dependent on a "replacementEmail" property being appended to the user in the req from the client
+  // Changes user email/username account
+  app.route('/changeEmail')
+    .post(function(req, res) {
+      userControl.doesUserExist(req.body.email).then(function(verifiedUser) {
+        if (!verifiedUser) {
+          console.log('Not a verified user');
+          res.sendStatus(204);
+        } else {
+          userControl.changeEmail(req.body, verifiedUser, function(err) {
+            if (err) {
+              res.status(204).json({
+                message: 'Could not change email'
+              });
+            } else {
+              res.status(201).json({
+                message: 'Email Changed'
+              });
+            }
+          });
+        }
+      });
+    });
+
 //----------------------------------------------------------------------
 
-  //send a validation email -> WORKS!
+  // Tests postMark service and API key
   app.route('/testingemail')
     .get(function(req, res) {
       console.log('TEST!:', client);
