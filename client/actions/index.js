@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 // Deployed version:
-const API_FOOD = `https://gourmandapp.herokuapp.com/api/food/`;
+// const API_FOOD = `https://gourmandapp.herokuapp.com/api/food/`;
 // Local version:
-// const API_FOOD = `http://localhost:3000/api/food/`;
-
+const API_FOOD = `http://localhost:3000/api/food/`;
 const API_CATEGORY = `${API_FOOD}category`;
 const API_SUBCATEGORY = `${API_FOOD}subcategory`;
 const API_ENTRY = `${API_FOOD}entry`;

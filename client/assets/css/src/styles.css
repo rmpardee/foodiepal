@@ -1,7 +1,9 @@
 @import '_reset';
 @import '_variables';
 @import '_typography';
+@import '_mq';
 
+/*@reset-global mobile;*/
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -36,16 +38,28 @@ a, a:link, a:hover, a:visited, a:active {
 }
 
 .container {
-  lost-utility: clearfix;
+  /*lost-utility: clearfix;*/
   margin: 0 auto;
   max-width: $max-width;
   padding: 0 20px;
+
+  @neat-outer-container;
+}
+
+.content-wrapper {
+  background: url('../img/pexels-photo-86753-blurred.jpg') center center no-repeat transparent;
+  background-size: cover;
+  min-height: 320px;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+
+  @neat-fill-parent;
+  /*@neat-outer-container;*/
 }
 
 nav {
-  background: #fff;
-  box-shadow: 0 0 5px color($gray a(-60%));
-  clear: fix;
+  background: linear-gradient(180deg, color(#000 a(-80%)), transparent 70%);
   margin-bottom: 1em;
   padding: 10px 0;
   position: relative;
@@ -53,16 +67,18 @@ nav {
 }
 
 .mobile-quick-nav {
-  color: $gray;
+  color: #fff;
   cursor: pointer;
   display: block;
-  lost-column: 2/12 0 0;
+  /*lost-column: 2/12 0 0;*/
   padding: 10px 0;
   transition: all 0.3s ease-out;
+
+  @neat-span-columns 2;
 }
 
 .mobile-quick-nav:hover {
-  color: $darker-gray;
+  color: $lightest-gray;
 }
 
 .mobile-nav-left {
@@ -71,6 +87,8 @@ nav {
 
 .mobile-nav-right {
   text-align: right;
+
+  @neat-omega;
 }
 
 .mobile-chevron {
@@ -125,12 +143,14 @@ nav {
 }
 
 .portal {
-  lost-column: 8/12 0 0;
+  /*lost-column: 8/12 0 0;*/
   text-indent: -9999em;
+
+  @neat-span-columns 8;
 }
 
 .portal a {
-  background: url('../img/logo-small.png') no-repeat center center transparent;
+  background: url('../img/logo-white-large.png') no-repeat center center transparent;
   background-size: 175px 27px;
   display: block;
   padding: 10px 0;
@@ -138,27 +158,29 @@ nav {
   width: 100%;
 
   @media mq('small') {
-    background-image: url('../img/logo-large.png');
+    background-image: url('../img/logo-white-large.png');
     background-size: 220px 34px;
   }
 }
 
 .portal a:hover {
-  box-shadow: inset 0 0 100px 100px color(#fff a(50%));
+  opacity: 0.9;
 }
 
 .content {
-  width: auto;
+  @neat-outer-container;
 }
 
 .welcome-header-container {
-  background: url('../img/food-salad-restaurant-person-blurred.jpg') center center no-repeat transparent;
+  background: url('../img/pexels-photo-86753-blurred.jpg') center center no-repeat transparent;
   background-size: cover;
   min-height: 480px;
   height: 100%;
   position: relative;
   text-align: center;
   width: 100%;
+
+  @neat-outer-container;
 }
 
 .welcome-header {
@@ -166,13 +188,11 @@ nav {
   position: absolute;
   top: 50%;
   left: 50%;
+  text-align: center;
   text-shadow: 0 1px 3px color(#000 a(-70%));
   transform: translateX(-50%) translateY(-50%);
-  width: 100%;
 
-  @media mq('small') {
-    /*lost-center: 480px;*/
-  }
+  @neat-span-columns 10;
 }
 
 .welcome-header h4 {
@@ -180,35 +200,40 @@ nav {
   text-shadow: 0 1px 3px color(#000 a(-70%));
 }
 
+.welcome-logo {
+  @neat-span-columns 12;
+}
+
 .welcome-logo img {
+  max-width: 446px;
   width: 100%;
 }
 
 .welcome-tagline {
-  margin: 40px auto;
+  clear: both;
+  display: block;
+  margin: 1em auto;
+  @neat-fill-parent;
 }
 
 .welcome-links {
-  width: 100%;
-
-  @media mq('small') {
-    lost-center: 240px;
-  }
+  text-align: center;
 }
 
 .welcome-link {
   border-radius: 5px;
   color: #fff;
   display: block;
-  margin: 20px auto;
+  margin: 1em auto;
   padding: 15px 20px;
+  text-align: center;
   transition: all 0.3s ease-out;
 }
 
 .link-signup {
   background: $yellow;
   font-size: 1.25em;
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
 }
 
 .link-signup:hover {
@@ -236,7 +261,6 @@ nav {
 }
 
 .grid-container {
-  lost-utility: clearfix;
 }
 
 .grid-links {
@@ -247,21 +271,15 @@ nav {
   @media mq('small') {
     lost-center: 480px;
   }
-
-  @media mq('medium') {
-
-  }
 }
 
 .grid-links-block {
   background: transparent;
-  border: solid 1px #fff;
-  lost-waffle: 1/3 3 0;
+  /*lost-waffle: 1/3 3 0;*/
   margin-left: -1px;
 
-  @media mq('small') {
-    /*lost-waffle: 1/4 4 0;*/
-  }
+  @neat-span-columns 4;
+  @neat-omega 3n;
 }
 
 .grid-links-block:nth-child(3n) {
@@ -269,7 +287,7 @@ nav {
 }
 
 .grid-links-block a {
-  color: $gray;
+  color: #fff;
   display: block;
   font-size: 0.85em;
   height: 120px;
@@ -281,8 +299,8 @@ nav {
 }
 
 .grid-links-block a:hover {
-  background: #fff;
-  color: $dark-gray;
+  background: transparent;
+  color: $lighter-gray;
 }
 
 .grid-link-container {
@@ -300,7 +318,7 @@ nav {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  filter: grayscale(100%);
+  /*filter: grayscale(100%);*/
   font-size: 3em;
   font-weight: $bold-weight;
   height: 64px;
@@ -310,7 +328,7 @@ nav {
 }
 
 .grid-links-block:hover .grid-link-icon {
-  filter: grayscale(0);
+  /*filter: grayscale(0);*/
 }
 
 .grid-link-icon-sub {
@@ -425,19 +443,6 @@ nav {
   box-sizing: inherit;
 }
 
-.rrm-content {
-  box-shadow: 0 0 10px color(#000 a(-85%)) !important;
-  width: 90%;
-
-  @media mq('small') {
-    width: 70%;
-  }
-
-  @media mq('medium') {
-    width: 60%;
-  }
-}
-
 .react-redux-modal button:focus {
   outline: 0;
 }
@@ -459,37 +464,19 @@ nav {
 }
 
 .react-redux-modal .rrm-holder .scroll .rrm-content {
-  z-index: 1;
   background-color: $lightest-gray;
-  position: relative;
   border-radius: 5px;
   box-shadow: 0 0 10px color(#000 a(-85%));
-  margin: 80px auto;
   overflow: hidden;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1;
 }
 
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-small {
-  width: 300px;
-}
-
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-small .rrm-title h2 {
-  width: 140px;
-}
-
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-medium {
-  width: 500px;
-}
-
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-medium .rrm-title h2 {
-  width: 340px;
-}
-
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-large {
-  width: 800px;
-}
-
-.react-redux-modal .rrm-holder .scroll .rrm-content.m-large .rrm-title h2 {
-  width: 640px;
+.rrm-content {
+  width: 90%;
 }
 
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title {
@@ -501,9 +488,7 @@ nav {
 
 .react-redux-modal .rrm-holder .scroll .rrm-content .rrm-title h2 {
   float: left;
-  /*font-size: 2em;
-  height: 60px;
-  line-height: 2;*/
+  font-size: 1.625em;
   margin: 0;
   padding: 10px 20px;
   /*overflow: hidden;
@@ -557,6 +542,7 @@ nav {
 }
 
 
+
 input, textarea {
   background: #fff;
   border: solid 1px $light-gray;
@@ -572,21 +558,46 @@ textarea {
   resize: vertical;
 }
 
-.form-container input,
-.form-container textarea {
+.form-container {
+  background: #fff;
+  border-radius: 10px;
+  clear:fix;
+  display: block;
+  padding: 20px;
+
+  @neat-span-columns 6;
+  @neat-shift 3;
+}
+
+.modal-form-container {
+  clear: both;
+
+}
+
+.modal-form-container input,
+.modal-form-container textarea {
   display: block;
   margin-bottom: 20px;
 }
 
-.form-container textarea {
+.modal-form-container textarea {
   min-height: 120px;
+}
+
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+.page-title {
+  color: #fff;
 }
 
 .btn {
   background: transparent;
   border: solid 1px transparent;
-  border-radius: 3px;
+  border-radius: 5px;
   display: block;
+  font-size: inherit;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;
@@ -658,4 +669,15 @@ textarea {
   height: 100px;
   margin: 0 auto;
   width: 100px;
+}
+
+.help-block.active {
+  background: color($red l(+30%) s(-10%));
+  color: color($red l(-10%));
+  margin: 1em auto;
+  padding: 10px 20px;
+}
+
+.has-error input {
+  border: solid 1px color($red l(-10%));
 }

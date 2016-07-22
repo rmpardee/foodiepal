@@ -36,6 +36,10 @@ class Header extends Component {
     });
   }
 
+  onChangeEmailClick() {
+    // TODO: add modal for change email form
+  }
+
   onLogoutClick() {
     this.props.logoutRequest();
   }
@@ -59,6 +63,7 @@ class Header extends Component {
             <ul className='mobile-account-nav'>
               <li>Account &#x25BE;
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
+                  <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>

@@ -5,7 +5,7 @@ import HeaderPublic from './header-public.js';
 export default class Public extends Component {
   render() {
     return (
-      <div>
+      <div className='content-wrapper'>
         <HeaderPublic />
         { this.props.children }
       </div>

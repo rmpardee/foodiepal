@@ -1,12 +1,12 @@
 
 /* COLORS */
-$blue: #6495ed;
-$blue-darker: #4279cd;
+$blue: #86BBD8;
+$blue-darker: #33658A;
 $red: #dc143c;
 $green: #2ecc71;
-$orange: #FF3A00;
-$yellow: #edb211;
-$slate: #565a5c;
+$orange: #f26419;
+$yellow: #ffc145;
+$slate: #2f4858;
 $darker-gray: color(#000 w(+20%) s(0));
 $dark-gray: color(#000 w(+40%) s(0));
 $gray: #999;
@@ -68,3 +68,21 @@ $nav-bg: rgba(255, 255, 255, 0.90);
 
 $footer-bg: rgba(0, 0, 0, 0.3);
 $footer-color: #fff;
+
+/* MEDIA QUERIES */
+$xxsmall: 20em;
+$xsmall: 30em;
+$small: 35.5em;
+$medium: 48em;
+$large: 64em;
+$xlarge: 80em;
+
+@custom-media --xsmall (width >= $xsmall);
+@custom-media --xsmall-small (width >= $xsmall) and (width < $small);
+@custom-media --small (width >= $small);
+@custom-media --small-medium (width >= $small) and (width < $medium);
+@custom-media --medium (width >= $medium);
+@custom-media --medium-large (width >= $medium) and (width < $large);
+@custom-media --large (width >= $large);
+@custom-media --large-xlarge (width >= $large) and (width < $xlarge);
+@custom-media --xlarge (width >= $xlarge);
