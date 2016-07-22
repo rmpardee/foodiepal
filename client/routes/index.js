@@ -38,9 +38,9 @@ function checkLoggedIn(nextState, replace, callback) {
 export default (
   <Route component={ App }>
     <Route path="/">
-      <IndexRoute component={ Welcome }/>
-      <Route component={ Public }>
-        <Route path="login" component={ Login } onEnter={ checkLoggedIn }/>
+      <IndexRoute component={ Welcome } onEnter={ checkLoggedIn }/>
+      <Route component={ Public } onEnter={ checkLoggedIn }>
+        <Route path="login" component={ Login } />
         <Route path="signup" component={ SignUp } />
         <Route path="forgotpassword" component={ ForgotPassword } />
       </Route>

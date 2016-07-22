@@ -10,12 +10,15 @@ class Header extends Component {
     this.state = {
       account: {
         menuActive: false
-      }
+      },
+      prevRoute: this.props.routing.locationBeforeTransitions.pathname
     }
   }
 
   constructor(props) {
     super(props);
+
+    console.log('header props: ', this.props);
   }
 
   onAccountClick() {
@@ -48,12 +51,12 @@ class Header extends Component {
     return (
       <nav>
         <div className='container'>
-          <div
+          { this.props.routing.locationBeforeTransitions.pathname !== '/u' ? <div
             className='mobile-quick-nav mobile-nav-left'
             onClick={ this.context.router.goBack }
             title='Go back'>
             <div className='mobile-chevron chevron-left'></div>
-          </div>
+          </div> : <div className='mobile-quick-nav inactive'></div> }
 
           <div className='portal'>
             <Link to='/' title='Gourmand'>FoodiePal</Link>
@@ -76,12 +79,16 @@ class Header extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return state;
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ logoutRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.contextTypes = {
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
 }
