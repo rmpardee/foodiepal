@@ -1,11 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
-import { bindActionCreators } from 'redux';
-
 import ResetPassword from '../components/resetpw.js';
-import { resetPasswordRequest } from '../actions/auth.js';
-import { asyncValidate, resetValidateUserFields } from '../actions/auth.js';
+import { setUserID, resetPasswordRequest } from '../actions/auth.js';
 
 
 
@@ -34,12 +29,12 @@ function validate(values) {
   }
   
   return hasErrors && errors;
-} 
-
+}
 
 function mapDispatchToProps(dispatch) {
   return {
-    resetPassword: resetPasswordRequest
+    resetPassword: resetPasswordRequest,
+    sendUserID: setUserID
   };
 };
 
@@ -51,12 +46,9 @@ function mapStateToProps(state, ownProps) {
 };
 
 
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
 export default reduxForm({
-  form: 'User',
-  fields: ['email', 'password', 'confirmPassword'], 
-  // asyncValidate,
+  form: 'ResetPassword',
+  fields: ['email', 'password', 'confirmPassword'],
   validate 
 }, mapStateToProps, mapDispatchToProps)(ResetPassword);
 

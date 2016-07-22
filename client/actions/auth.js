@@ -8,9 +8,9 @@ import {
 import { push } from 'react-router-redux';
 
 // Deployed version:
-// const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
+const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
 // Local version:
-const API_USER = `http://localhost:3000/api/user/`;
+// const API_USER = `http://localhost:3000/api/user/`;
 
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
@@ -198,7 +198,16 @@ export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
+// we need a global variable that resetPasswordRequest can access
+let resetpwUserID;
+// export a function that we can call as a prop on the resetpw component, passing in the userID from the URL where we have access to it (in the component itself on mount)
+export function setUserID(userID) {
+  resetpwUserID = userID;
+}
+
 export function resetPasswordRequest(user, dispatch) {
+  // add the userID we got from the forgot pw email URL to the user we send in our POST
+  user.userID = resetpwUserID;
   return new Promise ((reject, resolve) => {
     return axios({
       method: 'POST',

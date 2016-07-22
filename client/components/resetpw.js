@@ -3,6 +3,11 @@ import { Link } from 'react-router';
 
 export default class ResetPassword extends Component {
 
+  componentWillMount() {
+    // when the component loads, send the userID that's contained in the URL as a query parameter to the global variable in the auth actions
+    this.props.sendUserID(location.search.slice(1));
+  }
+
   render() {
     const {fields: { email, password, confirmPassword }, handleSubmit, submitting } = this.props;
 
