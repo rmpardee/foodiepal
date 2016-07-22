@@ -94,7 +94,7 @@ module.exports = function(app) {
         if (!verifiedUser) {
           console.log('Not a verified user');
           res.sendStatus(204);
-        } else if ( req.body._id.toString() !== verifiedUser._id.toString()) {
+        } else if (req.body.userID.toString() !== verifiedUser._id.toString()) {
           console.log('User ID does not match email');
           res.sendStatus(204);
         } else {
