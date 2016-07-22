@@ -10,15 +10,12 @@ class Header extends Component {
     this.state = {
       account: {
         menuActive: false
-      },
-      prevRoute: this.props.routing.locationBeforeTransitions.pathname
+      }
     }
   }
 
   constructor(props) {
     super(props);
-
-    console.log('header props: ', this.props);
   }
 
   onAccountClick() {

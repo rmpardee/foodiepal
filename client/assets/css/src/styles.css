@@ -28,6 +28,10 @@ a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 
+a, a:link {
+  color: $primary-color;
+}
+
 #app {
   height: 100%;
 }
@@ -181,7 +185,7 @@ nav {
 }
 
 .content {
-  @neat-outer-container;
+
 }
 
 .welcome-header-container {
@@ -208,12 +212,14 @@ nav {
   @neat-span-columns 10;
 }
 
-.welcome-header h4 {
+.welcome-header h3 {
   color: #fff;
   text-shadow: 0 1px 3px color(#000 a(-70%));
 }
 
 .welcome-logo {
+  margin-bottom: 1em;
+
   @neat-span-columns 12;
 }
 
@@ -230,6 +236,7 @@ nav {
 }
 
 .welcome-links {
+  margin-top: 3em;
   text-align: center;
 }
 
@@ -250,7 +257,7 @@ nav {
 }
 
 .link-signup:hover {
-  background: color($yellow l(-5%));
+  background: color($yellow l(+5%));
 }
 
 .link-login {
@@ -261,6 +268,23 @@ nav {
   background: #fff;
   color: $dark-gray;
   text-shadow: none;
+}
+
+footer {
+  background: $slate-brown;
+  color: $beige;
+  padding: 20px 0;
+}
+
+.footer-content {
+  text-align: center;
+
+  @neat-span-columns 6;
+  @neat-shift 3;
+}
+
+.heart {
+  color: $pink;
 }
 
 .grid-title {
@@ -572,14 +596,27 @@ textarea {
 }
 
 .form-container {
-  background: #fff;
+  background: color(#fff a(-10%));
   border-radius: 10px;
   clear:fix;
   display: block;
   padding: 20px;
 
-  @neat-span-columns 6;
-  @neat-shift 3;
+  @neat-fill-parent;
+}
+
+@media (--xsmall) {
+  .form-container {
+    @neat-span-columns 8;
+    @neat-shift 2;
+  }
+}
+
+@media (--small) {
+  .form-container {
+    @neat-span-columns 6;
+    @neat-shift 3;
+  }
 }
 
 .modal-form-container {
@@ -610,7 +647,7 @@ textarea {
   border: solid 1px transparent;
   border-radius: 5px;
   display: block;
-  font-size: inherit;
+  font: inherit;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;

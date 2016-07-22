@@ -74,7 +74,7 @@ strong { font-weight: 700; }
 
 h1, h2, h3, h4, h5, h6 {
   color: rgb(42, 43, 43);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Oswald", sans-serif;
   font-style: normal;
   font-weight: 500;
   line-height: 1.4;
@@ -132,7 +132,7 @@ p {
   font-weight: 400;
   line-height: 1.6;
   margin-bottom: 1em;
-  max-width: auto;
+  max-width: 100%;
 }
 
 .code {
@@ -154,6 +154,19 @@ ul, .ul {
   .welcome-links:last-child {
     margin-right: 0;
   }
+
+  .form-container {
+    display: block;
+    float: left;
+    margin-right: 2.35765160%;
+    width: 65.88078280%;
+    margin-left: 17.05960860%;
+  }
+
+  .form-container:last-child {
+    margin-right: 0;
+  }
+
 }
 
 @media (min-width: 35.5em) {
@@ -193,6 +206,19 @@ ul, .ul {
   .react-redux-modal .rrm-holder .scroll .rrm-content {
     width: 60%;
   }
+
+  .form-container {
+    display: block;
+    float: left;
+    margin-right: 2.35765160%;
+    width: 48.82117420%;
+    margin-left: 25.58941290%;
+  }
+
+  .form-container:last-child {
+    margin-right: 0;
+  }
+
 }
 
 @media (min-width: 48em) {
@@ -226,7 +252,7 @@ html, body {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", sans-serif;
   color: rgb(73, 73, 73);
   font-size: 16px;
   font-weight: 400;
@@ -237,6 +263,10 @@ body {
 
 a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
+}
+
+a, a:link {
+  color: #86BBD8;
 }
 
 #app {
@@ -251,7 +281,7 @@ a, a:link, a:hover, a:visited, a:active {
 .container {
   /*lost-utility: clearfix;*/
   margin: 0 auto;
-  max-width: 1040px;
+  max-width: 64em;
   padding: 0 20px;
 
   max-width: 64em;
@@ -447,19 +477,7 @@ nav {
 }
 
 .content {
-  max-width: 64em;
-  margin-left: auto;
-  margin-right: auto;
-  *zoom: 1;
-}
 
-.content:before, .content:after {
-  content: " ";
-  display: table;
-}
-
-.content:after {
-  clear: both;
 }
 
 .welcome-header-container {
@@ -513,15 +531,20 @@ nav {
   margin-right: 0;
 }
 
-.welcome-header h4 {
+.welcome-header h3 {
   color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.30000000000000004);
 }
 
 .welcome-logo {
+  margin-bottom: 1em;
+
   display: block;
+
   float: left;
+
   margin-right: 2.35765160%;
+
   width: 100.00000000%;
 }
 
@@ -543,6 +566,7 @@ nav {
 }
 
 .welcome-links {
+  margin-top: 3em;
   text-align: center;
 }
 
@@ -558,13 +582,13 @@ nav {
 }
 
 .link-signup {
-  background: #ffc145;
+  background: #DBAC37;
   font-size: 1.25em;
   /*margin-bottom: 40px;*/
 }
 
 .link-signup:hover {
-  background: rgb(255, 185, 46);
+  background: rgb(223, 182, 78);
 }
 
 .link-login {
@@ -575,6 +599,33 @@ nav {
   background: #fff;
   color: rgb(73, 73, 73);
   text-shadow: none;
+}
+
+footer {
+  background: #5B4C41;
+  color: #AF9A78;
+  padding: 20px 0;
+}
+
+.footer-content {
+  text-align: center;
+
+  display: block;
+
+  float: left;
+
+  margin-right: 2.35765160%;
+
+  width: 48.82117420%;
+  margin-left: 25.58941290%;
+}
+
+.footer-content:last-child {
+  margin-right: 0;
+}
+
+.heart {
+  color: #FF6969;
 }
 
 .grid-title {
@@ -918,23 +969,42 @@ textarea {
 }
 
 .form-container {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   display: block;
   padding: 20px;
 
-  display: block;
+  box-sizing: border-box;
 
-  float: left;
-
-  margin-right: 2.35765160%;
-
-  width: 48.82117420%;
-  margin-left: 25.58941290%;
+  width: 100%;
 }
 
-.form-container:last-child {
-  margin-right: 0;
+@media (min-width: 30em) {
+
+  .form-container:last-child {
+    margin-right: 0;
+  }
+  .form-container {
+    display: block;
+    float: left;
+    margin-right: 2.35765160%;
+    width: 65.88078280%;
+    margin-left: 17.05960860%;
+  }
+}
+
+@media (min-width: 35.5em) {
+
+  .form-container:last-child {
+    margin-right: 0;
+  }
+  .form-container {
+    display: block;
+    float: left;
+    margin-right: 2.35765160%;
+    width: 48.82117420%;
+    margin-left: 25.58941290%;
+  }
 }
 
 .modal-form-container {
@@ -965,7 +1035,7 @@ textarea {
   border: solid 1px transparent;
   border-radius: 5px;
   display: block;
-  font-size: inherit;
+  font: inherit;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 20px;

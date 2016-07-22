@@ -27,7 +27,7 @@ export default class Login extends Component {
             <form onSubmit={ handleSubmit(this.props.loginUser) }>
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label className="control-label" htmlFor="email">Email</label>
-                <input type="email" id="email" tabIndex="1" autofocus="autofocus" className="form-control" {...email} />
+                <input type="email" id="email" tabIndex="1" autofocus="autofocus" placeholder='Email' className="form-control" {...email} />
                 <div className={ `help-block ${ email.touched && email.invalid ? 'active' : ''}` }>
                   {email.touched ? email.error : ''}
                 </div>
@@ -35,7 +35,7 @@ export default class Login extends Component {
 
               <div className={`form-group ${password.touched && password.invalid ? 'has-error' : ''}`}>
                 <label className="control-label" htmlFor="password">Password</label> (<a href='#' onClick={ this.openRequestForm.bind(this) }>Forgot password?</a>)
-                <input type="password" id="password" tabIndex="2" className="form-control" {...password} />
+                <input type="password" id="password" tabIndex="2" placeholder='Password' className="form-control" {...password} />
                 <div className={ `help-block ${ password.touched && password.invalid ? 'active' : ''}` }>
                   {password.touched ? password.error : ''}
                 </div>
