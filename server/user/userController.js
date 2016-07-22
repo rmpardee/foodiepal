@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 module.exports = {
 
-  // given a userID, return that user
+  // Given a userID, returns that user
   getUser: function(userID) {
     return User.findOne({'_id': userID}, function(err, user) {
       if (err) {
@@ -15,7 +15,7 @@ module.exports = {
     });
   },
 
-  // given a userName, return that user
+  // Given a username/email, returns that user
   getUserLogIn: function(email) {
     return User.findOne({'email': email}, function(err, user) {
       if (err) {
@@ -31,7 +31,6 @@ module.exports = {
     var newUser = User({
       email: data.email.trim(),
       password: hash
-      // salt: data.salt
     });
 
     return newUser.save(function(err, savedUser) {
@@ -44,7 +43,7 @@ module.exports = {
     });
   },
 
-  // given a userName, return that user
+  // Given a username/email, return that user and logs if user exists or not
   doesUserExist: function(email) {
     return User.findOne({'email': email}, function(err, user) {
       if (err) {
@@ -61,7 +60,7 @@ module.exports = {
     });
   },
 
-
+  // Takes in new password and overwrites old password
   resetPassword: function(newPswd, user, next) {
     var hash = bcrypt.hashSync(newPswd.password.trim(), 10);
     var query = {'_id': user._id};
@@ -75,7 +74,21 @@ module.exports = {
       next();
       return;
     });
-  }
+  },
 
+  // Takes in new username/email in replacementEmail param and overwrites old username/email
+  changeEmail: function(newEmail, user, next) {
+    var query = {'_id': user._id};
+    return User.update(query, {'email': newEmail.replacementEmail}, null, function(err, savedUser) {
+      if (err) {
+        console.log('err in controller resetPassword fn: ', err);
+        next(err);
+        return;
+      }
+      console.log('Success saving user to db: ', savedUser);
+      next();
+      return;
+    });
+  }
 
 };
