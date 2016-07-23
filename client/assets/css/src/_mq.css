@@ -3,12 +3,6 @@
     @neat-span-columns 8;
     @neat-shift 2;
   }
-
-  .form-container {
-    @neat-span-columns 8;
-    @neat-shift 2;
-  }
-
 }
 
 @media (--small) {
@@ -28,12 +22,6 @@
   .react-redux-modal .rrm-holder .scroll .rrm-content {
     width: 60%;
   }
-
-  .form-container {
-    @neat-span-columns 6;
-    @neat-shift 3;
-  }
-
 }
 
 @media (--medium) {
@@ -43,6 +31,6 @@
   }
 
   .react-redux-modal .rrm-holder .scroll .rrm-content {
-    width: 40%;
+    width: 50%;
   }
 }

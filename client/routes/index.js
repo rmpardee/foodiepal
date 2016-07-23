@@ -7,7 +7,7 @@ import Welcome from '../components/welcome';
 import Public from '../components/public';
 import SignUp from '../containers/signup';
 import Login from '../containers/login';
-import ForgotPassword from '../containers/forgotpw';
+import ResetPassword from '../containers/resetpw';
 
 import Main from '../components/main'; // Main (user) layout
 import Categories from '../components/categories';
@@ -42,7 +42,7 @@ export default (
       <Route component={ Public } onEnter={ checkLoggedIn }>
         <Route path="login" component={ Login } />
         <Route path="signup" component={ SignUp } />
-        <Route path="forgotpassword" component={ ForgotPassword } />
+        <Route path="resetPassword" component={ ResetPassword } />
       </Route>
     </Route>
     <Route path="/u" component={ Main } onEnter={ requireAuth }>

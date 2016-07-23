@@ -154,19 +154,6 @@ ul, .ul {
   .welcome-links:last-child {
     margin-right: 0;
   }
-
-  .form-container {
-    display: block;
-    float: left;
-    margin-right: 2.35765160%;
-    width: 65.88078280%;
-    margin-left: 17.05960860%;
-  }
-
-  .form-container:last-child {
-    margin-right: 0;
-  }
-
 }
 
 @media (min-width: 35.5em) {
@@ -206,19 +193,6 @@ ul, .ul {
   .react-redux-modal .rrm-holder .scroll .rrm-content {
     width: 60%;
   }
-
-  .form-container {
-    display: block;
-    float: left;
-    margin-right: 2.35765160%;
-    width: 48.82117420%;
-    margin-left: 25.58941290%;
-  }
-
-  .form-container:last-child {
-    margin-right: 0;
-  }
-
 }
 
 @media (min-width: 48em) {
@@ -234,7 +208,7 @@ ul, .ul {
   }
 
   .react-redux-modal .rrm-holder .scroll .rrm-content {
-    width: 40%;
+    width: 50%;
   }
 }
 
@@ -980,10 +954,6 @@ textarea {
 }
 
 @media (min-width: 30em) {
-
-  .form-container:last-child {
-    margin-right: 0;
-  }
   .form-container {
     display: block;
     float: left;
@@ -991,19 +961,21 @@ textarea {
     width: 65.88078280%;
     margin-left: 17.05960860%;
   }
-}
-
-@media (min-width: 35.5em) {
-
   .form-container:last-child {
     margin-right: 0;
   }
+}
+
+@media (min-width: 35.5em) {
   .form-container {
     display: block;
     float: left;
     margin-right: 2.35765160%;
     width: 48.82117420%;
     margin-left: 25.58941290%;
+  }
+  .form-container:last-child {
+    margin-right: 0;
   }
 }
 
