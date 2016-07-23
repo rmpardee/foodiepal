@@ -16,7 +16,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const {fields: { email, password }, handleSubmit, submitting } = this.props;
+    const {fields: { email, password }, validate, handleSubmit, submitting } = this.props;
 
     return (
       <div className="container">
@@ -24,7 +24,7 @@ export default class Login extends Component {
           <h2 className='page-title'>Welcome back!</h2>
           <p>Login below to log your tastings.</p>
           <div className='form-container'>
-            <form onSubmit={ handleSubmit(this.props.loginUser) }>
+            <form onSubmit={ handleSubmit(this.props.loginUser) } noValidate>
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label className="control-label" htmlFor="email">Email</label>
                 <input type="email" id="email" tabIndex="1" autofocus="autofocus" placeholder='Email' className="form-control" {...email} />
@@ -40,7 +40,7 @@ export default class Login extends Component {
                   {password.touched ? password.error : ''}
                 </div>
               </div>
-              <button type="submit" disabled={submitting} className='btn btn-primary'>Log In</button>
+              <button type="submit" disabled={email.invalid || password.invalid || submitting} className='btn btn-primary'>Log In</button>
             </form>
           </div>
           <p>New to Gourmand? <Link to='/signup'>Sign Up</Link></p>
