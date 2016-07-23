@@ -5,8 +5,8 @@ export const loadState = () => {
       return undefined;
     }
     let originalState = JSON.parse(serializedState);
-    originalState.modals = [];
-    return JSON.parse(originalState);
+    originalState.modals.modals = [];
+    return originalState;
   } catch (err) {
     return undefined;
   }
