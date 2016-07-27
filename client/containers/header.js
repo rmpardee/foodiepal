@@ -60,10 +60,10 @@ class Header extends Component {
           </div>
           
           <div className='mobile-quick-nav mobile-nav-right' onClick={ this.onAccountClick.bind(this) }>
-            <ul className='mobile-account-nav'>
-              <li>Account &#x25BE;
+            <ul className='mobile-account-nav' tabIndex="5" onBlur={ this.closeAccountDropdown.bind(this) }>
+              <li>
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
-                  <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>
+                  
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>
@@ -89,3 +89,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Header);
 Header.contextTypes = {
   router: React.PropTypes.object,
 }
+
+// <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>

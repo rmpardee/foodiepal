@@ -4,7 +4,6 @@ import RequestPasswordReset from '../containers/request-password-reset';
 import { modal } from 'react-redux-modal';
 
 export default class Login extends Component {
-
   openRequestForm(e) {
     e.preventDefault();
     
@@ -20,14 +19,14 @@ export default class Login extends Component {
 
     return (
       <div className="container">
-        <div className='content'>
+        <div className='content-alt'>
           <h2 className='page-title'>Welcome back!</h2>
           <p>Login below to log your tastings.</p>
           <div className='form-container'>
             <form onSubmit={ handleSubmit(this.props.loginUser) } noValidate>
               <div className={`form-group ${email.touched && email.invalid ? 'has-error' : ''}`}>
                 <label className="control-label" htmlFor="email">Email</label>
-                <input type="email" id="email" tabIndex="1" autofocus="autofocus" placeholder='Email' className="form-control" {...email} />
+                <input type="email" id="email" autoFocus tabIndex="1" placeholder='Email' className="form-control" {...email} />
                 <div className={ `help-block ${ email.touched && email.invalid ? 'active' : ''}` }>
                   {email.touched ? email.error : ''}
                 </div>
@@ -43,7 +42,7 @@ export default class Login extends Component {
               <button type="submit" disabled={email.invalid || password.invalid || submitting} className='btn btn-primary'>Log In</button>
             </form>
           </div>
-          <p>New to Gourmand? <Link to='/signup'>Sign Up</Link></p>
+          <p className='subheading'>New to Gourmand? <Link to='/signup'>Sign Up</Link></p>
         </div>
       </div>
     );

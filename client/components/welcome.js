@@ -19,11 +19,6 @@ export default class Welcome extends Component {
           </section>
             </div>
         </section>
-        <section className='welcome-content-container'>
-          <div className='container'>
-            <h2>How It Works</h2>
-          </div>
-        </section>
         <Footer />
       </div>
     );

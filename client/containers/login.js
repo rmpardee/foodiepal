@@ -27,12 +27,6 @@ function validate(values) {
     errors.password = 'Password is required!';
     hasErrors = true;
   }
-
-  if (values.password && values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters'
-  }
-
-  // TODO: add multiple RegEx checks for password complexity
   
   return hasErrors && errors;
 } 

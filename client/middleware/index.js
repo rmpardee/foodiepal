@@ -6,6 +6,7 @@ export const loadState = () => {
     }
     let originalState = JSON.parse(serializedState);
     originalState.modals.modals = [];
+    originalState.routing = {};
     return originalState;
   } catch (err) {
     return undefined;

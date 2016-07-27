@@ -24,7 +24,7 @@ export const store = createStore(rootReducer, persistedState, applyMiddleware(th
 // save the state in localStorage everytime it changes
 store.subscribe( () => saveState(store.getState()));
 
-const history = syncHistoryWithStore(browserHistory, store, { adjustUrlOnReplay: false });
+const history = syncHistoryWithStore(browserHistory, store, { adjustUrlOnReplay: true });
 
 render (
   <Provider store={ store }>
