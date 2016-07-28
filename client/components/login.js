@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import RequestPasswordReset from '../containers/request-password-reset';
+import ForgotPassword from '../containers/forgotpw';
 import { modal } from 'react-redux-modal';
 
 export default class Login extends Component {
@@ -17,7 +17,7 @@ export default class Login extends Component {
   openRequestForm(e) {
     e.preventDefault();
     
-    modal.add(RequestPasswordReset, {
+    modal.add(ForgotPassword, {
       title: 'Forgot your password?',
       closeOnOutsideClick: true,
       hideCloseButton: false
@@ -30,8 +30,8 @@ export default class Login extends Component {
     return (
       <div className="container">
         <div className='content-alt'>
-          <h2 className='page-title'>Welcome back!</h2>
-          <p className="subheading">Login below to log your tastings.</p>
+          <h2 className='page-title'>Welcome!</h2>
+          <p className="subheading">Log in below to enter your tastings.</p>
           <div className='form-container'>
             <form onSubmit={ handleSubmit(this.props.loginUser) } noValidate>
               <div className={ `form-group ${email.touched && email.invalid ? 'has-error' : ''}` }>
