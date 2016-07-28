@@ -53,7 +53,7 @@ class AddSubcategory extends Component {
             onChange={ this.onDescriptionChange }
             placeholder='Description'
           />
-          <button type='submit' className='btn btn-primary'>Add Subcategory</button>
+          <button type='submit' className='btn btn-primary'>Add Variety</button>
         </form>
       </div>
     );
