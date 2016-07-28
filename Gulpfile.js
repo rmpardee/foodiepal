@@ -13,7 +13,10 @@ var nested = require('postcss-nested');
 var map = require('postcss-map');
 var calc = require('postcss-calc');
 var clearfix = require('postcss-clearfix');
-var grid = require('lost');
+// var grid = require('lost');
+var grid = require('postcss-neat');
+var media = require('postcss-media-minmax');
+var custom = require('postcss-custom-media');
 
 var settings = require('./client/assets/css/src/_settings');
 
@@ -21,9 +24,11 @@ var processors = [
   postcssImport,
   simpleVars,
   clearfix,
-  simpleMediaQueries(settings.simpleMediaQueries),
-  map(settings.map),
+  // simpleMediaQueries(settings.simpleMediaQueries),
   nested,
+  custom,
+  media,
+  map(settings.map),
   opacity,
   color,
   calc,
@@ -51,7 +56,7 @@ gulp.task('clean-css', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['./client/assets/css/src/*.css', 'Gulpfile.js'], ['css']);
+  gulp.watch(['./client/assets/css/src/**/*.css', 'Gulpfile.js'], ['css']);
   });
 
 gulp.task('default', ['watch']);

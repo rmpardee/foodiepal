@@ -25,11 +25,21 @@ function requireAuth(nextState, replace, callback) {
   callback();
 }
 
+function checkLoggedIn(nextState, replace, callback) {
+  if (localStorage.getItem('jwtToken')) {
+    replace({
+      pathname: '/u',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+  callback();
+}
+
 export default (
   <Route component={ App }>
     <Route path="/">
-      <IndexRoute component={ Welcome }/>
-      <Route component={ Public }>
+      <IndexRoute component={ Welcome } onEnter={ checkLoggedIn }/>
+      <Route component={ Public } onEnter={ checkLoggedIn }>
         <Route path="login" component={ Login } />
         <Route path="signup" component={ SignUp } />
         <Route path="resetPassword" component={ ResetPassword } />

@@ -36,6 +36,10 @@ class Header extends Component {
     });
   }
 
+  onChangeEmailClick() {
+    // TODO: add modal for change email form
+  }
+
   onLogoutClick() {
     this.props.logoutRequest();
   }
@@ -44,21 +48,22 @@ class Header extends Component {
     return (
       <nav>
         <div className='container'>
-          <div
+          { this.props.routing.locationBeforeTransitions.pathname !== '/u' ? <div
             className='mobile-quick-nav mobile-nav-left'
             onClick={ this.context.router.goBack }
             title='Go back'>
             <div className='mobile-chevron chevron-left'></div>
-          </div>
+          </div> : <div className='mobile-quick-nav inactive'></div> }
 
           <div className='portal'>
             <Link to='/' title='Gourmand'>FoodiePal</Link>
           </div>
           
           <div className='mobile-quick-nav mobile-nav-right' onClick={ this.onAccountClick.bind(this) }>
-            <ul className='mobile-account-nav'>
-              <li>Account &#x25BE;
+            <ul className='mobile-account-nav' tabIndex="5" onBlur={ this.closeAccountDropdown.bind(this) }>
+              <li>
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
+                  
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>
@@ -71,12 +76,18 @@ class Header extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return state;
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ logoutRequest }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.contextTypes = {
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
 }
+
+// <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>
