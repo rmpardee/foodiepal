@@ -40,7 +40,10 @@ export function addUserRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('user POST error:', response));
+    .catch(response => {
+      console.error('user POST error:', response);
+      reject();
+    });
   });
 }
 
@@ -91,7 +94,10 @@ export function loginRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('login POST error: ', response));
+    .catch(response => {
+      console.error('login POST error: ', response);
+      reject();
+    });
   });
 }
 
@@ -223,7 +229,10 @@ export function resetPasswordRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('reset password POST error:', response));
+    .catch(response => {
+      console.error('reset password POST error:', response);
+      reject();
+    });
   });
 }
 
