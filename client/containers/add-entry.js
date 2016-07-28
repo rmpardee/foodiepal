@@ -51,7 +51,7 @@ class AddEntry extends Component {
 
   render() {
     return (
-      <div className='form-container'>
+      <div className='modal-form-container'>
         <form onSubmit={ this.onFormSubmit }>
           <input 
             value={ this.state.type }

@@ -14,11 +14,17 @@ function validate(values) {
   var hasErrors = false;
 
   if (!values.email || values.email.trim() === '') {
-    errors.email = 'Enter email';
+    errors.email = 'Email is required!';
     hasErrors = true;
   }
+
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address!';
+    hasErrors = true;
+  }
+
   if (!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = 'Password is required!';
     hasErrors = true;
   }
   

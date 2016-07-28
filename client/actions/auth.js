@@ -11,7 +11,6 @@ import { push } from 'react-router-redux';
 const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
 // Local version:
 // const API_USER = `http://localhost:3000/api/user/`;
-
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;
@@ -41,7 +40,10 @@ export function addUserRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('user POST error:', response));
+    .catch(response => {
+      console.error('user POST error:', response);
+      reject();
+    });
   });
 }
 
@@ -92,7 +94,10 @@ export function loginRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('login POST error: ', response));
+    .catch(response => {
+      console.error('login POST error: ', response);
+      reject();
+    });
   });
 }
 
@@ -224,7 +229,10 @@ export function resetPasswordRequest(user, dispatch) {
         resolve();
       }
     })
-    .catch(response => console.error('reset password POST error:', response));
+    .catch(response => {
+      console.error('reset password POST error:', response);
+      reject();
+    });
   });
 }
 
