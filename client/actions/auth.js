@@ -8,7 +8,7 @@ import {
 import { push } from 'react-router-redux';
 
 // Deployed version:
-const API_USER = `https://gourmandapp.herokuapp.com/api/user/`;
+const API_USER = `/api/user/`;
 // Local version:
 // const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;

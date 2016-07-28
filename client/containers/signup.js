@@ -15,21 +15,28 @@ function validate(values) {
   var hasErrors = false;
 
   if (!values.email || values.email.trim() === '') {
-    errors.email = 'Enter email';
+    errors.email = 'Email is required!';
     hasErrors = true;
   }
+
+  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address!';
+    hasErrors = true;
+  }
+
   if (!values.password || values.password.trim() === '') {
-    errors.password = 'Enter password';
+    errors.password = 'Password is required!';
     hasErrors = true;
   }
+
   if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'Re-enter password';
+    errors.confirmPassword = 'Confirm password is required!';
     hasErrors = true;
   }
 
   if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-    errors.password = 'Password And Re-entered Password don\'t match';
-    errors.password = 'Password And Re-entered Password don\'t match';
+    errors.password = 'Password and re-entered password don\'t match';
+    errors.password = 'Password and re-entered password don\'t match';
     hasErrors = true;
   }
   
