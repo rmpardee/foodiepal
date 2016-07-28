@@ -32,7 +32,7 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <div className='form-container'>
+      <div className='modal-form-container'>
         <p>Don't worry! It happens to the best of us.</p>
         <p>Enter your email address and we'll send you a link to reset your password.</p>
         <form onSubmit={ this.onFormSubmit }>
@@ -42,7 +42,7 @@ class ForgotPassword extends Component {
             type="email"
             placeholder="Email"
           />
-          <button type="submit" className='btn btn-primary'>Request Reset Password Email</button>
+          <button type="submit" className='btn btn-primary'>Email me to reset my password</button>
         </form>
       </div>
     );
