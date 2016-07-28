@@ -25,7 +25,10 @@ export default class Login extends Component {
   }
 
   render() {
-    const {fields: { email, password }, validate, handleSubmit, submitting } = this.props;
+    const {fields: { email, password }, validate, handleSubmit, dirty, pristine, submitting } = this.props;
+
+    let emailInvalid = (email.touched && email.dirty && email.invalid) || (email.visited && email.dirty && email.invalid);
+    let pwInvalid = (password.touched && password.dirty && password.invalid) || (password.visited && password.dirty && password.invalid);
 
     return (
       <div className="container">
@@ -34,22 +37,22 @@ export default class Login extends Component {
           <p className="subheading">Log in below to enter your tastings.</p>
           <div className='form-container'>
             <form onSubmit={ handleSubmit(this.props.loginUser) } noValidate>
-              <div className={ `form-group ${email.touched && email.invalid ? 'has-error' : ''}` }>
+              <div className={ `form-group ${ emailInvalid ? 'has-error' : ''}` }>
                 <label className="control-label" htmlFor="email">Email</label>
                 <input type="email" id="email" autoFocus tabIndex="1" placeholder="Enter email" className="form-control" {...email} />
-                <div className={ `help-block ${ email.touched && email.invalid ? 'active' : ''}` }>
-                  {email.touched ? email.error : ''}
+                <div className={ `help-block ${ emailInvalid ? 'active' : ''}` }>
+                  { emailInvalid ? email.error : ''}
                 </div>
               </div>
 
-              <div className={ `form-group ${password.touched && password.invalid ? 'has-error' : ''}` }>
+              <div className={ `form-group ${pwInvalid ? 'has-error' : ''}` }>
                 <label className="control-label" htmlFor="password">Password</label> (<a href='#' onClick={ this.openRequestForm.bind(this) }>Forgot password?</a>)
                 <input type="password" id="password" tabIndex="2" placeholder='Enter password' className="form-control" {...password} />
-                <div className={ `help-block ${ password.touched && password.invalid ? 'active' : ''}` }>
-                  { password.touched ? password.error : '' }
+                <div className={ `help-block ${ pwInvalid ? 'active' : ''}` }>
+                  { pwInvalid ? password.error : '' }
                 </div>
               </div>
-              <button type="submit" disabled={ email.invalid || password.invalid || submitting } className='btn btn-primary'>Log In</button>
+              <button type="submit" disabled={ email.invalid || password.invalid || pristine || submitting } className='btn btn-primary'>Log In</button>
             </form>
           </div>
           <p className='subheading'>New to Gourmand? <Link to='/signup'>Sign Up</Link></p>

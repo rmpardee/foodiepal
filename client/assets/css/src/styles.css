@@ -3,7 +3,12 @@
 @import '_typography';
 @import '_mq';
 
-/*@reset-global mobile;*/
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+/*@font-face {
+  font-family: 'Oswald';
+  src: url('https://fonts.googleapis.com/css?family=Oswald');
+}*/
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -28,7 +33,7 @@ a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 
-a, a:link {
+a:link {
   color: $primary-color;
 }
 
