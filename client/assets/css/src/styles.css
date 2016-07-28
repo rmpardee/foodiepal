@@ -53,7 +53,7 @@ a, a:link {
 .content-wrapper {
   background: url('../img/pexels-photo-86753-blurred.jpg') center center no-repeat transparent;
   background-size: cover;
-  min-height: 640px;
+  min-height: 100%;
   padding-bottom: 4em;
   position: relative;
   overflow: auto;
