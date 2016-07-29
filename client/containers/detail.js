@@ -35,10 +35,12 @@ class Detail extends Component {
             <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> { subcategory.name }</h6>
             
             <div className='detail-header'>
+              <h1 className='detail-header-title'>{ subcategory.name }</h1>
+              <p>{ subcategory.description }</p>
               <button onClick={ this.openEntryForm.bind(this) } className='btn btn-primary'>Add New Entry</button>
             </div>
 
-            <h3>Your History for { subcategory.name }</h3>
+            <h5>Your History:</h5>
             <EntryList />
           </div>
         </div>
