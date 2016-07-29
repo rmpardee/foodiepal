@@ -360,7 +360,7 @@ footer {
   color: $gray;
   font-size: 0.85em;
   letter-spacing: 3px;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   padding: 10px 0;
   text-transform: uppercase;
 }
@@ -529,6 +529,10 @@ footer {
 
 .detail-header {
   margin-bottom: 20px;
+}
+
+.detail-header-title {
+  text-align: center;
 }
 
 
