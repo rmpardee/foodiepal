@@ -154,8 +154,10 @@ q:before, q:after {
   line-height: 1.5;
 }/* RESET STYLES */a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
-}a:link {
+}a:link, a:visited {
   color: #86BBD8;
+}a:hover {
+  text-decoration: underline;
 }#app {
   height: 100%;
 }.wrapper {
@@ -430,9 +432,10 @@ q:before, q:after {
 }.welcome-links {
   margin-top: 3em;
   text-align: center;
+}.welcome-links a {
+  color: #fff;
 }.welcome-link {
   border-radius: 5px;
-  color: #fff;
   display: block;
   margin: 1em auto;
   padding: 15px 20px;

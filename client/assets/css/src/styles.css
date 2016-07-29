@@ -33,8 +33,12 @@ a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 
-a:link {
+a:link, a:visited {
   color: $primary-color;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #app {
@@ -293,9 +297,12 @@ nav {
   text-align: center;
 }
 
+.welcome-links a {
+  color: #fff;
+}
+
 .welcome-link {
   border-radius: 5px;
-  color: #fff;
   display: block;
   margin: 1em auto;
   padding: 15px 20px;
