@@ -33,8 +33,12 @@ a, a:link, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 
-a:link {
+a:link, a:visited {
   color: $primary-color;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #app {
