@@ -28,7 +28,13 @@ module.exports = function(app) {
               foodControl.addCategory(food);
             }
             console.log('NEW USER CREATED!!');
-            res.sendStatus(201);
+            var token = utils.generateToken(user); // Generate token
+            user = utils.getCleanUser(user); // Removes password from responce
+            res.status(201).json({
+              user: user,  // Return both user and token
+              token: token
+            });
+            // res.sendStatus(201);
           });  
         }
       });
