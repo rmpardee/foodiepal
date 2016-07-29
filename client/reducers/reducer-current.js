@@ -21,7 +21,8 @@ const INITIAL_STATE = {
   },
   subcategory: {
     id: '',
-    name: ''
+    name: '',
+    description: ''
   }
 }
 

@@ -33,10 +33,13 @@ class SubcategoryList extends Component {
     const category = this.props.current.category.name;
     const subcategories = this.props.subcategories.data;
 
+    let categoryClassName = category.replace(/(\s+?)/g,"-").toLowerCase();
+
     return subcategories.map((subcategory) => {
       let subcategoryInfo = {
         id: subcategory._id,
-        name: subcategory.name
+        name: subcategory.name,
+        description: subcategory.description
       }
 
       return (
@@ -45,6 +48,7 @@ class SubcategoryList extends Component {
             to={`/u/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
+              <div className={ `grid-link-icon grid-link-icon-${ categoryClassName }` }></div>
               <span className='grid-link-name'>{ subcategory.name }</span>
             </div>
           </Link>
