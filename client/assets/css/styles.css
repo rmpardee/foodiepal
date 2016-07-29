@@ -430,9 +430,10 @@ q:before, q:after {
 }.welcome-links {
   margin-top: 3em;
   text-align: center;
+}.welcome-links a {
+  color: #fff;
 }.welcome-link {
   border-radius: 5px;
-  color: #fff;
   display: block;
   margin: 1em auto;
   padding: 15px 20px;
