@@ -35,6 +35,8 @@ export function addUserRequest(user, dispatch) {
         dispatch(addUserFailure(response.data));
         reject(response.data);
       } else {
+        localStorage.setItem('jwtToken', response.data.token);
+        dispatch(setCurrentUser(response.data.user));
         dispatch(addUserSuccess(response.data));
         dispatch(push('/u'));
         resolve();
