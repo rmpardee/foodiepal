@@ -70,3 +70,9 @@ node_modules/
 README.md
 package.json
 ```
+
+
+GET    => READ
+POST   => CREATE
+DELETE => DELETE
+PUT    => UPDATE

@@ -10,7 +10,8 @@ var mlab = require('../config/env.js').mlab;
   
 module.exports = {
   // url to mongo db named foodiepal, for server to connect to
-  url: 'mongodb://' + mlab.dbuser + ':' + mlab.dbpassword + '@ds017195.mlab.com:17195/gourmand',
+  // url: 'mongodb://' + mlab.dbuser + ':' + mlab.dbpassword + '@ds017195.mlab.com:17195/gourmand',
+  url: 'mongodb://' + mlab.dbuser + ':' + mlab.dbpassword + '@ds019786.mlab.com:19786/gourmand-testing',
 
   // adds the the seed data to our database:
   seedUsers: function() {

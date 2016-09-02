@@ -2,6 +2,8 @@ var foodControl = require('./foodController.js');
 
 module.exports = function(app) {
 
+  ////////CATEGORIES////////////////////////////////////////////////////
+
   app.route('/category')
     // Get categories for the given userID
     .get(function(req, res) {
@@ -28,8 +30,36 @@ module.exports = function(app) {
         console.log('err in route: ', err);
         res.status(204).send(err);
       });
+    })
+    // Updtate a specific entry
+    .put(function(req, res) {
+      foodControl.updateCategory(req.body).then(function() {
+        // Query the database for all the categories with that userID (which will include the one we just added)
+        foodControl.getCategories(req.body.userID).then(function(categories) {
+          // Send success response status along with those categories
+          res.status(201).send(categories);
+        }, function(err) {
+          console.log('err in route: ', err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
+    })
+    // Delete a specific entry
+    .delete(function(req, res) {
+      foodControl.deleteCategory(req.body).then(function() {
+        res.status(201).json({
+          message: 'Deleted'
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
     });
 
+  ////////SUBCATEGORIES////////////////////////////////////////////////
 
   app.route('/subcategory')
     .get(function(req, res) {
@@ -57,7 +87,36 @@ module.exports = function(app) {
         console.log('err in route: ', err);
         res.status(204).send(err);
       });
+    })
+    // Updtate a specific entry
+    .put(function(req, res) {
+      foodControl.updateSubcategory(req.body).then(function() {
+        // Query the database for all the subcategories with that userID (which will include the one we just added)
+        foodControl.getSubcategories(req.body.categoryID).then(function(subcategories) {
+          // Send success response status along with those subcategories
+          res.status(201).send(subcategories);
+        }, function(err) {
+          console.log('err in route: ', err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
+    })
+    // Delete a specific entry
+    .delete(function(req, res) {
+      foodControl.deleteSubcategory(req.body).then(function() {
+        res.status(201).json({
+          message: 'Deleted'
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
     });
+
+  ////////ENTRIES////////////////////////////////////////////////////
 
   app.route('/entry')
     // Get entries for the given subcategoryID
@@ -85,5 +144,34 @@ module.exports = function(app) {
         console.log('err in route: ', err);
         res.status(204).send(err);
       });
+    })
+    // Updtate a specific entry
+    .put(function(req, res) {
+      foodControl.updateEntry(req.body).then(function() {
+        // Query the database for all the entries with that userID (which will include the one we just added)
+        foodControl.getEntries(req.body.subcategoryID).then(function(entries) {
+          // Send success response status along with those entries
+          res.status(201).send(entries);
+        }, function(err) {
+          console.log('err in route: ', err);
+          res.status(204).send(err);
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
+    })
+    // Delete a specific entry
+    .delete(function(req, res) {
+      foodControl.deleteEntry(req.body).then(function() {
+        res.status(201).json({
+          message: 'Deleted'
+        });
+      }, function(err) {
+        console.log('err in route: ', err);
+        res.status(204).send(err);
+      });
     });
+
+
 };
