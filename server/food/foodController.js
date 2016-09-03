@@ -75,7 +75,7 @@ module.exports = {
     }
   },
 
-  updateCategory: function(category) {
+  updateCategory: function(category, next) {
     console.log('Inside updateEntry Controller: ', category);
     var query = { _id: category._id };
     var update = {
@@ -86,24 +86,28 @@ module.exports = {
     return Food.Category.update(query, update, function(err, success) {
       if (err) {
         console.log("err in controller updateEntry fn: ", err);
-        return err;
+        next(err);
+        return;
       }
       console.log('success: ', success);
-      return success;
+      next(success);
+      return;
     });
   },
 
-  deleteCategory: function(category) {
+  deleteCategory: function(category, next) {
     console.log('Inside deletesubcategory Controller: ', category);
     var query = { _id: category._id };
 
     return Food.Category.remove(query, function(err) {
       if (err) {
         console.log("err in controller delete category fn: ", err);
-        return err;
+        next(err);
+        return;
       } else {
         console.log('Success deleting category');
-        return { message: 'Category Deleted' };
+        next();
+        return;
       }
     });
   },
@@ -143,7 +147,7 @@ module.exports = {
     });
   },
 
-  updateSubcategory: function(subcategory) {
+  updateSubcategory: function(subcategory, next) {
     console.log('Inside updateEntry Controller: ', subcategory);
     var query = { _id: subcategory._id };
     var update = {
@@ -154,24 +158,28 @@ module.exports = {
     return Food.Subcategory.update(query, update, function(err, success) {
       if (err) {
         console.log("err in controller updateEntry fn: ", err);
-        return err;
+        next(err);
+        return;
       }
       console.log('success: ', success);
-      return success;
+      next(success);
+      return;
     });
   },
 
-  deleteSubcategory: function(subcategory) {
+  deleteSubcategory: function(subcategory, next) {
     console.log('Inside deletesubcategory Controller: ', subcategory);
     var query = { _id: subcategory._id };
 
     return Food.Subcategory.remove(query, function(err) {
       if (err) {
         console.log("err in controller delete subcategory fn: ", err);
-        return err;
+        next(err);
+        return;
       } else {
         console.log('Success deleting subcategory');
-        return { message: 'Subcategory Deleted' };
+        next();
+        return;
       }
     });
   },
@@ -213,7 +221,7 @@ module.exports = {
     });
   },
 
-  updateEntry: function(entry) {
+  updateEntry: function(entry, next) {
     console.log('Inside updateEntry Controller: ', entry);
     var query = { _id: entry._id };
     var update = {
@@ -223,25 +231,29 @@ module.exports = {
     };
     return Food.Entry.update(query, update, function(err, success) {
       if (err) {
+        next(err);
         console.log("err in controller updateEntry fn: ", err);
-        return err;
+        return;
       }
+      next(success);
       console.log('success: ', success);
-      return success;
+      return; //success;
     });
   },
 
-  deleteEntry: function(entry) {
+  deleteEntry: function(entry, next) {
     console.log('Inside deleteEntry Controller: ', entry);
     var query = { _id: entry._id };
 
     return Food.Entry.remove(query, function(err) {
       if (err) {
         console.log("err in controller deleteEntry fn: ", err);
-        return err;
+        next(err);
+        return;
       } else {
         console.log('Success deleting entry');
-        return { message: 'Entry Deleted' };
+        next();
+        return;
       }
     });
   }
