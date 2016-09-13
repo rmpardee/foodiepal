@@ -1,56 +1,48 @@
-# foodiepal
 
-### Project Wiki
+# Project Wiki
+## Gourmand
 
-For further documentation beyond the README, please see our wiki:
+For all project documentation, please see our wiki:
 https://github.com/protolux/foodiepal/wiki
+
 
 ### Application Structure
 
 ```
 client/
-  components/
-  routes/
-    -routes.jsx
+  actions/
+    -auth.js
     -index.js
-  index.js
   assets/
-    img/
     css/
       [-styles.css]
       src/
         -styles.css
-  views/
+    img/
+  components/
+    ...
+  containers/
+    ...
+  [-index.js]
+  middleware
     -index.js
-    welcome/
-      -welcome.jsx
-      -index.js
-    header/
-      -header.jsx
-      -index.js
-    signin/
-      -signin.jsx
-      -index.js
-    home/
-      -home.jsx
-      -index.js
-    sub/
-      -sub.jsx
-      -addsub.jsx
-      -index.js
-    detail/
-      -category.jsx
-      -subcategory.jsx
-      -entry.jsx
-      -addentry.jsx
-      -index.js
+  reducers
+    ...
+  routes/
+    -index.js
+    -routes.jsx
+  views/
+    ...
+node_modules/
 server/
-  server.js
   config/
-    -helpers.js
+    -config.js
+    -email.js
+    -env.js
     -middleware.js
     -utils.js
   db/
+    seeds/
     -db.js
   food/
     -foodController.js
@@ -60,13 +52,16 @@ server/
     -userController.js
     -userModel.js
     -userRoutes.js
+  server.js
 tests/
   client/
     -client_spec.js
   server/
+    -api_spec.js   
     -server_spec.js
-    -api_spec.js    
-node_modules/
+    -stubs.js
+Gulpfile.js
 README.md
 package.json
+webpack.config.js
 ```
