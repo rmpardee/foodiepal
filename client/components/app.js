@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReduxModal from 'react-redux-modal';
+import ReduxToastr from 'react-redux-toastr';
 
 import { connect } from 'react-redux';
 import { meFromToken, meFromTokenSuccess, meFromTokenFailure, resetToken } from '../actions/auth.js';
@@ -10,6 +11,10 @@ class App extends Component {
       <div className='wrapper'>
         { this.props.children }
         <ReduxModal />
+        <ReduxToastr 
+          timeOut={ 0 }
+          newestOnTop={ true }
+          position="top-right" />
       </div>
     );
   }
@@ -19,9 +24,7 @@ class App extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     loadUserFromToken: () => {
-      // console.log("loadUserFromToken is called");
       let token = localStorage.getItem('jwtToken');
-      // console.log("token: ", token);
       if (!token || token === '') {
         return;  //if there is no token, dont bother
       }
@@ -49,24 +52,3 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(null, mapDispatchToProps)(App);
-
-
-// import React, { Component } from 'react';
-// import ReduxModal from 'react-redux-modal';
-
-// export default class App extends Component {
-
-//   componentWillMount() {
-//    console.log("this.props in app component: ", this.props);
-//     this.props.loadUserFromToken();
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         { this.props.children }
-//         <ReduxModal />
-//       </div>
-//     );
-//   }
-// }

@@ -1,9 +1,8 @@
 import axios from 'axios';
+import { toastr, actions as toastrActions } from 'react-redux-toastr';
+import { toastrOptions, toastrOptionsDismiss } from './auth';
 
-// Deployed version:
 const API_FOOD = `/api/food/`;
-// Local version:
-// const API_FOOD = `http://localhost:3000/api/food/`;
 const API_CATEGORY = `${API_FOOD}category`;
 const API_SUBCATEGORY = `${API_FOOD}subcategory`;
 const API_ENTRY = `${API_FOOD}entry`;
@@ -28,7 +27,11 @@ export function getCategoriesRequest(userID) {
       }
     })
     .then(response => dispatch(getCategoriesSuccess(response.data)))
-    .catch(response => console.error('categories GET error:', response));
+    .catch(response => {
+      // console.error('categories GET error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error retrieving categories. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -62,8 +65,16 @@ export function addSubcategoryRequest(subcategory) {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(response => dispatch(addSubcategorySuccess(response.data)))
-    .catch(response => console.error('subcategories POST error:', response));
+    .then(response => {
+      dispatch(toastrActions.clean());
+      toastr.success('Variety added!', `The variety ${subcategory.name} was added successfully!`, toastrOptionsDismiss);
+      dispatch(addSubcategorySuccess(response.data));
+    })
+    .catch(response => {
+      // console.error('subcategories POST error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error adding a new variety. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -99,7 +110,11 @@ export function getSubcategoriesRequest(categoryID) {
       }
     })
     .then(response => dispatch(getSubcategoriesSuccess(response.data)))
-    .catch(response => console.error('subcategories GET error:', response));
+    .catch(response => {
+      // console.error('subcategories GET error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error retrieving varieties. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -140,11 +155,16 @@ export function addEntryRequest(entry) {
     })
     .then(response => {
       var res = JSON.parse(response.config.data);
-
+      dispatch(toastrActions.clean());
+      toastr.success('Entry added!', `Your entry was saved successfully!`, toastrOptionsDismiss);
       dispatch(addEntrySuccess(response.data));
       dispatch(getEntriesRequest(res.subcategoryID));
     })
-    .catch(response => console.error('le error in addEntryRequest:', response));
+    .catch(response => {
+      // console.error('le error in addEntryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error adding new entry', 'There was an error posting your newest entry. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -182,7 +202,11 @@ export function getEntriesRequest(subcategory) {
       }
     })
     .then(response => dispatch(getEntriesSuccess(response.data.reverse())))
-    .catch(response => console.error('le error:', response));
+    .catch(response => {
+      // console.error('le error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error retrieving entries', 'There was an error retrieving entries. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -198,15 +222,6 @@ function getEntriesSuccess(entries) {
     payload: entries
   }
 }
-
-// export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
-// function receiveEntries(subcategory, json) {
-//   return {
-//     type: RECEIVE_ENTRIES,
-//     payload: subcategory,
-//     entries: json.data.map(entry => entry.data)
-//   };
-// }
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
