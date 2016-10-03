@@ -30,6 +30,9 @@ module.exports = function (app, express) {
       '/api/user/signup',
       '/api/user/forgotPassword',
       '/api/user/resetPassword'
+      , '/api/food/entry' // Comment this out when done testing
+      , '/api/food/subcategory' // Comment this out when done testing
+      , '/api/food/category' // Comment this out when done testing
     ]})
   );
 

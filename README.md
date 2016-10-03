@@ -65,3 +65,9 @@ README.md
 package.json
 webpack.config.js
 ```
+
+
+GET    => READ
+POST   => CREATE
+DELETE => DELETE
+PUT    => UPDATE

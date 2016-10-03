@@ -8,9 +8,9 @@ import {
 import { push } from 'react-router-redux';
 
 // Deployed version:
-const API_USER = `/api/user/`;
+// const API_USER = `/api/user/`;
 // Local version:
-// const API_USER = `http://localhost:3000/api/user/`;
+const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;

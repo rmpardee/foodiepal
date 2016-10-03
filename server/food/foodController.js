@@ -75,6 +75,43 @@ module.exports = {
     }
   },
 
+  updateCategory: function(category, next) {
+    console.log('Inside updateEntry Controller: ', category);
+    var query = { _id: category._id };
+    var update = {
+      type: category.type,
+      notes: category.notes,
+      rating: category.rating
+    };
+    return Food.Category.update(query, update, function(err, success) {
+      if (err) {
+        console.log("err in controller updateEntry fn: ", err);
+        next(err);
+        return;
+      }
+      console.log('success: ', success);
+      next(success);
+      return;
+    });
+  },
+
+  deleteCategory: function(category, next) {
+    console.log('Inside deletesubcategory Controller: ', category);
+    var query = { _id: category._id };
+
+    return Food.Category.remove(query, function(err) {
+      if (err) {
+        console.log("err in controller delete category fn: ", err);
+        next(err);
+        return;
+      } else {
+        console.log('Success deleting category');
+        next();
+        return;
+      }
+    });
+  },
+
 // SUBCATEGORIES:
   // the input is the categoryID, which in this case will be the parent of the subcats we want
   getSubcategories: function (categoryID) {
@@ -107,6 +144,43 @@ module.exports = {
       }
       console.log('Success saving subcategory to db: ', savedSubcategory);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
+    });
+  },
+
+  updateSubcategory: function(subcategory, next) {
+    console.log('Inside updateEntry Controller: ', subcategory);
+    var query = { _id: subcategory._id };
+    var update = {
+      type: subcategory.type,
+      notes: subcategory.notes,
+      rating: subcategory.rating
+    };
+    return Food.Subcategory.update(query, update, function(err, success) {
+      if (err) {
+        console.log("err in controller updateEntry fn: ", err);
+        next(err);
+        return;
+      }
+      console.log('success: ', success);
+      next(success);
+      return;
+    });
+  },
+
+  deleteSubcategory: function(subcategory, next) {
+    console.log('Inside deletesubcategory Controller: ', subcategory);
+    var query = { _id: subcategory._id };
+
+    return Food.Subcategory.remove(query, function(err) {
+      if (err) {
+        console.log("err in controller delete subcategory fn: ", err);
+        next(err);
+        return;
+      } else {
+        console.log('Success deleting subcategory');
+        next();
+        return;
+      }
     });
   },
 
@@ -145,5 +219,43 @@ module.exports = {
       console.log('Success saving entry to db: ', savedEntry);
       // Since our POSTs return all the entries, which we get as a promise in the route itself, we don't need to return anything
     });
+  },
+
+  updateEntry: function(entry, next) {
+    console.log('Inside updateEntry Controller: ', entry);
+    var query = { _id: entry._id };
+    var update = {
+      type: entry.type,
+      notes: entry.notes,
+      rating: entry.rating
+    };
+    return Food.Entry.update(query, update, function(err, success) {
+      if (err) {
+        next(err);
+        console.log("err in controller updateEntry fn: ", err);
+        return;
+      }
+      next(success);
+      console.log('success: ', success);
+      return; //success;
+    });
+  },
+
+  deleteEntry: function(entry, next) {
+    console.log('Inside deleteEntry Controller: ', entry);
+    var query = { _id: entry._id };
+
+    return Food.Entry.remove(query, function(err) {
+      if (err) {
+        console.log("err in controller deleteEntry fn: ", err);
+        next(err);
+        return;
+      } else {
+        console.log('Success deleting entry');
+        next();
+        return;
+      }
+    });
   }
+
 };
