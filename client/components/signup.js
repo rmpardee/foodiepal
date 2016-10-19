@@ -8,6 +8,7 @@ export default class SignUp extends Component {
     //always reset that global state back to null when you REMOUNT
     // console.log("this.props in user component: ", this.props);
     // this.props.resetMe();
+    localStorage.removeItem('gourmandState');
   }
 
   // asyncValidating, 
