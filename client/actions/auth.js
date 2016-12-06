@@ -15,13 +15,17 @@ const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;
 const API_RESETPW_USER = `${API_USER}resetPassword`;
 
+// For Error
 export const toastrOptions = {
+  icon: 'error',
   timeOut: 0,
   showCloseButton: true,
   removeOnHover: false
 }
 
+// Logout (and other things?)
 export const toastrOptionsDismiss = {
+  icon: 'success',
   timeOut: 5000,
   showCloseButton: true,
   removeOnHover: false
