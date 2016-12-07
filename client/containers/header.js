@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logoutRequest } from '../actions/auth';
+import { logoutRequest, resetPasswordRequest } from '../actions/auth';
 
 
 class Header extends Component {
@@ -40,6 +40,10 @@ class Header extends Component {
     // TODO: add modal for change email form
   }
 
+  onResetPasswordRequest() {
+    this.props.resetPasswordRequest(this.state);
+  }
+
   onLogoutClick() {
     this.props.logoutRequest();
   }
@@ -63,7 +67,7 @@ class Header extends Component {
             <ul className='mobile-account-nav' tabIndex="5" onBlur={ this.closeAccountDropdown.bind(this) }>
               <li>
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
-                  
+                  <li onClick={ this.onResetPasswordRequest.bind(this) }>Change Password</li>
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>
@@ -81,7 +85,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logoutRequest }, dispatch);
+  return bindActionCreators({ logoutRequest, resetPasswordRequest }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
