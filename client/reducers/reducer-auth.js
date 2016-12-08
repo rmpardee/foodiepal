@@ -50,6 +50,7 @@ export default function(state = INITIAL_STATE, action) {
     return state;
 
   case RESET_PASSWORD_REQUEST:
+console.log('state: ', state, 'action: ', action);
     return state;
   case RESET_PASSWORD_SUCCESS:
     return action.payload;

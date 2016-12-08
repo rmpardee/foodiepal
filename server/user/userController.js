@@ -45,6 +45,8 @@ module.exports = {
 
   // Given a username/email, return that user and logs if user exists or not
   doesUserExist: function(email) {
+    console.log('email: ', email);
+
     return User.findOne({'email': email}, function(err, user) {
       if (err) {
         console.log('err in controller getUserLogIn fn: ', err);

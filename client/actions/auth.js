@@ -15,13 +15,14 @@ const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;
 const API_RESETPW_USER = `${API_USER}resetPassword`;
 
+
 // For Error
 export const toastrOptions = {
   icon: 'error',
   timeOut: 0,
   showCloseButton: true,
   removeOnHover: false
-}
+};
 
 // Logout (and other things?)
 export const toastrOptionsDismiss = {
@@ -29,7 +30,7 @@ export const toastrOptionsDismiss = {
   timeOut: 5000,
   showCloseButton: true,
   removeOnHover: false
-}
+};
 
 
 // SIGN-UP
@@ -192,6 +193,7 @@ export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
 export const FORGOT_PASSWORD_FAILURE = 'FORGOT_PASSWORD_FAILURE';
 
 export function forgotPasswordRequest(user) {
+  console.log('user in forgotPassword: ', user);
   return dispatch => {
     dispatch(forgotPassword(user));
     return axios({
@@ -250,11 +252,27 @@ export function setUserID(userID) {
   resetpwUserID = userID;
 }
 
-export function resetPasswordRequest(user) {
+export function resetPasswordRedirect(userID) {
+  console.log('userID: ', userID);
+  return dispatch => {
+    dispatch(logout());
+    localStorage.removeItem('jwtToken');
+    // Dispatch for removing current state variables?
+    // dispatch(removeCurrentUser());
+    dispatch(removeCurrentCategory());
+    dispatch(removeCurrentSubcategory());
+    dispatch(logoutSuccess());
+    dispatch(push(`/resetPassword?${userID}`));
+    localStorage.removeItem('gourmandState');
+  };
+}
+
+
+
+export function resetPasswordRequest(user, dispatch) {
   // add the userID we got from the forgot pw email URL to the user we send in our POST
   user.userID = resetpwUserID;
-  return dispatch => {
-    dispatch(resetPassword(user));
+  return new Promise ((reject, resolve) => {
     return axios({
       method: 'POST',
       url: API_RESETPW_USER,
@@ -265,29 +283,22 @@ export function resetPasswordRequest(user) {
         dispatch(toastrActions.clean());
         toastr.error('Reset Password Error', 'There was an error trying to reset your password. Please ensure your information is correct and try again.', toastrOptions);
         dispatch(resetPasswordFailure(response.data));
-        // reject(response.data);
+        reject(response.data);
       } else {
         dispatch(resetPasswordSuccess(response.data));
         dispatch(push('/u'));
         dispatch(toastrActions.clean());
         toastr.success('Reset Password Success', 'Password was reset successfully.', toastrOptionsDismiss);
-        // resolve();
+        resolve();
       }
     })
     .catch(response => {
-      console.error('reset password POST error:', response);
+      // console.error('reset password POST error:', response);
       dispatch(toastrActions.clean());
       toastr.error('Reset Password Error', 'There was an error in your request. Please try again.', toastrOptions);
-      // reject();
+      reject();
     });
-  };
-}
-
-function resetPassword(user) {
-  return {
-    type: RESET_PASSWORD_REQUEST,
-    payload: user
-  };
+  });
 }
 
 function resetPasswordSuccess(user) {
@@ -303,49 +314,3 @@ function resetPasswordFailure(user) {
     payload: user
   };
 }
-
-// export function resetPasswordRequest(user, dispatch) {
-//   // add the userID we got from the forgot pw email URL to the user we send in our POST
-//   user.userID = resetpwUserID;
-//   return new Promise ((reject, resolve) => {
-//     return axios({
-//       method: 'POST',
-//       url: API_RESETPW_USER,
-//       data: user
-//     })
-//     .then(response => {
-//       if (response.status !== 201) {
-//         dispatch(toastrActions.clean());
-//         toastr.error('Reset Password Error', 'There was an error trying to reset your password. Please ensure your information is correct and try again.', toastrOptions);
-//         dispatch(resetPasswordFailure(response.data));
-//         reject(response.data);
-//       } else {
-//         dispatch(resetPasswordSuccess(response.data));
-//         dispatch(push('/u'));
-//         dispatch(toastrActions.clean());
-//         toastr.success('Reset Password Success', 'Password was reset successfully.', toastrOptionsDismiss);
-//         resolve();
-//       }
-//     })
-//     .catch(response => {
-//       // console.error('reset password POST error:', response);
-//       dispatch(toastrActions.clean());
-//       toastr.error('Reset Password Error', 'There was an error in your request. Please try again.', toastrOptions);
-//       reject();
-//     });
-//   });
-// }
-
-// function resetPasswordSuccess(user) {
-//   return {
-//     type: RESET_PASSWORD_SUCCESS,
-//     payload: user
-//   };
-// }
-
-// function resetPasswordFailure(user) {
-//   return {
-//     type: RESET_PASSWORD_FAILURE,
-//     payload: user
-//   };
-// }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logoutRequest, resetPasswordRequest } from '../actions/auth';
+import { logoutRequest, resetPasswordRequest, resetPasswordRedirect } from '../actions/auth';
 
 
 class Header extends Component {
@@ -11,7 +11,7 @@ class Header extends Component {
       account: {
         menuActive: false
       }
-    }
+    };
   }
 
   constructor(props) {
@@ -24,8 +24,8 @@ class Header extends Component {
     this.setState({
       account: {
         menuActive: !activeFlag
-        }
-      });
+      }
+    });
   }
 
   closeAccountDropdown() {
@@ -41,7 +41,7 @@ class Header extends Component {
   }
 
   onResetPasswordRequest() {
-    this.props.resetPasswordRequest(this.state);
+    this.props.resetPasswordRedirect(this.props.auth.user._id);
   }
 
   onLogoutClick() {
@@ -85,13 +85,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logoutRequest, resetPasswordRequest }, dispatch);
+  return bindActionCreators({ logoutRequest, resetPasswordRequest, resetPasswordRedirect }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.contextTypes = {
   router: React.PropTypes.object,
-}
+};
 
 // <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>
