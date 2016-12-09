@@ -24,8 +24,6 @@ class AddCategory extends Component {
     this.setState({ name: event.target.value });
   }
 
-
-
   onFormSubmit(event) {
     event.preventDefault();
     this.props.addCategoryRequest(this.state);

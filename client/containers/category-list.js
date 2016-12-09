@@ -8,10 +8,9 @@ import {
   getCategoriesRequest,
   setCurrentCategory
 } from '../actions';
-
-//------------------------------------------------------
 import AddCategory from './add-category';
-//------------------------------------------------------
+
+
 
 class CategoryList extends Component {
   componentWillMount() {
@@ -25,7 +24,6 @@ class CategoryList extends Component {
   renderCategories() {
 
     const categories = this.props.categories;
-console.log('categories: ', categories);
     if (!categories.length) {
       return;
     }
@@ -62,8 +60,6 @@ console.log('categories: ', categories);
     );
   }
 
-
-//------------------------------------------------------
   openEntryForm(e) {
     e.preventDefault();
 
@@ -73,7 +69,6 @@ console.log('categories: ', categories);
       hideCloseButton: false
     });
   }
-
 
   renderAddNewButtonGrid() {
     return (
@@ -88,8 +83,6 @@ console.log('categories: ', categories);
     );
   }
 
-
-
   render() {
     return (
       <div className='grid-container'>
@@ -100,17 +93,13 @@ console.log('categories: ', categories);
       </div>
     );
   }
-//------------------------------------------------------
-
-
-
-
-
 }
+
 
 function mapStateToProps(state) {
   return state;
 }
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
