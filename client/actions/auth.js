@@ -257,8 +257,6 @@ export function resetPasswordRedirect(userID) {
   return dispatch => {
     dispatch(logout());
     localStorage.removeItem('jwtToken');
-    // Dispatch for removing current state variables?
-    // dispatch(removeCurrentUser());
     dispatch(removeCurrentCategory());
     dispatch(removeCurrentSubcategory());
     dispatch(logoutSuccess());
@@ -266,7 +264,6 @@ export function resetPasswordRedirect(userID) {
     localStorage.removeItem('gourmandState');
   };
 }
-
 
 
 export function resetPasswordRequest(user, dispatch) {

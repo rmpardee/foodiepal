@@ -8,6 +8,52 @@ const API_SUBCATEGORY = `${API_FOOD}subcategory`;
 const API_ENTRY = `${API_FOOD}entry`;
 
 // Category
+export const ADD_CATEGORY_REQUEST = 'ADD_CATEGORY_REQUEST';
+export const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
+export const ADD_CATEGORY_FAILURE = 'ADD_CATEGORY_FAILURE';
+export function addCategoryRequest(category) {
+console.log('category: ', category);
+  return dispatch => {
+    dispatch(addCategory());
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'POST',
+      url: API_CATEGORY,
+      data: category,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      dispatch(toastrActions.clean());
+      toastr.success('Category added!', `The variety ${category.name} was added successfully!`, toastrOptionsDismiss);
+      dispatch(addCategorySuccess(response.data));
+    })
+    .catch(response => {
+      // console.error('subcategories POST error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error adding a new category. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function addCategory() {
+  return {
+    type: ADD_CATEGORY_REQUEST
+  };
+}
+
+function addCategorySuccess(category) {
+  return {
+    type: ADD_CATEGORY_SUCCESS,
+    payload: category
+  };
+}
+
+
+
+
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
 export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE';
@@ -38,14 +84,14 @@ export function getCategoriesRequest(userID) {
 function getCategories() {
   return {
     type: GET_CATEGORIES_REQUEST
-  }
+  };
 }
 
 function getCategoriesSuccess(categories) {
   return {
     type: GET_CATEGORIES_SUCCESS,
     payload: categories
-  }
+  };
 }
 
 // Subcategory
@@ -81,14 +127,14 @@ export function addSubcategoryRequest(subcategory) {
 function addSubcategory() {
   return {
     type: ADD_SUBCATEGORY_REQUEST
-  }
+  };
 }
 
 function addSubcategorySuccess(subcategory) {
   return {
     type: ADD_SUBCATEGORY_SUCCESS,
     payload: subcategory
-  }
+  };
 }
 
 export const GET_SUBCATEGORIES_REQUEST = 'GET_SUBCATEGORIES_REQUEST';
