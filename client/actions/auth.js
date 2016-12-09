@@ -27,7 +27,7 @@ export const toastrOptions = {
 // Logout (and other things?)
 export const toastrOptionsDismiss = {
   icon: 'success',
-  timeOut: 5000,
+  timeOut: 4000,
   showCloseButton: true,
   removeOnHover: false
 };
@@ -193,7 +193,6 @@ export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
 export const FORGOT_PASSWORD_FAILURE = 'FORGOT_PASSWORD_FAILURE';
 
 export function forgotPasswordRequest(user) {
-  console.log('user in forgotPassword: ', user);
   return dispatch => {
     dispatch(forgotPassword(user));
     return axios({
@@ -253,7 +252,6 @@ export function setUserID(userID) {
 }
 
 export function resetPasswordRedirect(userID) {
-  console.log('userID: ', userID);
   return dispatch => {
     dispatch(logout());
     localStorage.removeItem('jwtToken');

@@ -17,7 +17,6 @@ module.exports = {
   },
 
   addCategory: function (data) {
-console.log('data: ', data);
     // create a new subcategory from the category model
     var newCategory = Food.Category({
       name: data.name,

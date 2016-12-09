@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { modal } from 'react-redux-modal';
+import { EditEntry } from './edit-entry';
+
 import {
   getCurrentSubcategory,
   getEntriesRequest
@@ -39,6 +43,16 @@ class EntryList extends Component {
     return newTimestamp;
   }
 
+
+  openEntryEdit(subcategory) {
+    modal.add(EditEntry, {
+      title: 'Edit Entry',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
+    });
+  }
+
+
   renderEntries() {
     const entries = this.props.entries.data;
 
@@ -57,6 +71,11 @@ class EntryList extends Component {
                 { this.renderRating(entry.rating) }
               </div>
               <p className='entry-listing-notes'>{ entry.notes }</p>
+
+
+              <button onClick={ this.openEntryEdit.bind(this) } className='btn btn-warn'>Change Entry</button>
+
+
             </div>
           </div>
         </li>

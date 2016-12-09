@@ -1,9 +1,13 @@
 import {
   ADD_ENTRY_REQUEST,
   ADD_ENTRY_SUCCESS,
+  EDIT_ENTRY_REQUEST,
+  EDIT_ENTRY_SUCCESS,
+  EDIT_ENTRY_FAILURE,
   GET_ENTRIES_REQUEST,
   GET_ENTRIES_SUCCESS
  } from '../actions';
+
 
 // const INITIAL_STATE = [];
 const INITIAL_STATE = {
@@ -33,13 +37,21 @@ export default function(state = INITIAL_STATE, action) {
     //   // data: action.payload
     //   isFetching: true
     // });
-
   case ADD_ENTRY_SUCCESS:
     // return state;
     return Object.assign({}, state, {
       data: action.payload,
       isFetching: false
     });
+
+
+  case EDIT_ENTRY_REQUEST:
+    return state;
+  case EDIT_ENTRY_SUCCESS:
+    return state;
+  case EDIT_ENTRY_FAILURE:
+    return state;
+
 
 
   default:

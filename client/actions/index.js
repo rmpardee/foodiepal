@@ -12,7 +12,7 @@ export const ADD_CATEGORY_REQUEST = 'ADD_CATEGORY_REQUEST';
 export const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
 export const ADD_CATEGORY_FAILURE = 'ADD_CATEGORY_FAILURE';
 export function addCategoryRequest(category) {
-console.log('category: ', category);
+
   return dispatch => {
     dispatch(addCategory());
     let token = localStorage.getItem('jwtToken');
@@ -27,7 +27,7 @@ console.log('category: ', category);
     })
     .then(response => {
       dispatch(toastrActions.clean());
-      toastr.success('Category added!', `The variety ${category.name} was added successfully!`, toastrOptionsDismiss);
+      toastr.success('Category added!', `The category ${category.name} was added successfully!`, toastrOptionsDismiss);
       dispatch(addCategorySuccess(response.data));
     })
     .catch(response => {
@@ -225,8 +225,71 @@ function addEntrySuccess(entries) {
   return {
     type: ADD_ENTRY_SUCCESS,
     payload: entries
-  }
+  };
 }
+
+
+
+
+
+
+//---------------------------------------------------
+
+export const EDIT_ENTRY_REQUEST = 'EDIT_ENTRY_REQUEST';
+export const EDIT_ENTRY_SUCCESS = 'EDIT_ENTRY_SUCCESS';
+export const EDIT_ENTRY_FAILURE = 'EDIT_ENTRY_FAILURE';
+
+
+export function editEntryRequest(entry) {
+  return dispatch => {
+    dispatch(editEntry(entry));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'PUT',
+      // TODO:  Make sure PUT is correct
+      url: API_ENTRY,
+      data: entry,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      dispatch(toastrActions.clean());
+      toastr.success('Entry edited!', `Your entry was edited successfully!`, toastrOptionsDismiss);
+      dispatch(editEntrySuccess(response.data));
+      dispatch(getEntriesRequest(res.subcategoryID));
+    })
+    .catch(response => {
+      // console.error('le error in editEntryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error edditing new entry', 'There was an error edditing this entry. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function editEntry(entry) {
+  return {
+    type: EDIT_ENTRY_REQUEST,
+    payload: entry
+  };
+}
+
+function editEntrySuccess(entries) {
+  return {
+    type: EDIT_ENTRY_SUCCESS,
+    payload: entries
+  };
+}
+
+//---------------------------------------------------
+
+
+
+
+
 
 export const GET_ENTRIES_REQUEST = 'GET_ENTRIES_REQUEST';
 export const GET_ENTRIES_SUCCESS = 'GET_ENTRIES_SUCCESS';
