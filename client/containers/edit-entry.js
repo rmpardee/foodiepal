@@ -50,7 +50,6 @@ class EditEntry extends Component {
 
   onDeleteEntry(e) {
     e.preventDefault();
-      // TODO: call action to delete the specified entry - need to pass in entry._id
 
     var confirmDelete = confirm("Are you sure you want to delete this entry?");
     if (confirmDelete) {

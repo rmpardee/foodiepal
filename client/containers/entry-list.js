@@ -45,7 +45,7 @@ class EntryList extends Component {
 
   openEntryEdit(e, entry) {
     e.preventDefault();
-    // TODO: figure out how to edit a specific entry
+
     modal.add(EditEntry, {
       modalProps: entry,
       title: 'Edit Entry',
