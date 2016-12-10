@@ -773,6 +773,7 @@ footer {
 }
 .entry-listing-notes {
   white-space: pre-line;
+  margin-bottom: 0px;
 }
 .detail-header {
   margin-bottom: 20px;
@@ -975,7 +976,7 @@ button[disabled=disabled], button:disabled {
 }
 .btn-danger {
   background-color: transparent;
-  color: red;
+  color: #FF5733;
   height: 35px;
   width: 150px;
   padding: -5px

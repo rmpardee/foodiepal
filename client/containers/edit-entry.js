@@ -8,11 +8,12 @@ class EditEntry extends Component {
 
   constructor(props) {
     super(props);
-
+    // TODO: figure out how to have state on the selected entry
     this.state = {
-      type: this.props.current.subcategory.name,
-      notes: this.props.current.subcategory.description,
+      type: this.props.current.subcategory.name, // This is the sub-cat, not selected entry
+      notes: this.props.current.subcategory.description, // This is the sub-cat, not selected entry
       rating: 0,
+      entryID: '?',
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
@@ -53,13 +54,11 @@ class EditEntry extends Component {
 
   onDeleteEntry(e) {
     e.preventDefault();
+      // TODO: call action to delete the specified entry.
 
     var confirmDelete = confirm("Are you sure you want to delete this entry?");
     if (confirmDelete) {
-      // TODO: call action to delete entry.  But pop-up warning first
       this.props.deleteEntryRequest(this.state);
-    } else {
-      return;
     }
   }
 
