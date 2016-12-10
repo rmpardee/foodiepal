@@ -175,7 +175,7 @@ function getSubcategoriesSuccess(subcategories) {
   return {
     type: GET_SUBCATEGORIES_SUCCESS,
     payload: subcategories
-  }
+  };
 }
 
 
@@ -265,7 +265,7 @@ export function editEntryRequest(entry) {
     .catch(response => {
       // console.error('le error in editEntryRequest:', response);
       dispatch(toastrActions.clean());
-      toastr.error('Error edditing new entry', 'There was an error edditing this entry. Please try again.', toastrOptions);
+      toastr.error('Error editing new entry', 'There was an error editing this entry. Please try again.', toastrOptions);
     });
   };
 }
@@ -283,6 +283,62 @@ function editEntrySuccess(entries) {
     payload: entries
   };
 }
+
+
+
+
+
+
+
+export const DELETE_ENTRY_REQUEST = 'DELETE_ENTRY_REQUEST';
+export const DELETE_ENTRY_SUCCESS = 'DELETE_ENTRY_SUCCESS';
+export const DELETE_ENTRY_FAILURE = 'DELETE_ENTRY_FAILURE';
+
+
+export function deleteEntryRequest(entry) {
+  return dispatch => {
+    dispatch(deleteEntry(entry));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'DELETE',
+      // TODO:  Make sure DELETE is correct
+      url: API_ENTRY,
+      data: entry,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      dispatch(toastrActions.clean());
+      toastr.success('Entry deleted!', `Your entry was deleted successfully!`, toastrOptionsDismiss);
+      dispatch(deleteEntrySuccess(response.data));
+      dispatch(getEntriesRequest(res.subcategoryID));
+    })
+    .catch(response => {
+      // console.error('le error in editEntryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error deleting new entry', 'There was an error deleting this entry. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function deleteEntry(entry) {
+  return {
+    type: DELETE_ENTRY_REQUEST,
+    payload: entry
+  };
+}
+
+function deleteEntrySuccess(entries) {
+  return {
+    type: DELETE_ENTRY_SUCCESS,
+    payload: entries
+  };
+}
+
 
 //---------------------------------------------------
 

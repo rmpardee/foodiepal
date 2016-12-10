@@ -4,6 +4,9 @@ import {
   EDIT_ENTRY_REQUEST,
   EDIT_ENTRY_SUCCESS,
   EDIT_ENTRY_FAILURE,
+  DELETE_ENTRY_REQUEST,
+  DELETE_ENTRY_SUCCESS,
+  DELETE_ENTRY_FAILURE,
   GET_ENTRIES_REQUEST,
   GET_ENTRIES_SUCCESS
  } from '../actions';
@@ -52,7 +55,12 @@ export default function(state = INITIAL_STATE, action) {
   case EDIT_ENTRY_FAILURE:
     return state;
 
-
+  case DELETE_ENTRY_REQUEST:
+    return state;
+  case DELETE_ENTRY_SUCCESS:
+    return state;
+  case DELETE_ENTRY_FAILURE:
+    return state;
 
   default:
     return state;

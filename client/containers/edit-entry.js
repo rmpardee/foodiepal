@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editEntryRequest } from '../actions/index';
+import { editEntryRequest, deleteEntryRequest } from '../actions/index';
 import Rater from 'react-rater';
 
 class EditEntry extends Component {
@@ -53,11 +53,11 @@ class EditEntry extends Component {
 
   onDeleteEntry(e) {
     e.preventDefault();
-    
+
     var confirmDelete = confirm("Are you sure you want to delete this entry?");
     if (confirmDelete) {
       // TODO: call action to delete entry.  But pop-up warning first
-
+      this.props.deleteEntryRequest(this.state);
     } else {
       return;
     }
@@ -98,7 +98,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ editEntryRequest }, dispatch);
+  return bindActionCreators({ editEntryRequest, deleteEntryRequest }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditEntry);
