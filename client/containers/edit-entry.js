@@ -13,7 +13,7 @@ class EditEntry extends Component {
       type: this.props.current.subcategory.name, // This is the sub-cat, not selected entry
       notes: this.props.current.subcategory.description, // This is the sub-cat, not selected entry
       rating: 0,
-      entryID: '?',
+      _id: '?', // This is what will be sent to server to update and delete
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
@@ -54,11 +54,11 @@ class EditEntry extends Component {
 
   onDeleteEntry(e) {
     e.preventDefault();
-      // TODO: call action to delete the specified entry.
+      // TODO: call action to delete the specified entry - need to pass in entry._id
 
     var confirmDelete = confirm("Are you sure you want to delete this entry?");
     if (confirmDelete) {
-      this.props.deleteEntryRequest(this.state);
+      this.props.deleteEntryRequest(this.state._id);
     }
   }
 
