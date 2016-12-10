@@ -44,11 +44,11 @@ class EntryList extends Component {
   }
 
 
-  openEntryEdit(e) {
+  openEntryEdit(e, entry) {
     e.preventDefault();
     // TODO: figure out how to edit a specific entry
-
     modal.add(EditEntry, {
+      modalProps: entry,
       title: 'Edit Entry',
       closeOnOutsideClick: true,
       hideCloseButton: false
@@ -76,7 +76,7 @@ class EntryList extends Component {
               <p className='entry-listing-notes'>{ entry.notes }</p>
 
 
-              <button value={ entry._id } onClick={ this.openEntryEdit.bind(this) } className='btn btn-warn'>Change Entry</button>
+              <button value={ entry._id } onClick={ (e) => this.openEntryEdit(e, entry) } className='btn btn-warn'>Change Entry</button>
 
 
             </div>

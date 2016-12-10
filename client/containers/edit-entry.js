@@ -8,12 +8,12 @@ class EditEntry extends Component {
 
   constructor(props) {
     super(props);
-    // TODO: figure out how to have state on the selected entry
+    // TODO: figure out how to get ratings to show
     this.state = {
-      type: this.props.current.subcategory.name, // This is the sub-cat, not selected entry
-      notes: this.props.current.subcategory.description, // This is the sub-cat, not selected entry
-      rating: 0,
-      _id: '?', // This is what will be sent to server to update and delete
+      type: this.props.modalProps.type,
+      notes: this.props.modalProps.notes,
+      rating: this.props.modalProps.rating,
+      _id: this.props.modalProps._id, // This is what will be sent to server to update and delete
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
@@ -58,7 +58,8 @@ class EditEntry extends Component {
 
     var confirmDelete = confirm("Are you sure you want to delete this entry?");
     if (confirmDelete) {
-      this.props.deleteEntryRequest(this.state._id);
+      this.props.deleteEntryRequest(this.state);
+      this.closeModal();
     }
   }
 
@@ -66,8 +67,6 @@ class EditEntry extends Component {
 
 
   render() {
-// console.log('this.props: ', this.props);
-
     return (
       <div className='modal-form-container'>
         <form onSubmit={ this.onFormSubmit }>

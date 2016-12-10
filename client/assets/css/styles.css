@@ -678,6 +678,10 @@ footer {
 .grid-links-block:hover .grid-link-icon {
   /*filter: grayscale(0);*/
 }
+/*This is for all new categories.  For now, there is a generic groceries.  Could be the Gourmand "G"?*/ 
+/*.grid-link-icon {
+  background-image: url('../img/groceries.svg');
+}*/
 .grid-link-icon-sub {
   background-image: url('../img/placeholder-picture.svg');
 }
