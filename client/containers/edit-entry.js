@@ -84,7 +84,7 @@ class EditEntry extends Component {
             onRate={ this.onRating.bind(this) }
             interactive={true}
           />
-          <button type="submit" className='btn btn-primary'>Change Entry</button>
+          <button type="submit" className='btn btn-primary'>Save Changes</button>
           <button onClick={ this.onDeleteEntry.bind(this) } className='btn btn-danger'>Delete Entry</button>
         </form>
       </div>

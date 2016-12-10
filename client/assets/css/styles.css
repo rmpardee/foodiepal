@@ -968,7 +968,7 @@ button[disabled=disabled], button:disabled {
 
 .btn-warn {
   background-color: transparent;
-  color: silver;
+  color: #86BBD8;
   height: 35px;
   width: 150px;
   padding: -5px
