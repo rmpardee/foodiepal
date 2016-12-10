@@ -47,7 +47,6 @@ export default function(state = INITIAL_STATE, action) {
       isFetching: false
     });
 
-
   case EDIT_ENTRY_REQUEST:
     return state;
   case EDIT_ENTRY_SUCCESS:

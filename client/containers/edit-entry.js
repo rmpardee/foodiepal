@@ -8,17 +8,15 @@ class EditEntry extends Component {
 
   constructor(props) {
     super(props);
-    // TODO: figure out how to get ratings to show
     this.state = {
       type: this.props.modalProps.type,
       notes: this.props.modalProps.notes,
       rating: this.props.modalProps.rating,
-      _id: this.props.modalProps._id, // This is what will be sent to server to update and delete
+      _id: this.props.modalProps._id,
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
     };
-
 
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
@@ -43,14 +41,12 @@ class EditEntry extends Component {
     }
   }
 
-
   onFormSubmit(event) {
     event.preventDefault();
 
     this.props.editEntryRequest(this.state);
     this.closeModal();
   }
-
 
   onDeleteEntry(e) {
     e.preventDefault();
@@ -62,9 +58,6 @@ class EditEntry extends Component {
       this.closeModal();
     }
   }
-
-
-
 
   render() {
     return (

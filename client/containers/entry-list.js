@@ -43,7 +43,6 @@ class EntryList extends Component {
     return newTimestamp;
   }
 
-
   openEntryEdit(e, entry) {
     e.preventDefault();
     // TODO: figure out how to edit a specific entry
@@ -54,7 +53,6 @@ class EntryList extends Component {
       hideCloseButton: false
     });
   }
-
 
   renderEntries() {
     const entries = this.props.entries.data;
