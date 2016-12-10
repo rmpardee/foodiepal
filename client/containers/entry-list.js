@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { modal } from 'react-redux-modal';
-import { EditEntry } from './edit-entry';
+import EditEntry from './edit-entry';
 
 import {
   getCurrentSubcategory,
@@ -44,7 +44,10 @@ class EntryList extends Component {
   }
 
 
-  openEntryEdit(subcategory) {
+  openEntryEdit(e) {
+    e.preventDefault();
+    // TODO: figure out how to edit a specific entry
+
     modal.add(EditEntry, {
       title: 'Edit Entry',
       closeOnOutsideClick: true,
@@ -73,14 +76,14 @@ class EntryList extends Component {
               <p className='entry-listing-notes'>{ entry.notes }</p>
 
 
-              <button onClick={ this.openEntryEdit.bind(this) } className='btn btn-warn'>Change Entry</button>
+              <button value={ entry._id } onClick={ this.openEntryEdit.bind(this) } className='btn btn-warn'>Change Entry</button>
 
 
             </div>
           </div>
         </li>
       );
-    })
+    });
   }
 
   renderAddNewBlock() {

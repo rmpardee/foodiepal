@@ -964,6 +964,25 @@ button[disabled=disabled], button:disabled {
   background-color: #86BBD8;
   color: #fff;
 }
+
+.btn-warn {
+  background-color: transparent;
+  color: silver;
+  height: 35px;
+  width: 150px;
+  padding: -5px
+  margin-bottom: 5px;
+}
+.btn-danger {
+  background-color: transparent;
+  color: red;
+  height: 35px;
+  width: 150px;
+  padding: -5px
+  margin-bottom: 5px;
+}
+
+
 .btn-primary:disabled {
   background-color: rgb(230, 230, 230);
 }
