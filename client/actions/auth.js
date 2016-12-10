@@ -15,17 +15,22 @@ const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;
 const API_RESETPW_USER = `${API_USER}resetPassword`;
 
+
+// For Error
 export const toastrOptions = {
+  icon: 'error',
   timeOut: 0,
   showCloseButton: true,
   removeOnHover: false
-}
+};
 
+// Logout (and other things?)
 export const toastrOptionsDismiss = {
-  timeOut: 5000,
+  icon: 'success',
+  timeOut: 4000,
   showCloseButton: true,
   removeOnHover: false
-}
+};
 
 
 // SIGN-UP
@@ -245,6 +250,19 @@ let resetpwUserID;
 export function setUserID(userID) {
   resetpwUserID = userID;
 }
+
+export function resetPasswordRedirect(userID) {
+  return dispatch => {
+    dispatch(logout());
+    localStorage.removeItem('jwtToken');
+    dispatch(removeCurrentCategory());
+    dispatch(removeCurrentSubcategory());
+    dispatch(logoutSuccess());
+    dispatch(push(`/resetPassword?${userID}`));
+    localStorage.removeItem('gourmandState');
+  };
+}
+
 
 export function resetPasswordRequest(user, dispatch) {
   // add the userID we got from the forgot pw email URL to the user we send in our POST

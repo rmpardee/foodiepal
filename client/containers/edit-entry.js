@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addEntryRequest } from '../actions';
+import { editEntryRequest, deleteEntryRequest } from '../actions/index';
 import Rater from 'react-rater';
 
-class AddEntry extends Component {
+class EditEntry extends Component {
+
   constructor(props) {
     super(props);
-
     this.state = {
-      type: '',
-      notes: '',
-      rating: 0,
+      type: this.props.modalProps.type,
+      notes: this.props.modalProps.notes,
+      rating: this.props.modalProps.rating,
+      _id: this.props.modalProps._id,
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
     };
-
 
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onNotesChange = this.onNotesChange.bind(this);
@@ -41,12 +41,21 @@ class AddEntry extends Component {
     }
   }
 
-
   onFormSubmit(event) {
     event.preventDefault();
 
-    this.props.addEntryRequest(this.state);
+    this.props.editEntryRequest(this.state);
     this.closeModal();
+  }
+
+  onDeleteEntry(e) {
+    e.preventDefault();
+
+    var confirmDelete = confirm("Are you sure you want to delete this entry?");
+    if (confirmDelete) {
+      this.props.deleteEntryRequest(this.state);
+      this.closeModal();
+    }
   }
 
   render() {
@@ -57,18 +66,18 @@ class AddEntry extends Component {
             value={ this.state.type }
             onChange={ this.onTypeChange }
             type="text"
-            placeholder="Type"
           />
           <textarea 
             value={ this.state.notes }
             onChange={ this.onNotesChange }
-            placeholder="Notes"
           />
           <Rater
+            rating={ this.state.rating }
             onRate={ this.onRating.bind(this) }
             interactive={true}
           />
-          <button type="submit" className='btn btn-primary'>Add Entry</button>
+          <button type="submit" className='btn btn-primary'>Save Changes</button>
+          <button onClick={ this.onDeleteEntry.bind(this) } className='btn btn-danger'>Delete Entry</button>
         </form>
       </div>
     );
@@ -80,7 +89,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addEntryRequest }, dispatch);
+  return bindActionCreators({ editEntryRequest, deleteEntryRequest }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(EditEntry);

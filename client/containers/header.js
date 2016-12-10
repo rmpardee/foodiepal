@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logoutRequest } from '../actions/auth';
+import { logoutRequest, resetPasswordRequest, resetPasswordRedirect } from '../actions/auth';
 
 
 class Header extends Component {
@@ -11,7 +11,7 @@ class Header extends Component {
       account: {
         menuActive: false
       }
-    }
+    };
   }
 
   constructor(props) {
@@ -24,8 +24,8 @@ class Header extends Component {
     this.setState({
       account: {
         menuActive: !activeFlag
-        }
-      });
+      }
+    });
   }
 
   closeAccountDropdown() {
@@ -38,6 +38,10 @@ class Header extends Component {
 
   onChangeEmailClick() {
     // TODO: add modal for change email form
+  }
+
+  onResetPasswordRequest() {
+    this.props.resetPasswordRedirect(this.props.auth.user._id);
   }
 
   onLogoutClick() {
@@ -63,7 +67,7 @@ class Header extends Component {
             <ul className='mobile-account-nav' tabIndex="5" onBlur={ this.closeAccountDropdown.bind(this) }>
               <li>
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
-                  
+                  <li onClick={ this.onResetPasswordRequest.bind(this) }>Change Password</li>
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>
               </li>
@@ -81,13 +85,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logoutRequest }, dispatch);
+  return bindActionCreators({ logoutRequest, resetPasswordRequest, resetPasswordRedirect }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 Header.contextTypes = {
   router: React.PropTypes.object,
-}
+};
 
 // <li onClick={ this.onChangeEmailClick.bind(this) }>Change Email</li>

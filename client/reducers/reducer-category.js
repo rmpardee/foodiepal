@@ -1,7 +1,11 @@
 import {
   GET_CATEGORIES_REQUEST,
   GET_CATEGORIES_SUCCESS,
-  GET_CATEGORIES_FAILURE
+  GET_CATEGORIES_FAILURE,
+  ADD_CATEGORY_REQUEST,
+  ADD_CATEGORY_SUCCESS,
+  ADD_CATEGORY_FAILURE
+
 } from '../actions';
 
 // import INITIAL_STATE from '../initialstate';
@@ -20,6 +24,12 @@ const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
+  case ADD_CATEGORY_REQUEST:
+    return state;
+  case ADD_CATEGORY_SUCCESS:
+    return action.payload;
+  case ADD_CATEGORY_FAILURE:
+    return state;
   case GET_CATEGORIES_REQUEST:
     return state;
   case GET_CATEGORIES_SUCCESS:

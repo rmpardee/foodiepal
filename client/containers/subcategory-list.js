@@ -40,7 +40,7 @@ class SubcategoryList extends Component {
         id: subcategory._id,
         name: subcategory.name,
         description: subcategory.description
-      }
+      };
 
       return (
         <li key={ subcategory._id } className='grid-links-block'>
@@ -54,7 +54,7 @@ class SubcategoryList extends Component {
           </Link>
         </li>
       );
-    })
+    });
   }
 
   renderAddNewButtonGrid() {

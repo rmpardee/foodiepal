@@ -387,7 +387,7 @@ nav {
           box-shadow: 0 2px 3px rgba(0, 0, 0, 0.19999999999999996);
   cursor: auto;
   display: block;
-  min-width: 160px;
+  min-width: 200px;
   padding: 20px 0;
   text-align: center;
 }
@@ -678,6 +678,10 @@ footer {
 .grid-links-block:hover .grid-link-icon {
   /*filter: grayscale(0);*/
 }
+/*This is for all new categories.  For now, there is a generic groceries.  Could be the Gourmand "G"?*/ 
+/*.grid-link-icon {
+  background-image: url('../img/groceries.svg');
+}*/
 .grid-link-icon-sub {
   background-image: url('../img/placeholder-picture.svg');
 }
@@ -773,6 +777,7 @@ footer {
 }
 .entry-listing-notes {
   white-space: pre-line;
+  margin-bottom: 0px;
 }
 .detail-header {
   margin-bottom: 20px;
@@ -964,6 +969,25 @@ button[disabled=disabled], button:disabled {
   background-color: #86BBD8;
   color: #fff;
 }
+
+.btn-warn {
+  background-color: transparent;
+  color: #86BBD8;
+  height: 35px;
+  width: 150px;
+  padding: -5px
+  margin-bottom: 5px;
+}
+.btn-danger {
+  background-color: transparent;
+  color: #FF5733;
+  height: 35px;
+  width: 150px;
+  padding: -5px
+  margin-bottom: 5px;
+}
+
+
 .btn-primary:disabled {
   background-color: rgb(230, 230, 230);
 }
