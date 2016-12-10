@@ -15,7 +15,7 @@ class AddEntry extends Component {
       categoryID: this.props.current.category.id,
       subcategoryID: this.props.current.subcategory.id,
       userID: this.props.current.user.id
-    }
+    };
 
 
     this.onTypeChange = this.onTypeChange.bind(this);

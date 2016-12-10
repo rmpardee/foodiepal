@@ -184,7 +184,6 @@ export const ADD_ENTRY_REQUEST = 'ADD_ENTRY_REQUEST';
 export const ADD_ENTRY_SUCCESS = 'ADD_ENTRY_SUCCESS';
 export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 
-
 export function addEntryRequest(entry) {
   return dispatch => {
     dispatch(addEntry(entry));
@@ -239,7 +238,6 @@ export const EDIT_ENTRY_REQUEST = 'EDIT_ENTRY_REQUEST';
 export const EDIT_ENTRY_SUCCESS = 'EDIT_ENTRY_SUCCESS';
 export const EDIT_ENTRY_FAILURE = 'EDIT_ENTRY_FAILURE';
 
-
 export function editEntryRequest(entry) {
   return dispatch => {
     dispatch(editEntry(entry));
@@ -285,15 +283,9 @@ function editEntrySuccess(entries) {
 }
 
 
-
-
-
-
-
 export const DELETE_ENTRY_REQUEST = 'DELETE_ENTRY_REQUEST';
 export const DELETE_ENTRY_SUCCESS = 'DELETE_ENTRY_SUCCESS';
 export const DELETE_ENTRY_FAILURE = 'DELETE_ENTRY_FAILURE';
-
 
 export function deleteEntryRequest(entry) {
   return dispatch => {

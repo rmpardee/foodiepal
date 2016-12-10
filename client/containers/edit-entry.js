@@ -80,6 +80,7 @@ class EditEntry extends Component {
             onChange={ this.onNotesChange }
           />
           <Rater
+            rating={ this.state.rating }
             onRate={ this.onRating.bind(this) }
             interactive={true}
           />
