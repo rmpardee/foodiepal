@@ -72,11 +72,7 @@ class EntryList extends Component {
                 { this.renderRating(entry.rating) }
               </div>
               <p className='entry-listing-notes'>{ entry.notes }</p>
-
-
-              <button value={ entry._id } onClick={ (e) => this.openEntryEdit(e, entry) } className='btn btn-warn'>Change Entry</button>
-
-
+              <button onClick={ (e) => this.openEntryEdit(e, entry) } className='btn btn-warn'>Change Entry</button>
             </div>
           </div>
         </li>

@@ -94,6 +94,114 @@ function getCategoriesSuccess(categories) {
   };
 }
 
+
+
+
+
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
+export const EDIT_CATEGORY_REQUEST = 'EDIT_CATEGORY_REQUEST';
+export const EDIT_CATEGORY_SUCCESS = 'EDIT_CATEGORY_SUCCESS';
+export const EDIT_CATEGORY_FAILURE = 'EDIT_CATEGORY_FAILURE';
+export function editEntryRequest(entry) {
+  return dispatch => {
+    dispatch(editEntry(entry));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'PUT',
+      url: API_ENTRY,
+      data: entry,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      dispatch(toastrActions.clean());
+      toastr.success('Entry edited!', `Your entry was edited successfully!`, toastrOptionsDismiss);
+      dispatch(editEntrySuccess(response.data));
+      dispatch(getEntriesRequest(res.subcategoryID));
+    })
+    .catch(response => {
+      // console.error('le error in editEntryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error editing new entry', 'There was an error editing this entry. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function editEntry(category) {
+  return {
+    type: EDIT_CATEGORY_REQUEST,
+    payload: category
+  };
+}
+
+function editEntrySuccess(categories) {
+  return {
+    type: EDIT_CATEGORY_SUCCESS,
+    payload: categories
+  };
+}
+
+
+export const DELETE_CATEGORY_REQUEST = 'DELETE_CATEGORY_REQUEST';
+export const DELETE_CATEGORY_SUCCESS = 'DELETE_CATEGORY_SUCCESS';
+export const DELETE_CATEGORY_FAILURE = 'DELETE_CATEGORY_FAILURE';
+export function deleteCategoryRequest(entry) {
+  return dispatch => {
+    dispatch(deleteEntry(entry));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'DELETE',
+      url: API_ENTRY,
+      data: entry,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      dispatch(toastrActions.clean());
+      toastr.success('Entry deleted!', `Your entry was deleted successfully!`, toastrOptionsDismiss);
+      dispatch(deleteEntrySuccess(response.data));
+      dispatch(getEntriesRequest(res.subcategoryID));
+    })
+    .catch(response => {
+      // console.error('le error in editEntryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error deleting new entry', 'There was an error deleting this entry. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function deleteCategory(category) {
+  return {
+    type: DELETE_CATEGORY_REQUEST,
+    payload: category
+  };
+}
+
+function deleteCategorySuccess(categories) {
+  return {
+    type: DELETE_CATEGORY_SUCCESS,
+    payload: categories
+  };
+}
+
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
+
+
+
+
+
 // Subcategory
 export const ADD_SUBCATEGORY_REQUEST = 'ADD_SUBCATEGORY_REQUEST';
 export const ADD_SUBCATEGORY_SUCCESS = 'ADD_SUBCATEGORY_SUCCESS';
@@ -237,7 +345,6 @@ export function editEntryRequest(entry) {
     
     return axios({
       method: 'PUT',
-      // TODO:  Make sure PUT is correct
       url: API_ENTRY,
       data: entry,
       contentType: 'application/json',
@@ -285,7 +392,6 @@ export function deleteEntryRequest(entry) {
     
     return axios({
       method: 'DELETE',
-      // TODO:  Make sure DELETE is correct
       url: API_ENTRY,
       data: entry,
       contentType: 'application/json',
@@ -354,14 +460,14 @@ export function getEntriesRequest(subcategory) {
 function getEntries() {
   return {
     type: GET_ENTRIES_REQUEST
-  }
+  };
 }
 
 function getEntriesSuccess(entries) {
   return {
     type: GET_ENTRIES_SUCCESS,
     payload: entries
-  }
+  };
 }
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
@@ -378,61 +484,61 @@ export function setCurrentUser(user) {
   return {
     type: SET_CURRENT_USER,
     payload: user
-  }
+  };
 }
 
 export function setCurrentCategory(category) {
   return {
     type: SET_CURRENT_CATEGORY,
     payload: category
-  }
+  };
 }
 
 export function setCurrentSubcategory(subcategory) {
   return {
     type: SET_CURRENT_SUBCATEGORY,
     payload: subcategory
-  }
+  };
 }
 
 export function getCurrentUser() {
   return {
     type: GET_CURRENT_USER,
     // payload: user
-  }
+  };
 }
 
 export function getCurrentCategory() {
   return {
     type: GET_CURRENT_CATEGORY,
     // payload: category
-  }
+  };
 }
 
 export function getCurrentSubcategory() {
   return {
     type: GET_CURRENT_SUBCATEGORY,
     // payload: subcategory
-  }
+  };
 }
 
 export function removeCurrentUser() {
   return {
     type: REMOVE_CURRENT_USER,
     // payload: user
-  }
+  };
 }
 
 export function removeCurrentCategory() {
   return {
     type: REMOVE_CURRENT_CATEGORY,
     // payload: category
-  }
+  };
 }
 
 export function removeCurrentSubcategory() {
   return {
     type: REMOVE_CURRENT_SUBCATEGORY,
     // payload: subcategory
-  }
+  };
 }

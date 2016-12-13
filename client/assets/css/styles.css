@@ -970,6 +970,18 @@ button[disabled=disabled], button:disabled {
   color: #fff;
 }
 
+.btn-edit {
+  float: right;
+  background-color: transparent;
+  color: #86BBD8;
+  border: 0px;
+  text-align: right
+  height: 32px;
+  margin-top: 15px
+  margin: 0px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
 .btn-warn {
   background-color: transparent;
   color: #86BBD8;
@@ -986,7 +998,13 @@ button[disabled=disabled], button:disabled {
   padding: -5px
   margin-bottom: 5px;
 }
-
+.btn-dangerdanger {
+    background-color: transparent;
+  color: #FF5733;
+  height: 35px;
+  padding: -5px
+  margin-bottom: 5px;
+}
 
 .btn-primary:disabled {
   background-color: rgb(230, 230, 230);
