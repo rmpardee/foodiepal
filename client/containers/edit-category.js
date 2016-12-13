@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editCategoryRequest, deleteCategoryRequest } from '../actions/index';
-import Rater from 'react-rater';
 
 class EditEntry extends Component {
 
@@ -36,12 +35,21 @@ class EditEntry extends Component {
   onDeleteCategory(e) {
     e.preventDefault();
 
-    var confirmDelete = confirm("Are you sure you want to delete this Categoy? It will remove all Sub-Categories and Entries that are listed under it.  You can only get them back by re-creating the category with the same name.");
+    var confirmDelete = confirm("Are you sure you want to delete this Categoy? It will remove all Sub-Categories and Entries that are listed under it - forever...");
     if (confirmDelete) {
       this.props.deleteCategoryRequest(this.state);
       this.closeModal();
     }
   }
+
+
+
+
+  // setCategory(category) {
+  //   this.props.setCurrentCategory(category);
+  // }
+
+
 
   render() {
     return (

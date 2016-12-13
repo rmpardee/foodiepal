@@ -76,12 +76,12 @@ module.exports = {
   },
 
   updateCategory: function(category, next) {
-    console.log('Inside updateEntry Controller: ', category);
-    var query = { _id: category._id };
+    var query = { _id: category.categoryID };
     var update = {
-      type: category.type,
-      notes: category.notes,
-      rating: category.rating
+      name: category.type,
+      ancestors: {
+        user: category.userID
+      }
     };
     return Food.Category.update(query, update, function(err, success) {
       if (err) {

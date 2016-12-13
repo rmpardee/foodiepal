@@ -11,13 +11,13 @@ import EditCategory from './edit-category';
 
 class Subcategory extends Component {
   componentWillMount() {
-    // console.log('call fetch action for subcategories');
+    console.log('call fetch action for subcategories');
+    // this.props.???????????????(this.props.current.category.id);
   }
 
   constructor(props) {
     super(props);
   }
-
 
   openCategoryEdit(e, category) {
     e.preventDefault();
