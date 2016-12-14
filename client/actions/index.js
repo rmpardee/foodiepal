@@ -26,6 +26,8 @@ export function addCategoryRequest(category) {
       }
     })
     .then(response => {
+      // Sort the categories
+      response.data = response.data.sort(compare);      
       dispatch(toastrActions.clean());
       toastr.success('Category added!', `The category ${category.name} was added successfully!`, toastrOptionsDismiss);
       dispatch(addCategorySuccess(response.data));
@@ -134,9 +136,14 @@ export function editCategoryRequest(category) {
       dispatch(toastrActions.clean());
       toastr.success('Category edited!', `Your category was edited successfully!`, toastrOptionsDismiss);
       dispatch(editCategorySuccess(response.data));
+      let updateCategory = {
+        id: category.categoryID,
+        name: category.type
+      };
+      dispatch(setCurrentCategory(updateCategory));
     })
     .catch(response => {
-      // console.error('le error in editCategoryRequest:', response);
+      // console.error('error in editCategoryRequest:', response);
       dispatch(toastrActions.clean());
       toastr.error('Error editing new category', 'There was an error editing this category. Please try again.', toastrOptions);
     });

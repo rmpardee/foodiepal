@@ -56,6 +56,8 @@ export default function(state = INITIAL_STATE, action) {
     return state;
   case GET_CATEGORIES_SUCCESS:
     return action.payload;
+  case GET_CATEGORIES_FAILURE:
+    return state;
   default:
     return state;
   }

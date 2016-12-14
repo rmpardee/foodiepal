@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import EntryList from './entry-list';
 import SubcategoryList from './subcategory-list';
 import ReactCSS from 'react-addons-css-transition-group';
 
@@ -11,8 +9,7 @@ import EditCategory from './edit-category';
 
 class Subcategory extends Component {
   componentWillMount() {
-    console.log('call fetch action for subcategories');
-    // this.props.???????????????(this.props.current.category.id);
+    // console.log('call fetch action for subcategories');
   }
 
   constructor(props) {
