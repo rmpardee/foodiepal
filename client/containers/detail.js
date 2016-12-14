@@ -38,7 +38,23 @@ class Detail extends Component {
   }  
 
   render() {
+
     const subcategory = this.props.current.subcategory;
+
+    if (subcategory.id === 1) {
+      return (
+      <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+        <div className='container'>
+          <div className='content'>
+            <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> { subcategory.name }
+            </h6>
+          </div>
+        </div>
+      </ReactCSS>
+      );
+    }
+
+    
 
     return (
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>

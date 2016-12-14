@@ -36,12 +36,10 @@ class SubcategoryList extends Component {
       );
     }
 
-
     const category = this.props.current.category.name;
     const subcategories = this.props.subcategories.data;
 
     let categoryClassName = category.replace(/(\s+?)/g,"-").toLowerCase();
-
     return subcategories.map((subcategory) => {
       let subcategoryInfo = {
         id: subcategory._id,

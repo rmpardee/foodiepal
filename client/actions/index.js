@@ -178,8 +178,8 @@ export function deleteCategoryRequest(category) {
       }
     })
     .then(response => {
-      var res = JSON.parse(response.config.data);
-      dispatch(toastrActions.clean());
+      // var res = JSON.parse(response.config.data);
+      // dispatch(toastrActions.clean());
       // toastr.success('Category deleted!', `Your category was deleted successfully!`, toastrOptionsDismiss);
       dispatch(deleteCategorySuccess(response.data));
       let updateCategory = {
@@ -187,6 +187,7 @@ export function deleteCategoryRequest(category) {
         name: `${category.type} - DELETED`
       };
       dispatch(setCurrentCategory(updateCategory));
+      // dispatch(getSubcategoriesSuccess(response.data));
     })
     .catch(response => {
       // console.error('le error in editCategoryRequest:', response);
@@ -330,6 +331,7 @@ export function editSubcategoryRequest(subcategory) {
         description: subcategory.description
       };
       dispatch(setCurrentSubcategory(updateSubcategory));
+      dispatch(getSubcategoriesSuccess(response.data));
     })
     .catch(response => {
       console.error('error in editSubcategoryRequest:', response);
@@ -347,7 +349,6 @@ function editSubcategory(subcategory) {
 }
 
 function editSubcategorySuccess(subcategories) {
- console.log('subcategories: ', subcategories); 
   return {
     type: EDIT_SUBCATEGORY_SUCCESS,
     payload: subcategories
@@ -358,9 +359,9 @@ function editSubcategorySuccess(subcategories) {
 export const DELETE_SUBCATEGORY_REQUEST = 'DELETE_SUBCATEGORY_REQUEST';
 export const DELETE_SUBCATEGORY_SUCCESS = 'DELETE_SUBCATEGORY_SUCCESS';
 export const DELETE_SUBCATEGORY_FAILURE = 'DELETE_SUBCATEGORY_FAILURE';
-export function deleteSubategoryRequest(subcategory) {
+export function deleteSubcategoryRequest(subcategory) {
   return dispatch => {
-    dispatch(deleteSubategory(subcategory));
+    dispatch(deleteSubcategory(subcategory));
     let token = localStorage.getItem('jwtToken');
     
     return axios({
@@ -376,12 +377,13 @@ export function deleteSubategoryRequest(subcategory) {
       var res = JSON.parse(response.config.data);
       dispatch(toastrActions.clean());
       // toastr.success('Category deleted!', `Your subcategory was deleted successfully!`, toastrOptionsDismiss);
-      dispatch(deleteCategorySuccess(response.data));
+      dispatch(deleteSubcategorySuccess(response.data));
       let updateSubcategory = {
         id: 1,
-        name: `${subcategory.type} - DELETED`
+        name: `${subcategory.name} - DELETED`
       };
-      dispatch(setCurrentCategory(updateSubcategory));
+      dispatch(setCurrentSubcategory(updateSubcategory));
+      dispatch(getSubcategoriesSuccess(response.data));
     })
     .catch(response => {
       // console.error('le error in editSubcategoryRequest:', response);
@@ -391,14 +393,14 @@ export function deleteSubategoryRequest(subcategory) {
   };
 }
 
-function deleteCategory(subcategory) {
+function deleteSubcategory(subcategory) {
   return {
     type: DELETE_SUBCATEGORY_REQUEST,
     payload: subcategory
   };
 }
 
-function deleteCategorySuccess(subcategories) {
+function deleteSubcategorySuccess(subcategories) {
   return {
     type: DELETE_SUBCATEGORY_SUCCESS,
     payload: subcategories

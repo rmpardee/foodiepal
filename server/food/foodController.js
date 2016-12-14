@@ -167,7 +167,7 @@ module.exports = {
 
   deleteSubcategory: function(subcategory, next) {
     console.log('Inside deletesubcategory Controller: ', subcategory);
-    var query = { _id: subcategory._id };
+    var query = { _id: subcategory.subcategoryID };
 
     return Food.Subcategory.remove(query, function(err) {
       if (err) {
