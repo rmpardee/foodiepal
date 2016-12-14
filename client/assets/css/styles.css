@@ -975,6 +975,8 @@ button[disabled=disabled], button:disabled {
   background-color: transparent;
   color: #86BBD8;
   border: 0px;
+  position: relative;
+  top: 5px;
   text-align: right
   height: 32px;
   margin-top: 15px

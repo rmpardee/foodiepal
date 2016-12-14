@@ -187,7 +187,7 @@ export function deleteCategoryRequest(category) {
         name: `${category.type} - DELETED`
       };
       dispatch(setCurrentCategory(updateCategory));
-      // dispatch(getSubcategoriesSuccess(response.data));
+      dispatch(getSubcategoriesSuccess(response.data));
     })
     .catch(response => {
       // console.error('le error in editCategoryRequest:', response);
