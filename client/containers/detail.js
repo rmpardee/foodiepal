@@ -6,7 +6,8 @@ import { modal } from 'react-redux-modal';
 import AddEntry from './add-entry';
 import EntryList from './entry-list';
 import { getCurrentSubcategory } from '../actions';
-import ReactCSS from 'react-addons-css-transition-group'
+import ReactCSS from 'react-addons-css-transition-group';
+import EditSubcategory from './edit-subcategory';
 
 class Detail extends Component {
   // componentWillMount() {
@@ -25,6 +26,17 @@ class Detail extends Component {
     });
   }
 
+  openSubcategoryEdit(e, subcategory) {
+    e.preventDefault();
+
+    modal.add(EditSubcategory, {
+      modalProps: subcategory,
+      title: 'Edit Subcategory',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
+    });
+  }  
+
   render() {
     const subcategory = this.props.current.subcategory;
 
@@ -32,8 +44,9 @@ class Detail extends Component {
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
         <div className='container'>
           <div className='content'>
-            <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> { subcategory.name }</h6>
-            
+            <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> { subcategory.name }
+              <button className='btn-edit' onClick={ (e) => this.openSubcategoryEdit(e, this.props.current) }>Edit {subcategory.name}</button>
+            </h6>
             <div className='detail-header'>
               <h1 className='detail-header-title'>{ subcategory.name }</h1>
               <p>{ subcategory.description }</p>

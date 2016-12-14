@@ -32,6 +32,7 @@ class EditEntry extends Component {
     this.closeModal();
   }
 
+  // TODO: remove deleted category route from react-router history.  
   onDeleteCategory(e) {
     e.preventDefault();
 
@@ -41,14 +42,6 @@ class EditEntry extends Component {
       this.closeModal();
     }
   }
-
-
-
-
-  // setCategory(category) {
-  //   this.props.setCurrentCategory(category);
-  // }
-
 
 
   render() {

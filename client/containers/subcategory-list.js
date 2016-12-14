@@ -30,6 +30,13 @@ class SubcategoryList extends Component {
   }
 
   renderSubcategories() {
+    if (this.props.current.category.id === 1) {
+      return (
+        <div></div>
+      );
+    }
+
+
     const category = this.props.current.category.name;
     const subcategories = this.props.subcategories.data;
 
@@ -71,6 +78,12 @@ class SubcategoryList extends Component {
   }
 
   renderAddNewBlock() {
+    if (this.props.current.category.id === 1) {
+      return (
+        <div></div>
+      );
+    }
+
     let categoryName = this.props.current.category.name.toLowerCase();
 
     return (

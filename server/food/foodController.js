@@ -97,7 +97,7 @@ module.exports = {
 
   deleteCategory: function(category, next) {
     console.log('Inside deletesubcategory Controller: ', category);
-    var query = { _id: category._id };
+    var query = { _id: category.categoryID };
 
     return Food.Category.remove(query, function(err) {
       if (err) {
@@ -148,12 +148,10 @@ module.exports = {
   },
 
   updateSubcategory: function(subcategory, next) {
-    console.log('Inside updateEntry Controller: ', subcategory);
-    var query = { _id: subcategory._id };
+    var query = { _id: subcategory.subcategoryID };
     var update = {
-      type: subcategory.type,
-      notes: subcategory.notes,
-      rating: subcategory.rating
+      name: subcategory.name,
+      description: subcategory.description
     };
     return Food.Subcategory.update(query, update, function(err, success) {
       if (err) {

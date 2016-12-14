@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SubcategoryList from './subcategory-list';
 import ReactCSS from 'react-addons-css-transition-group';
-
 import { modal } from 'react-redux-modal';
 import EditCategory from './edit-category';
 
@@ -18,7 +17,7 @@ class Subcategory extends Component {
 
   openCategoryEdit(e, category) {
     e.preventDefault();
-    console.log('entry: ', category);
+
     modal.add(EditCategory, {
       modalProps: category,
       title: 'Edit Category',
@@ -28,11 +27,26 @@ class Subcategory extends Component {
   }
 
   render() {
+
+    if (this.props.current.category.id === 1) {
+      return (
+      <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+        <div className='container'>
+          <div className='content'>
+            <h6 className='grid-title'>{this.props.current.category.name}</h6>
+          </div>
+        </div>
+      </ReactCSS>
+      );
+    }
+
     return (
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
       <div className='container'>
         <div className='content'>
-          <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> Varieties><button className='btn-edit' onClick={ (e) => this.openCategoryEdit(e, this.props.current) }>Edit {this.props.current.category.name}</button></h6>
+          <h6 className='grid-title'>{ this.props.current.category.name } <span className='breadcrumbs-separator'>&rsaquo;</span> Varieties>
+            <button className='btn-edit' onClick={ (e) => this.openCategoryEdit(e, this.props.current) }>Edit {this.props.current.category.name}</button>
+          </h6>
           <SubcategoryList />
         </div>
       </div>
