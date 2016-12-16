@@ -680,7 +680,7 @@ footer {
 }
 /*This is for all new categories.  For now, there is a generic groceries.  Could be the Gourmand "G"?*/ 
 /*.grid-link-icon {
-  background-image: url('../img/groceries.svg');
+  background-image: url('../img/restaurant.svg');
 }*/
 .grid-link-icon-sub {
   background-image: url('../img/placeholder-picture.svg');
@@ -706,11 +706,138 @@ footer {
 .grid-link-icon-coffee {
   background-image: url('../img/coffee.svg');
 }
+.grid-link-icon-olive-oil {
+  background-image: url('../img/olive-oil.svg');
+}
 .grid-link-icon-cocktails {
   background-image: url('../img/glass.svg');
 }
-.grid-link-icon-olive-oil {
+.grid-link-icon-oils {
   background-image: url('../img/olive-oil.svg');
+}
+.grid-link-icon-oil {
+  background-image: url('../img/olive-oil.svg');
+}
+
+.grid-link-icon-boba {
+  background-image: url('../img/img2/frappe.svg');
+}
+.grid-link-icon-bread {
+  background-image: url('../img/img2/baguette.svg');
+}
+.grid-link-icon-cereal {
+  background-image: url('../img/img2/cereals.svg');
+}
+.grid-link-icon-chilis {
+  background-image: url('../img/img2/chili.svg');
+}
+.grid-link-icon-condiments {
+  background-image: url('../img/img2/mustard.svg');
+}
+.grid-link-icon-cookies {
+  background-image: url('../img/img2/cookies.svg');
+}
+.grid-link-icon-cooking-utensils {
+  background-image: url('../img/img2/spatula.svg');
+}
+.grid-link-icon-cookware {
+  background-image: url('../img/img2/pot.svg');
+}
+.grid-link-icon-dairy {
+  background-image: url('../img/img2/milk.svg');
+}
+.grid-link-icon-desserts {
+  background-image: url('../img/img2/pudding.svg');
+}
+.grid-link-icon-fruit {
+  background-image: url('../img/img2/fruits.svg');
+}
+.grid-link-icon-gastropub {
+  background-image: url('../img/img2/hamburguer.svg');
+}
+.grid-link-icon-grains {
+  background-image: url('../img/img2/grain.svg');
+}
+.grid-link-icon-juice {
+  background-image: url('../img/img2/juice.svg');
+}
+.grid-link-icon-legumes {
+  background-image: url('../img/img2/peas.svg');
+}
+.grid-link-icon-meats {
+  background-image: url('../img/img2/steak.svg');
+}
+.grid-link-icon-milks {
+  background-image: url('../img/img2/milks.svg');
+}
+.grid-link-icon-nuts-and-seeds {
+  background-image: url('../img/img2/seeds.svg');
+}
+.grid-link-icon-pasta {
+  background-image: url('../img/img2/pasta.svg');
+}
+.grid-link-icon-pastry {
+  background-image: url('../img/img2/croissant.svg');
+}
+.grid-link-icon-peppers {
+  background-image: url('../img/img2/chili.svg');
+}
+.grid-link-icon-pickled {
+  background-image: url('../img/img2/pickles.svg');
+}
+.grid-link-icon-pizza {
+  background-image: url('../img/img2/pizza.svg');
+}
+.grid-link-icon-poultry {
+  background-image: url('../img/img2/turkey.svg');
+}
+.grid-link-icon-preserves {
+  background-image: url('../img/img2/jam.svg');
+}
+.grid-link-icon-produce {
+  background-image: url('../img/img2/chives.svg');
+}
+.grid-link-icon-mushrooms {
+  background-image: url('../img/img2/mushrooms.svg');
+}
+.grid-link-icon-sauces {
+  background-image: url('../img/img2/sauce.svg');
+}
+.grid-link-icon-seeds {
+  background-image: url('../img/img2/seeds.svg');
+}
+.grid-link-icon-soup {
+  background-image: url('../img/img2/noodles.svg');
+}
+.grid-link-icon-spreads {
+  background-image: url('../img/img2/butter.svg');
+}
+.grid-link-icon-sodas {
+  background-image: url('../img/img2/can.svg');
+}
+.grid-link-icon-snacks {
+  background-image: url('../img/img2/biscuit.svg');
+}
+.grid-link-icon-tea {
+  background-image: url('../img/img2/tea.svg');
+}
+.grid-link-icon-seafood {
+  background-image: url('../img/img2/salmon.svg');
+}
+.grid-link-icon-spices {
+  background-image: url('../img/img2/grinder.svg');
+}
+.grid-link-icon-spirits {
+  background-image: url('../img/img2/spirits.svg');
+}
+.grid-link-icon-sushi {
+  background-image: url('../img/img2/sushi.svg');
+}
+.grid-link-icon-vinegar {
+  background-image: url('../img/olive-oil.svg');
+}
+.grid-link-icon-water {
+  background-image: url('../img/img2/water.svg');
 }
 .react-rater {
   margin-bottom: 20px;
