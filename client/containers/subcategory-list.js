@@ -61,6 +61,9 @@ class SubcategoryList extends Component {
       } else {
         thisClassName = categoryClassName;
       }
+      if (iconList.indexOf(thisClassName) == -1) {
+        thisClassName = 'default';
+      }
 
       return (
         <li key={ subcategory._id } className='grid-links-block'>

@@ -9,6 +9,7 @@ import {
   setCurrentCategory
 } from '../actions';
 import AddCategory from './add-category';
+import { iconList } from '../assets/img/icon-catalogue';
 
 
 
@@ -33,6 +34,11 @@ class CategoryList extends Component {
       if (categoryClassName[categoryClassName.length-1] === 's') {
         categoryClassName = categoryClassName.substring(0, categoryClassName.length - 1);
       }
+
+      if (iconList.indexOf(categoryClassName) === -1) {
+        categoryClassName = 'default';
+      }
+
       let categoryInfo = {
         id: category._id,
         name: category.name

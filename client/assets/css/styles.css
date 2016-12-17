@@ -696,7 +696,7 @@ footer {
   /*filter: grayscale(0);*/
 }
 /*This is for all new categories.  For now, there is a generic groceries.  Could be the Gourmand "G"?*/ 
-.grid-link-icon {
+.grid-link-icon-default {
   background-image: url('../img/logo-G.ico');
 }
 .grid-link-icon-sub {
