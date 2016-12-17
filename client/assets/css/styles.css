@@ -659,6 +659,8 @@ footer {
 }
 .grid-link-container-modal {
   position: relative;
+  margin: -25px;
+  margin-top: 10px;
 }
 .grid-link-icon,
 .grid-link-name {
@@ -687,7 +689,8 @@ footer {
   font-size: 3em;
   font-weight: 700;
   height: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
+  margin-top: 10px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
   width: auto;
@@ -742,6 +745,9 @@ footer {
 .grid-link-icon-berrie {
   background-image: url('../img/img2/blueberries.svg');
 }
+.grid-link-icon-beverage {
+  background-image: url('../img/img2/beverage.svg');
+}
 .grid-link-icon-boba {
   background-image: url('../img/img2/frappe.svg');
 }
@@ -751,14 +757,23 @@ footer {
 .grid-link-icon-bread {
   background-image: url('../img/img2/baguette.svg');
 }
+.grid-link-icon-candy {
+  background-image: url('../img/img2/candy.svg');
+}
 .grid-link-icon-cereal {
   background-image: url('../img/img2/cereals.svg');
+}
+.grid-link-icon-champagne {
+  background-image: url('../img/img2/champagne.svg');
 }
 .grid-link-icon-chili {
   background-image: url('../img/img2/chili.svg');
 }
 .grid-link-icon-chip {
   background-image: url('../img/img2/chips.svg');
+}
+.grid-link-icon-confectionary {
+  background-image: url('../img/img2/cupcake.svg');
 }
 .grid-link-icon-condiment {
   background-image: url('../img/img2/mustard.svg');
@@ -771,6 +786,12 @@ footer {
 }
 .grid-link-icon-cookware {
   background-image: url('../img/img2/pot.svg');
+}
+.grid-link-icon-cupcake {
+  background-image: url('../img/img2/cupcake.svg');
+}
+.grid-link-icon-cutlery {
+  background-image: url('../img/img2/knives.svg');
 }
 .grid-link-icon-dairy {
   background-image: url('../img/img2/milk.svg');
@@ -808,6 +829,9 @@ footer {
 .grid-link-icon-lager {
   background-image: url('../img/beer.svg');
 }
+.grid-link-icon-lamb {
+  background-image: url('../img/img2/lamb.svg');
+}
 .grid-link-icon-legume {
   background-image: url('../img/img2/peas.svg');
 }
@@ -841,8 +865,17 @@ footer {
 .grid-link-icon-pickled {
   background-image: url('../img/img2/pickles.svg');
 }
+.grid-link-icon-pie {
+  background-image: url('../img/img2/pie.svg');
+}
+.grid-link-icon-pilsner {
+  background-image: url('../img/img2/beer-glass.svg');
+}
 .grid-link-icon-pizza {
   background-image: url('../img/img2/pizza.svg');
+}
+.grid-link-icon-prosecco {
+  background-image: url('../img/img2/champagne.svg');
 }
 .grid-link-icon-pork {
   background-image: url('../img/img2/ham.svg');
@@ -854,7 +887,16 @@ footer {
   background-image: url('../img/img2/jam.svg');
 }
 .grid-link-icon-produce {
-  background-image: url('../img/img2/chives.svg');
+  background-image: url('../img/img2/salad.svg');
+}
+.grid-link-icon-red {
+  background-image: url('../img/wine.svg');
+}
+.grid-link-icon-sake {
+  background-image: url('../img/img2/sake.svg');
+}
+.grid-link-icon-sandwich {
+  background-image: url('../img/img2/sandwich.svg');
 }
 .grid-link-icon-sauce {
   background-image: url('../img/img2/sauce.svg');
@@ -898,11 +940,23 @@ footer {
 .grid-link-icon-sushi {
   background-image: url('../img/img2/sushi.svg');
 }
+.grid-link-icon-vegetable {
+  background-image: url('../img/img2/chives.svg');
+}
 .grid-link-icon-vinegar {
   background-image: url('../img/img2/vinegar.svg');
 }
 .grid-link-icon-water {
   background-image: url('../img/img2/water.svg');
+}
+.grid-link-icon-wheat-beer {
+  background-image: url('../img/img2/beer-glass.svg');
+}
+.grid-link-icon-white {
+  background-image: url('../img/img2/white-wine.ico');
+}
+.grid-link-icon-white-wine {
+  background-image: url('../img/img2/white-wine.ico');
 }
 .react-rater {
   margin-bottom: 20px;
