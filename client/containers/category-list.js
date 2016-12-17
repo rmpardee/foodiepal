@@ -30,6 +30,9 @@ class CategoryList extends Component {
 
     return categories.map((category) => {
       let categoryClassName = category.name.replace(/(\s+?)/g,"-").toLowerCase();
+      if (categoryClassName[categoryClassName.length-1] === 's') {
+        categoryClassName = categoryClassName.substring(0, categoryClassName.length - 1);
+      }
       let categoryInfo = {
         id: category._id,
         name: category.name

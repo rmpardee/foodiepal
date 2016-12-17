@@ -688,7 +688,7 @@ footer {
 .grid-link-icon-cheese {
   background-image: url('../img/cheese.svg');
 }
-.grid-link-icon-olives {
+.grid-link-icon-olive {
   background-image: url('../img/olives.svg');
 }
 .grid-link-icon-chocolate {
@@ -709,11 +709,8 @@ footer {
 .grid-link-icon-olive-oil {
   background-image: url('../img/olive-oil.svg');
 }
-.grid-link-icon-cocktails {
+.grid-link-icon-cocktail {
   background-image: url('../img/glass.svg');
-}
-.grid-link-icon-oils {
-  background-image: url('../img/olive-oil.svg');
 }
 .grid-link-icon-oil {
   background-image: url('../img/olive-oil.svg');
@@ -728,16 +725,19 @@ footer {
 .grid-link-icon-cereal {
   background-image: url('../img/img2/cereals.svg');
 }
-.grid-link-icon-chilis {
+.grid-link-icon-chili {
   background-image: url('../img/img2/chili.svg');
 }
-.grid-link-icon-condiments {
+.grid-link-icon-chip {
+  background-image: url('../img/img2/chips.svg');
+}
+.grid-link-icon-condiment {
   background-image: url('../img/img2/mustard.svg');
 }
-.grid-link-icon-cookies {
+.grid-link-icon-cookie {
   background-image: url('../img/img2/cookies.svg');
 }
-.grid-link-icon-cooking-utensils {
+.grid-link-icon-cooking-utensil {
   background-image: url('../img/img2/spatula.svg');
 }
 .grid-link-icon-cookware {
@@ -746,8 +746,11 @@ footer {
 .grid-link-icon-dairy {
   background-image: url('../img/img2/milk.svg');
 }
-.grid-link-icon-desserts {
+.grid-link-icon-dessert {
   background-image: url('../img/img2/pudding.svg');
+}
+.grid-link-icon-egg {
+  background-image: url('../img/img2/eggs.svg');
 }
 .grid-link-icon-fruit {
   background-image: url('../img/img2/fruits.svg');
@@ -755,22 +758,25 @@ footer {
 .grid-link-icon-gastropub {
   background-image: url('../img/img2/hamburguer.svg');
 }
-.grid-link-icon-grains {
+.grid-link-icon-grain {
   background-image: url('../img/img2/grain.svg');
+}
+.grid-link-icon-herb {
+  background-image: url('../img/img2/grinder.svg');
 }
 .grid-link-icon-juice {
   background-image: url('../img/img2/juice.svg');
 }
-.grid-link-icon-legumes {
+.grid-link-icon-legume {
   background-image: url('../img/img2/peas.svg');
 }
-.grid-link-icon-meats {
+.grid-link-icon-meat {
   background-image: url('../img/img2/steak.svg');
 }
-.grid-link-icon-milks {
+.grid-link-icon-milk {
   background-image: url('../img/img2/milks.svg');
 }
-.grid-link-icon-nuts-and-seeds {
+.grid-link-icon-nuts-and-seed {
   background-image: url('../img/img2/seeds.svg');
 }
 .grid-link-icon-pasta {
@@ -779,8 +785,8 @@ footer {
 .grid-link-icon-pastry {
   background-image: url('../img/img2/croissant.svg');
 }
-.grid-link-icon-peppers {
-  background-image: url('../img/img2/chili.svg');
+.grid-link-icon-pepper {
+  background-image: url('../img/img2/pepper.svg');
 }
 .grid-link-icon-pickled {
   background-image: url('../img/img2/pickles.svg');
@@ -788,34 +794,40 @@ footer {
 .grid-link-icon-pizza {
   background-image: url('../img/img2/pizza.svg');
 }
+.grid-link-icon-pork {
+  background-image: url('../img/img2/ham.svg');
+}
 .grid-link-icon-poultry {
   background-image: url('../img/img2/turkey.svg');
 }
-.grid-link-icon-preserves {
+.grid-link-icon-preserve {
   background-image: url('../img/img2/jam.svg');
 }
 .grid-link-icon-produce {
   background-image: url('../img/img2/chives.svg');
 }
-.grid-link-icon-mushrooms {
+.grid-link-icon-mushroom {
   background-image: url('../img/img2/mushrooms.svg');
 }
-.grid-link-icon-sauces {
+.grid-link-icon-sauce {
   background-image: url('../img/img2/sauce.svg');
 }
-.grid-link-icon-seeds {
+.grid-link-icon-salt {
+  background-image: url('../img/img2/salt.svg');
+}
+.grid-link-icon-seed {
   background-image: url('../img/img2/seeds.svg');
 }
 .grid-link-icon-soup {
   background-image: url('../img/img2/noodles.svg');
 }
-.grid-link-icon-spreads {
+.grid-link-icon-spread {
   background-image: url('../img/img2/butter.svg');
 }
-.grid-link-icon-sodas {
+.grid-link-icon-soda {
   background-image: url('../img/img2/can.svg');
 }
-.grid-link-icon-snacks {
+.grid-link-icon-snack {
   background-image: url('../img/img2/biscuit.svg');
 }
 .grid-link-icon-tea {
@@ -824,10 +836,16 @@ footer {
 .grid-link-icon-seafood {
   background-image: url('../img/img2/salmon.svg');
 }
-.grid-link-icon-spices {
+.grid-link-icon-shellfish {
+  background-image: url('../img/img2/shrimp.svg');
+}
+.grid-link-icon-shrimp {
+  background-image: url('../img/img2/shrimp.svg');
+}
+.grid-link-icon-spice {
   background-image: url('../img/img2/grinder.svg');
 }
-.grid-link-icon-spirits {
+.grid-link-icon-spirit {
   background-image: url('../img/img2/spirits.svg');
 }
 .grid-link-icon-sushi {
@@ -1047,6 +1065,7 @@ textarea {
     @neat-shift 3;
   }
 }*/
+
 .modal-form-container {
   clear: both;
 
