@@ -13,8 +13,8 @@ export default class IconList extends Component {
 
       return (
         <li key={ icon } className='grid-links-block'>
-          <div className="grid-link-container">
-            <div className={ `grid-link-icon grid-link-icon-${ icon }` }></div>
+          <div className="grid-link-container-modal">
+            <div className={ `grid-link-icon-smaller grid-link-icon-${ icon }` }></div>
             <span className='grid-link-name'>{ icon }</span>
           </div>
         </li>
@@ -27,7 +27,7 @@ export default class IconList extends Component {
 
   render() {
     return (
-      <div className='scroll'>
+      <div className='container'>
         <div className='grid-container'>
           <ul className='grid-links'>
             { this.renderIcons() }

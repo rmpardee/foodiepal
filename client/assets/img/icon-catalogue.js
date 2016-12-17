@@ -1,6 +1,8 @@
 const iconList = [
+  "ale",
   "beer",
   "boba",
+  "beef",
   "bread",
   "cereal",
   "charcuterie",
