@@ -736,6 +736,12 @@ footer {
 .grid-link-icon-ale {
   background-image: url('../img/img2/ale.svg');
 }
+.grid-link-icon-berry {
+  background-image: url('../img/img2/blueberries.svg');
+}
+.grid-link-icon-berrie {
+  background-image: url('../img/img2/blueberries.svg');
+}
 .grid-link-icon-boba {
   background-image: url('../img/img2/frappe.svg');
 }
@@ -787,17 +793,38 @@ footer {
 .grid-link-icon-herb {
   background-image: url('../img/img2/grinder.svg');
 }
+.grid-link-icon-honey {
+  background-image: url('../img/img2/honey.svg');
+}
+.grid-link-icon-ice {
+  background-image: url('../img/img2/ice-cream.svg');
+}
+.grid-link-icon-ice-cream {
+  background-image: url('../img/img2/ice-cream.svg');
+}
 .grid-link-icon-juice {
   background-image: url('../img/img2/juice.svg');
 }
+.grid-link-icon-lager {
+  background-image: url('../img/beer.svg');
+}
 .grid-link-icon-legume {
   background-image: url('../img/img2/peas.svg');
+}
+.grid-link-icon-mead {
+  background-image: url('../img/img2/horn.svg');
 }
 .grid-link-icon-meat {
   background-image: url('../img/img2/steak.svg');
 }
 .grid-link-icon-milk {
   background-image: url('../img/img2/milks.svg');
+}
+.grid-link-icon-mushroom {
+  background-image: url('../img/img2/mushrooms.svg');
+}
+.grid-link-icon-nut {
+  background-image: url('../img/img2/hazelnut.svg');
 }
 .grid-link-icon-nuts-and-seed {
   background-image: url('../img/img2/seeds.svg');
@@ -829,9 +856,6 @@ footer {
 .grid-link-icon-produce {
   background-image: url('../img/img2/chives.svg');
 }
-.grid-link-icon-mushroom {
-  background-image: url('../img/img2/mushrooms.svg');
-}
 .grid-link-icon-sauce {
   background-image: url('../img/img2/sauce.svg');
 }
@@ -860,7 +884,7 @@ footer {
   background-image: url('../img/img2/salmon.svg');
 }
 .grid-link-icon-shellfish {
-  background-image: url('../img/img2/shrimp.svg');
+  background-image: url('../img/img2/shell.svg');
 }
 .grid-link-icon-shrimp {
   background-image: url('../img/img2/shrimp.svg');
@@ -875,7 +899,7 @@ footer {
   background-image: url('../img/img2/sushi.svg');
 }
 .grid-link-icon-vinegar {
-  background-image: url('../img/olive-oil.svg');
+  background-image: url('../img/img2/vinegar.svg');
 }
 .grid-link-icon-water {
   background-image: url('../img/img2/water.svg');
