@@ -6,7 +6,6 @@ const iconList = [
   "berry",
   "beverage",
   "bread",
-  "cafe",
   "calamari",
   "candy",
   "cereal",
