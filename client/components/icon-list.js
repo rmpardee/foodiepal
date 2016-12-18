@@ -4,13 +4,8 @@ import { iconList } from '../assets/img/icon-catalogue';
 
 export default class IconList extends Component {
 
-
-
   renderIcons() {
-
     return iconList.map((icon) => {
-
-
       return (
         <li key={ icon } className='grid-links-block'>
           <div className="grid-link-container-modal">
@@ -21,9 +16,6 @@ export default class IconList extends Component {
       );
     });
   }
-
-
-
 
   render() {
     return (
