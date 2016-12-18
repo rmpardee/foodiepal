@@ -757,6 +757,12 @@ footer {
 .grid-link-icon-bread {
   background-image: url('../img/img2/baguette.svg');
 }
+.grid-link-icon-cafe {
+  background-image: url('../img/img2/cafe.svg');
+}
+.grid-link-icon-calamari {
+  background-image: url('../img/img2/squid.svg');
+}
 .grid-link-icon-candy {
   background-image: url('../img/img2/candy.svg');
 }
@@ -771,6 +777,9 @@ footer {
 }
 .grid-link-icon-chip {
   background-image: url('../img/img2/chips.svg');
+}
+.grid-link-icon-coffee-shop {
+  background-image: url('../img/img2/cafe.svg');
 }
 .grid-link-icon-confectionary {
   background-image: url('../img/img2/cupcake.svg');
@@ -799,8 +808,17 @@ footer {
 .grid-link-icon-dessert {
   background-image: url('../img/img2/pudding.svg');
 }
+.grid-link-icon-dip {
+  background-image: url('../img/img2/dip.svg');
+}
 .grid-link-icon-egg {
   background-image: url('../img/img2/eggs.svg');
+}
+.grid-link-icon-espresso {
+  background-image: url('../img/img2/espresso.svg');
+}
+.grid-link-icon-frappe {
+  background-image: url('../img/img2/frappe.svg');
 }
 .grid-link-icon-fruit {
   background-image: url('../img/img2/fruits.svg');
@@ -816,6 +834,9 @@ footer {
 }
 .grid-link-icon-honey {
   background-image: url('../img/img2/honey.svg');
+}
+.grid-link-icon-hot-chocolate {
+  background-image: url('../img/img2/hot-chocolate.svg');
 }
 .grid-link-icon-ice {
   background-image: url('../img/img2/ice-cream.svg');
@@ -852,6 +873,9 @@ footer {
 }
 .grid-link-icon-nuts-and-seed {
   background-image: url('../img/img2/seeds.svg');
+}
+.grid-link-icon-pan {
+  background-image: url('../img/img2/pan.svg');
 }
 .grid-link-icon-pasta {
   background-image: url('../img/img2/pasta.svg');
@@ -890,6 +914,9 @@ footer {
   background-image: url('../img/img2/salad.svg');
 }
 .grid-link-icon-red {
+  background-image: url('../img/wine.svg');
+}
+.grid-link-icon-red-wine {
   background-image: url('../img/wine.svg');
 }
 .grid-link-icon-sake {
@@ -936,6 +963,9 @@ footer {
 }
 .grid-link-icon-spirit {
   background-image: url('../img/img2/spirits.svg');
+}
+.grid-link-icon-squid {
+  background-image: url('../img/img2/squid.svg');
 }
 .grid-link-icon-sushi {
   background-image: url('../img/img2/sushi.svg');
