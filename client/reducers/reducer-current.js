@@ -24,7 +24,7 @@ const INITIAL_STATE = {
     name: '',
     description: ''
   }
-}
+};
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
@@ -43,7 +43,8 @@ export default function(state = INITIAL_STATE, action) {
   
   case SET_CURRENT_SUBCATEGORY:
     return Object.assign({}, state, {
-      subcategory: action.payload
+      subcategory: action.payload,
+      data: action.payload
     });
 
   case GET_CURRENT_USER:

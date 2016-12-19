@@ -26,6 +26,8 @@ export function addCategoryRequest(category) {
       }
     })
     .then(response => {
+      // Sort the categories
+      response.data = response.data.sort(compare);      
       dispatch(toastrActions.clean());
       toastr.success('Category added!', `The category ${category.name} was added successfully!`, toastrOptionsDismiss);
       dispatch(addCategorySuccess(response.data));
@@ -52,7 +54,13 @@ function addCategorySuccess(category) {
 }
 
 
-
+function compare(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+};
 
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST';
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
@@ -72,7 +80,11 @@ export function getCategoriesRequest(userID) {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(response => dispatch(getCategoriesSuccess(response.data)))
+    .then(response => {
+      // Sort the categories
+      response.data = response.data.sort(compare);
+      dispatch(getCategoriesSuccess(response.data));
+    })
     .catch(response => {
       // console.error('categories GET error:', response);
       dispatch(toastrActions.clean());
@@ -94,6 +106,112 @@ function getCategoriesSuccess(categories) {
   };
 }
 
+
+
+export const EDIT_CATEGORY_REQUEST = 'EDIT_CATEGORY_REQUEST';
+export const EDIT_CATEGORY_SUCCESS = 'EDIT_CATEGORY_SUCCESS';
+export const EDIT_CATEGORY_FAILURE = 'EDIT_CATEGORY_FAILURE';
+export function editCategoryRequest(category) {
+  return dispatch => {
+    dispatch(editCategory(category));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'PUT',
+      url: API_CATEGORY,
+      data: category,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      // Sort the categories
+      response.data = response.data.sort(compare);
+      dispatch(toastrActions.clean());
+      toastr.success('Category edited!', `Your category was edited successfully!`, toastrOptionsDismiss);
+      dispatch(editCategorySuccess(response.data));
+      let updateCategory = {
+        id: category.categoryID,
+        name: category.type
+      };
+      dispatch(setCurrentCategory(updateCategory));
+    })
+    .catch(response => {
+      // console.error('error in editCategoryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error editing new category', 'There was an error editing this category. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function editCategory(category) {
+  return {
+    type: EDIT_CATEGORY_REQUEST,
+    payload: category
+  };
+}
+
+function editCategorySuccess(categories) {
+  return {
+    type: EDIT_CATEGORY_SUCCESS,
+    payload: categories
+  };
+}
+
+
+export const DELETE_CATEGORY_REQUEST = 'DELETE_CATEGORY_REQUEST';
+export const DELETE_CATEGORY_SUCCESS = 'DELETE_CATEGORY_SUCCESS';
+export const DELETE_CATEGORY_FAILURE = 'DELETE_CATEGORY_FAILURE';
+export function deleteCategoryRequest(category) {
+  return dispatch => {
+    dispatch(deleteCategory(category));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'DELETE',
+      url: API_CATEGORY,
+      data: category,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      // var res = JSON.parse(response.config.data);
+      // dispatch(toastrActions.clean());
+      // toastr.success('Category deleted!', `Your category was deleted successfully!`, toastrOptionsDismiss);
+      dispatch(deleteCategorySuccess(response.data));
+      let updateCategory = {
+        id: 1,
+        name: `${category.type} - DELETED`
+      };
+      dispatch(setCurrentCategory(updateCategory));
+      dispatch(getSubcategoriesSuccess(response.data));
+    })
+    .catch(response => {
+      // console.error('le error in editCategoryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error deleting new category', 'There was an error deleting this category. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function deleteCategory(category) {
+  return {
+    type: DELETE_CATEGORY_REQUEST,
+    payload: category
+  };
+}
+
+function deleteCategorySuccess(categories) {
+  return {
+    type: DELETE_CATEGORY_SUCCESS,
+    payload: categories
+  };
+}
+
+
 // Subcategory
 export const ADD_SUBCATEGORY_REQUEST = 'ADD_SUBCATEGORY_REQUEST';
 export const ADD_SUBCATEGORY_SUCCESS = 'ADD_SUBCATEGORY_SUCCESS';
@@ -114,6 +232,7 @@ export function addSubcategoryRequest(subcategory) {
     .then(response => {
       dispatch(toastrActions.clean());
       toastr.success('Variety added!', `The variety ${subcategory.name} was added successfully!`, toastrOptionsDismiss);
+      response.data = response.data.sort(compare);      
       dispatch(addSubcategorySuccess(response.data));
     })
     .catch(response => {
@@ -155,7 +274,10 @@ export function getSubcategoriesRequest(categoryID) {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(response => dispatch(getSubcategoriesSuccess(response.data)))
+    .then(response => {
+      response.data = response.data.sort(compare);  
+      dispatch(getSubcategoriesSuccess(response.data));
+    })
     .catch(response => {
       // console.error('subcategories GET error:', response);
       dispatch(toastrActions.clean());
@@ -177,6 +299,117 @@ function getSubcategoriesSuccess(subcategories) {
     payload: subcategories
   };
 }
+
+
+
+export const EDIT_SUBCATEGORY_REQUEST = 'EDIT_SUBCATEGORY_REQUEST';
+export const EDIT_SUBCATEGORY_SUCCESS = 'EDIT_SUBCATEGORY_SUCCESS';
+export const EDIT_SUBCATEGORY_FAILURE = 'EDIT_SUBCATEGORY_FAILURE';
+export function editSubcategoryRequest(subcategory) {
+  return dispatch => {
+    dispatch(editSubcategory(subcategory));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'PUT',
+      url: API_SUBCATEGORY,
+      data: subcategory,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      // Sort the categories
+      response.data = response.data.sort(compare);
+      dispatch(toastrActions.clean());
+      toastr.success('Subcategory edited!', `Your subcategory was edited successfully!`, toastrOptionsDismiss);
+      dispatch(editSubcategorySuccess(response.data));
+      let updateSubcategory = {
+        id: subcategory.subcategoryID,
+        name: subcategory.name,
+        description: subcategory.description
+      };
+      dispatch(setCurrentSubcategory(updateSubcategory));
+      dispatch(getSubcategoriesSuccess(response.data));
+    })
+    .catch(response => {
+      console.error('error in editSubcategoryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error editing new subcategory', 'There was an error editing this subcategory. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function editSubcategory(subcategory) {
+  return {
+    type: EDIT_SUBCATEGORY_REQUEST,
+    payload: subcategory
+  };
+}
+
+function editSubcategorySuccess(subcategories) {
+  return {
+    type: EDIT_SUBCATEGORY_SUCCESS,
+    payload: subcategories
+  };
+}
+
+
+export const DELETE_SUBCATEGORY_REQUEST = 'DELETE_SUBCATEGORY_REQUEST';
+export const DELETE_SUBCATEGORY_SUCCESS = 'DELETE_SUBCATEGORY_SUCCESS';
+export const DELETE_SUBCATEGORY_FAILURE = 'DELETE_SUBCATEGORY_FAILURE';
+export function deleteSubcategoryRequest(subcategory) {
+  return dispatch => {
+    dispatch(deleteSubcategory(subcategory));
+    let token = localStorage.getItem('jwtToken');
+    
+    return axios({
+      method: 'DELETE',
+      url: API_SUBCATEGORY,
+      data: subcategory,
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      var res = JSON.parse(response.config.data);
+      dispatch(toastrActions.clean());
+      // toastr.success('Category deleted!', `Your subcategory was deleted successfully!`, toastrOptionsDismiss);
+      dispatch(deleteSubcategorySuccess(response.data));
+      let updateSubcategory = {
+        id: 1,
+        name: `${subcategory.name} - DELETED`
+      };
+      dispatch(setCurrentSubcategory(updateSubcategory));
+      dispatch(getSubcategoriesSuccess(response.data));
+    })
+    .catch(response => {
+      // console.error('le error in editSubcategoryRequest:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error deleting new subcategory', 'There was an error deleting this subcategory. Please try again.', toastrOptions);
+    });
+  };
+}
+
+function deleteSubcategory(subcategory) {
+  return {
+    type: DELETE_SUBCATEGORY_REQUEST,
+    payload: subcategory
+  };
+}
+
+function deleteSubcategorySuccess(subcategories) {
+  return {
+    type: DELETE_SUBCATEGORY_SUCCESS,
+    payload: subcategories
+  };
+}
+
+
+
+
 
 
 // Entry
@@ -237,7 +470,6 @@ export function editEntryRequest(entry) {
     
     return axios({
       method: 'PUT',
-      // TODO:  Make sure PUT is correct
       url: API_ENTRY,
       data: entry,
       contentType: 'application/json',
@@ -285,7 +517,6 @@ export function deleteEntryRequest(entry) {
     
     return axios({
       method: 'DELETE',
-      // TODO:  Make sure DELETE is correct
       url: API_ENTRY,
       data: entry,
       contentType: 'application/json',
@@ -354,14 +585,14 @@ export function getEntriesRequest(subcategory) {
 function getEntries() {
   return {
     type: GET_ENTRIES_REQUEST
-  }
+  };
 }
 
 function getEntriesSuccess(entries) {
   return {
     type: GET_ENTRIES_SUCCESS,
     payload: entries
-  }
+  };
 }
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
@@ -378,61 +609,61 @@ export function setCurrentUser(user) {
   return {
     type: SET_CURRENT_USER,
     payload: user
-  }
+  };
 }
 
 export function setCurrentCategory(category) {
   return {
     type: SET_CURRENT_CATEGORY,
     payload: category
-  }
+  };
 }
 
 export function setCurrentSubcategory(subcategory) {
   return {
     type: SET_CURRENT_SUBCATEGORY,
     payload: subcategory
-  }
+  };
 }
 
 export function getCurrentUser() {
   return {
     type: GET_CURRENT_USER,
     // payload: user
-  }
+  };
 }
 
 export function getCurrentCategory() {
   return {
     type: GET_CURRENT_CATEGORY,
     // payload: category
-  }
+  };
 }
 
 export function getCurrentSubcategory() {
   return {
     type: GET_CURRENT_SUBCATEGORY,
     // payload: subcategory
-  }
+  };
 }
 
 export function removeCurrentUser() {
   return {
     type: REMOVE_CURRENT_USER,
     // payload: user
-  }
+  };
 }
 
 export function removeCurrentCategory() {
   return {
     type: REMOVE_CURRENT_CATEGORY,
     // payload: category
-  }
+  };
 }
 
 export function removeCurrentSubcategory() {
   return {
     type: REMOVE_CURRENT_SUBCATEGORY,
     // payload: subcategory
-  }
+  };
 }

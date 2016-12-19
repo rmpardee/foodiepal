@@ -40,7 +40,7 @@ class AddCategory extends Component {
             type='text'
             placeholder='Name'
           />
-          <button type='submit' className='btn btn-primary'>Add Variety</button>
+          <button type='submit' className='btn btn-primary'>Add Category</button>
         </form>
       </div>
     );

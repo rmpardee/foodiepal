@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editEntryRequest, deleteEntryRequest } from '../actions/index';
+import { editEntryRequest, deleteEntryRequest, getSubcategoriesRequest } from '../actions/index';
 import Rater from 'react-rater';
 
 class EditEntry extends Component {
@@ -45,6 +45,7 @@ class EditEntry extends Component {
     event.preventDefault();
 
     this.props.editEntryRequest(this.state);
+    this.props.getSubcategoriesRequest(this.state.categoryID);
     this.closeModal();
   }
 
@@ -89,7 +90,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ editEntryRequest, deleteEntryRequest }, dispatch);
+  return bindActionCreators({ editEntryRequest, deleteEntryRequest, getSubcategoriesRequest }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditEntry);
