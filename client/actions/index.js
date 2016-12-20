@@ -595,6 +595,62 @@ function getEntriesSuccess(entries) {
   };
 }
 
+
+
+
+
+
+
+
+
+
+
+
+export const SORT_ENTRY_REQUEST = 'SORT_ENTRY_REQUEST';
+export function sortEntry(sortOrderRequest) {
+  console.log('step 2, recieve action from component: ', sortOrderRequest); // Working
+  //---- OR -----------------------------------
+//   let current = sortOrderRequest;
+//   if (current === 'A-Z') {
+//     current = 'Date';
+//   } else if (current === 'Date') {
+//     current = 'Favorites';
+//   } else {
+//     current = 'A-Z';
+//   }
+//   console.log('step 3, call dispatch: ', current); // Working
+//   return { // Not Working
+//     type: SORT_ENTRY_REQUEST,
+//     payload: current    
+//   };
+// }
+  //---- OR -----------------------------------
+  return dispatch => {
+    let current = sortOrderRequest;
+    if (current === 'A-Z') {
+      current = 'Date';
+    } else if (current === 'Date') {
+      current = 'Favorites';
+    } else {
+      current = 'A-Z';
+    }
+    console.log('step 3, call dispatch: ', current); // Not Working
+    dispatch(sortEntriesRequest(current));
+  };
+}
+
+function sortEntriesRequest(currentOrderRequest) {
+  console.log('step 4, recieve dispact call and send to reducer: ', currentOrderRequest); // Not Working
+  return {
+    type: SORT_ENTRY_REQUEST,
+    payload: currentOrderRequest
+  };
+}
+
+  //--------------------------------------------
+
+
+
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
 export const SET_CURRENT_SUBCATEGORY = 'SET_CURRENT_SUBCATEGORY';

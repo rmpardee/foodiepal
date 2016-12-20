@@ -5,18 +5,19 @@ import { bindActionCreators } from 'redux';
 import { modal } from 'react-redux-modal';
 import AddEntry from './add-entry';
 import EntryList from './entry-list';
-import { getCurrentSubcategory } from '../actions';
+import { getCurrentSubcategory, sortEntry } from '../actions';
 import ReactCSS from 'react-addons-css-transition-group';
 import EditSubcategory from './edit-subcategory';
 
 class Detail extends Component {
-  // componentWillMount() {
 
-  // }
-  
   // constructor(props) {
   //   super(props);
   // }
+
+  // componentWillMount() {
+  // }
+  
 
   openEntryForm(subcategory) {
     modal.add(AddEntry, {
@@ -35,7 +36,12 @@ class Detail extends Component {
       closeOnOutsideClick: true,
       hideCloseButton: false
     });
-  }  
+  }
+
+  sortToggle() {
+    console.log('step 1, call action from component: ', this.props.entries.sort); // Working
+    sortEntry(this.props.entries.sort);
+  }
 
   render() {
 
@@ -69,7 +75,9 @@ class Detail extends Component {
               <button onClick={ this.openEntryForm.bind(this) } className='btn btn-primary'>Add New Entry</button>
             </div>
 
+            <button className='btn-edit' onClick={ this.sortToggle.bind(this) }>Sort by {this.props.entries.sort}</button>
             <h5>Your History:</h5>
+
             <EntryList />
           </div>
         </div>
@@ -83,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getCurrentSubcategory }, dispatch);
+  return bindActionCreators({ getCurrentSubcategory, sortEntry }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

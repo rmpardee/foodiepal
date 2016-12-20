@@ -9,7 +9,7 @@ import Subcategories from './reducer-subcategory';
 import Entry from './reducer-entry';
 import Auth from './reducer-auth';
 import { routerReducer } from 'react-router-redux';
-import { reducer as toastrReducer } from 'react-redux-toastr'
+import { reducer as toastrReducer } from 'react-redux-toastr';
 
 export default combineReducers({
   current: Current,

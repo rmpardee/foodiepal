@@ -54,8 +54,41 @@ class EntryList extends Component {
     });
   }
 
+  compareName(a,b) {
+    if (a.type < b.type)
+      return -1;
+    if (a.type > b.type)
+      return 1;
+    return 0;
+  }
+
+  compareDate(a,b) {
+    if (a.createdAt < b.createdAt)
+      return -1;
+    if (a.createdAt > b.createdAt)
+      return 1;
+    return 0;
+  }
+
+  compareRating(a,b) { // Note: sorting in reverse order to put highest rating on top
+    if (a.rating > b.rating)
+      return -1;
+    if (a.rating < b.rating)
+      return 1;
+    return 0;
+  }
+
   renderEntries() {
-    const entries = this.props.entries.data;
+    let entries = this.props.entries.data;
+    let sort = this.props.entries.sort;
+
+    if (sort === 'A-Z') {
+      entries = entries.sort(this.compareName);  
+    } else if (sort === 'Date') {
+      entries = entries.sort(this.compareDate);
+    } else {
+      entries = entries.sort(this.compareRating);
+    }
 
     return entries.map((entry) => {
       return (
