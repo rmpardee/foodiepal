@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { modal } from 'react-redux-modal';
 import AddSubcategory from './add-subcategory';
+import { iconList } from '../assets/img/icon-catalogue';
 import {
   getCurrentCategory,
   getSubcategoriesRequest,
@@ -40,12 +41,29 @@ class SubcategoryList extends Component {
     const subcategories = this.props.subcategories.data;
 
     let categoryClassName = category.replace(/(\s+?)/g,"-").toLowerCase();
+    if (categoryClassName[categoryClassName.length-1] === 's') {
+      categoryClassName = categoryClassName.substring(0, categoryClassName.length - 1);
+    }
+
     return subcategories.map((subcategory) => {
       let subcategoryInfo = {
         id: subcategory._id,
         name: subcategory.name,
         description: subcategory.description
       };
+      let subcategoryName = subcategory.name.replace(/(\s+?)/g,"-").toLowerCase();
+      if (subcategoryName[subcategoryName.length-1] === 's') {
+        subcategoryName = subcategoryName.substring(0, subcategoryName.length - 1);
+      }
+      let thisClassName = '';
+      if (iconList.indexOf(subcategoryName) !== -1) {
+        thisClassName = subcategoryName;
+      } else {
+        thisClassName = categoryClassName;
+      }
+      if (iconList.indexOf(thisClassName) == -1) {
+        thisClassName = 'default';
+      }
 
       return (
         <li key={ subcategory._id } className='grid-links-block'>
@@ -53,7 +71,7 @@ class SubcategoryList extends Component {
             to={`/u/${ category }/${ subcategory.name }`}
             onClick={ () => this.setSubcategory(subcategoryInfo) }>
             <div className="grid-link-container">
-              <div className={ `grid-link-icon grid-link-icon-${ categoryClassName }` }></div>
+              <div className={ `grid-link-icon grid-link-icon-${ thisClassName }` }></div>
               <span className='grid-link-name'>{ subcategory.name }</span>
             </div>
           </Link>

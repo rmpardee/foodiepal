@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logoutRequest, resetPasswordRequest, resetPasswordRedirect } from '../actions/auth';
-
+import { modal } from 'react-redux-modal';
+import ShowInfo from '../components/show-info';
+import IconList from '../components/icon-list';
 
 class Header extends Component {
   componentWillMount() {
@@ -33,6 +35,25 @@ class Header extends Component {
       account: {
         menuActive: false
       }
+    });
+  }
+
+  onGetInfo(e) {
+    e.preventDefault();
+
+    modal.add(ShowInfo, {
+      title: 'Information',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
+    });
+  }
+
+  onIconList(e) {
+    e.preventDefault();
+    modal.add(IconList, {
+      title: 'List Of Icons',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
     });
   }
 
@@ -67,6 +88,8 @@ class Header extends Component {
             <ul className='mobile-account-nav' tabIndex="5" onBlur={ this.closeAccountDropdown.bind(this) }>
               <li>
                 <ul className={ `mobile-account-subnav ${ this.state.account.menuActive ? 'active' : '' }` }>
+                  <li onClick={ this.onGetInfo.bind(this) }>Info</li>
+                  <li onClick={ this.onIconList.bind(this) }>Show Icon List</li>
                   <li onClick={ this.onResetPasswordRequest.bind(this) }>Change Password</li>
                   <li onClick={ this.onLogoutClick.bind(this) }>Logout</li>
                 </ul>

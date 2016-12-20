@@ -27,7 +27,7 @@ export const toastrOptions = {
 // Logout (and other things?)
 export const toastrOptionsDismiss = {
   icon: 'success',
-  timeOut: 4000,
+  timeOut: 2000,
   showCloseButton: true,
   removeOnHover: false
 };
