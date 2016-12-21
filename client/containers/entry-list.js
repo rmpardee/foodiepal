@@ -80,17 +80,14 @@ class EntryList extends Component {
 
   renderEntries() {
     let entries = this.props.entries.data;
-    console.log('entries: ', this.props.entries);
-    // let sort = this.props.entries.sort;
-    // if (entries.length) {
-    //   if (sort === 'A-Z') {
-    //     entries = entries.sort(this.compareName);  
-    //   } else if (sort === 'Date') {
-    //     entries = entries.sort(this.compareDate);
-    //   } else {
-    //     entries = entries.sort(this.compareRating);
-    //   }
-    // }
+    let sort = this.props.entries.sort;
+    if (sort === 'A-Z') {
+      entries = entries.sort(this.compareName);  
+    } else if (sort === 'Date') {
+      entries = entries.sort(this.compareDate);
+    } else {
+      entries = entries.sort(this.compareRating);
+    }
 
     return entries.map((entry) => {
       return (

@@ -417,6 +417,9 @@ export const ADD_ENTRY_REQUEST = 'ADD_ENTRY_REQUEST';
 export const ADD_ENTRY_SUCCESS = 'ADD_ENTRY_SUCCESS';
 export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 export function addEntryRequest(entry) {
+  if (!entry.notes) {
+    entry.notes = 'No notes yet';
+  }
   return dispatch => {
     dispatch(addEntry(entry));
     let token = localStorage.getItem('jwtToken');
