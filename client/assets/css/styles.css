@@ -743,10 +743,10 @@ footer {
   background-image: url('../img/img2/ale.svg');
 }
 .grid-link-icon-berry {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 .grid-link-icon-berrie {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 .grid-link-icon-beverage {
   background-image: url('../img/img2/beverage.svg');
@@ -913,9 +913,6 @@ footer {
 .grid-link-icon-produce {
   background-image: url('../img/img2/salad.svg');
 }
-.grid-link-icon-red {
-  background-image: url('../img/wine.svg');
-}
 .grid-link-icon-red-wine {
   background-image: url('../img/wine.svg');
 }
@@ -984,9 +981,6 @@ footer {
 }
 .grid-link-icon-wheat-beer {
   background-image: url('../img/img2/beer-glass.svg');
-}
-.grid-link-icon-white {
-  background-image: url('../img/img2/white-wine.ico');
 }
 .grid-link-icon-white-wine {
   background-image: url('../img/img2/white-wine.ico');
