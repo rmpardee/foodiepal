@@ -80,6 +80,7 @@ const iconList = [
   "spirit",
   "spread",
   "squid",
+  "stout",
   "sushi",
   "tea",
   "vegetable",
