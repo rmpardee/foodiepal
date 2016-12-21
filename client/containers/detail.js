@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { modal } from 'react-redux-modal';
 import AddEntry from './add-entry';
 import EntryList from './entry-list';
-import { getCurrentSubcategory, sortEntry } from '../actions';
+import { getCurrentSubcategory, sortEntry } from '../actions/index';
 import ReactCSS from 'react-addons-css-transition-group';
 import EditSubcategory from './edit-subcategory';
 
@@ -39,12 +39,10 @@ class Detail extends Component {
   }
 
   sortToggle() {
-    console.log('step 1, call action from component: ', this.props.entries.sort); // Working
-    sortEntry(this.props.entries.sort);
+    this.props.sortEntry(this.props.entries.sort);
   }
 
   render() {
-
     const subcategory = this.props.current.subcategory;
 
     if (subcategory.id === 1) {
@@ -60,8 +58,6 @@ class Detail extends Component {
       );
     }
 
-    
-
     return (
       <ReactCSS component='div' transitionName="fade-in" transitionAppear={true} transitionAppearTimeout={300} transitionEnterTimeout={300} transitionLeaveTimeout={300}>
         <div className='container'>
@@ -75,7 +71,7 @@ class Detail extends Component {
               <button onClick={ this.openEntryForm.bind(this) } className='btn btn-primary'>Add New Entry</button>
             </div>
 
-            <button className='btn-edit' onClick={ this.sortToggle.bind(this) }>Sort by {this.props.entries.sort}</button>
+            <button className='btn-edit' onClick={ this.sortToggle.bind(this) }>Sorting by {this.props.entries.sort}</button>
             <h5>Your History:</h5>
 
             <EntryList />

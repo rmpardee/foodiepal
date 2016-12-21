@@ -9,7 +9,7 @@ import {
   DELETE_ENTRY_FAILURE,
   GET_ENTRIES_REQUEST,
   GET_ENTRIES_SUCCESS,
-  SORT_ENTRY_REQUEST
+  SORT_ENTRIES_REQUEST
  } from '../actions/index';
 
 // const INITIAL_STATE = [];
@@ -63,8 +63,7 @@ export default function(state = INITIAL_STATE, action) {
   case DELETE_ENTRY_FAILURE:
     return state;
 
-  case SORT_ENTRY_REQUEST:
-    console.log('Last Step, change state: ', action.payload); // Not Working
+  case SORT_ENTRIES_REQUEST:
     return Object.assign({}, state, {
       sort: action.payload
     });

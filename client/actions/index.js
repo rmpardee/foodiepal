@@ -596,58 +596,28 @@ function getEntriesSuccess(entries) {
 }
 
 
+export const SORT_ENTRIES_REQUEST = 'SORT_ENTRIES_REQUEST';
 
-
-
-
-
-
-
-
-
-
-export const SORT_ENTRY_REQUEST = 'SORT_ENTRY_REQUEST';
 export function sortEntry(sortOrderRequest) {
-  console.log('step 2, recieve action from component: ', sortOrderRequest); // Working
-  //---- OR -----------------------------------
-//   let current = sortOrderRequest;
-//   if (current === 'A-Z') {
-//     current = 'Date';
-//   } else if (current === 'Date') {
-//     current = 'Favorites';
-//   } else {
-//     current = 'A-Z';
-//   }
-//   console.log('step 3, call dispatch: ', current); // Working
-//   return { // Not Working
-//     type: SORT_ENTRY_REQUEST,
-//     payload: current    
-//   };
-// }
-  //---- OR -----------------------------------
+  let current = sortOrderRequest;
+  if (current === 'A-Z') {
+    current = 'Date';
+  } else if (current === 'Date') {
+    current = 'Favorites';
+  } else {
+    current = 'A-Z';
+  }
   return dispatch => {
-    let current = sortOrderRequest;
-    if (current === 'A-Z') {
-      current = 'Date';
-    } else if (current === 'Date') {
-      current = 'Favorites';
-    } else {
-      current = 'A-Z';
-    }
-    console.log('step 3, call dispatch: ', current); // Not Working
-    dispatch(sortEntriesRequest(current));
+    dispatch(sortEntriesRequest(current));   
   };
 }
 
 function sortEntriesRequest(currentOrderRequest) {
-  console.log('step 4, recieve dispact call and send to reducer: ', currentOrderRequest); // Not Working
   return {
-    type: SORT_ENTRY_REQUEST,
+    type: SORT_ENTRIES_REQUEST,
     payload: currentOrderRequest
   };
 }
-
-  //--------------------------------------------
 
 
 

@@ -14,7 +14,7 @@ import TimeAgo from 'react-timeago';
 
 class EntryList extends Component {
   componentWillMount() {
-    this.props.getEntriesRequest(this.props.current.subcategory.id);
+    this.props.getEntriesRequest(this.props.current.subcategory.id, this.props.entries.sort);
   }
 
   renderRating(rating) {
@@ -80,15 +80,17 @@ class EntryList extends Component {
 
   renderEntries() {
     let entries = this.props.entries.data;
-    let sort = this.props.entries.sort;
-
-    if (sort === 'A-Z') {
-      entries = entries.sort(this.compareName);  
-    } else if (sort === 'Date') {
-      entries = entries.sort(this.compareDate);
-    } else {
-      entries = entries.sort(this.compareRating);
-    }
+    console.log('entries: ', this.props.entries);
+    // let sort = this.props.entries.sort;
+    // if (entries.length) {
+    //   if (sort === 'A-Z') {
+    //     entries = entries.sort(this.compareName);  
+    //   } else if (sort === 'Date') {
+    //     entries = entries.sort(this.compareDate);
+    //   } else {
+    //     entries = entries.sort(this.compareRating);
+    //   }
+    // }
 
     return entries.map((entry) => {
       return (
