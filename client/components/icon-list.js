@@ -10,7 +10,7 @@ export default class IconList extends Component {
         <li key={ icon } className='grid-links-block'>
           <div className="grid-link-container-modal">
             <div className={ `grid-link-icon-smaller grid-link-icon-${ icon }` }></div>
-            <span className='grid-link-name'>{ icon }</span>
+            <span className='grid-link-name-smaller'>{ icon }</span>
           </div>
         </li>
       );

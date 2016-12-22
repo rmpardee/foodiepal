@@ -441,6 +441,11 @@ footer {
   width: auto;
 }
 
+.grid-link-name-smaller {
+  display: block;
+  font-size: 13px;
+}
+
 .grid-link-icon-smaller {
   background-repeat: no-repeat;
   background-position: center center;
@@ -515,11 +520,11 @@ footer {
 }
 
 .grid-link-icon-berry {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 
 .grid-link-icon-berrie {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 
 .grid-link-icon-beverage {
@@ -742,10 +747,6 @@ footer {
   background-image: url('../img/img2/salad.svg');
 }
 
-.grid-link-icon-red {
-  background-image: url('../img/wine.svg');
-}
-
 .grid-link-icon-red-wine {
   background-image: url('../img/wine.svg');
 }
@@ -770,6 +771,14 @@ footer {
   background-image: url('../img/img2/seeds.svg');
 }
 
+.grid-link-icon-snack {
+  background-image: url('../img/img2/biscuit.svg');
+}
+
+.grid-link-icon-soda {
+  background-image: url('../img/img2/can.svg');
+}
+
 .grid-link-icon-soup {
   background-image: url('../img/img2/noodles.svg');
 }
@@ -778,12 +787,8 @@ footer {
   background-image: url('../img/img2/butter.svg');
 }
 
-.grid-link-icon-soda {
-  background-image: url('../img/img2/can.svg');
-}
-
-.grid-link-icon-snack {
-  background-image: url('../img/img2/biscuit.svg');
+.grid-link-icon-stout {
+  background-image: url('../img/img2/stout.ico');
 }
 
 .grid-link-icon-tea {
@@ -832,10 +837,6 @@ footer {
 
 .grid-link-icon-wheat-beer {
   background-image: url('../img/img2/beer-glass.svg');
-}
-
-.grid-link-icon-white {
-  background-image: url('../img/img2/white-wine.ico');
 }
 
 .grid-link-icon-white-wine {
@@ -1015,7 +1016,7 @@ footer {
   max-height: 480px;
   overflow: auto;
   width: 100%;
-  padding: 0 20px 20px;
+  padding: 0 15px 15px;
 }
 
 .react-redux-modal .rrm-holder .rrm-shadow {

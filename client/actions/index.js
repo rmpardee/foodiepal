@@ -417,6 +417,9 @@ export const ADD_ENTRY_REQUEST = 'ADD_ENTRY_REQUEST';
 export const ADD_ENTRY_SUCCESS = 'ADD_ENTRY_SUCCESS';
 export const ADD_ENTRY_FAILURE = 'ADD_ENTRY_FAILURE';
 export function addEntryRequest(entry) {
+  if (!entry.notes) {
+    entry.notes = 'No notes yet';
+  }
   return dispatch => {
     dispatch(addEntry(entry));
     let token = localStorage.getItem('jwtToken');
@@ -594,6 +597,32 @@ function getEntriesSuccess(entries) {
     payload: entries
   };
 }
+
+
+export const SORT_ENTRIES_REQUEST = 'SORT_ENTRIES_REQUEST';
+
+export function sortEntry(sortOrderRequest) {
+  let current = sortOrderRequest;
+  if (current === 'A-Z') {
+    current = 'Date';
+  } else if (current === 'Date') {
+    current = 'Favorites';
+  } else {
+    current = 'A-Z';
+  }
+  return dispatch => {
+    dispatch(sortEntriesRequest(current));   
+  };
+}
+
+function sortEntriesRequest(currentOrderRequest) {
+  return {
+    type: SORT_ENTRIES_REQUEST,
+    payload: currentOrderRequest
+  };
+}
+
+
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';

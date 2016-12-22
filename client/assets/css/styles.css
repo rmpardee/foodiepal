@@ -680,6 +680,10 @@ footer {
   transition: all 0.3s ease-out;
   width: auto;
 }
+.grid-link-name-smaller {
+  display: block;
+  font-size: 13px;
+}
 .grid-link-icon-smaller {
   background-repeat: no-repeat;
   background-position: center center;
@@ -698,7 +702,6 @@ footer {
 .grid-links-block:hover .grid-link-icon {
   /*filter: grayscale(0);*/
 }
-/*This is for all new categories.  For now, there is a generic groceries.  Could be the Gourmand "G"?*/ 
 .grid-link-icon-default {
   background-image: url('../img/logo-G.ico');
 }
@@ -735,15 +738,15 @@ footer {
 .grid-link-icon-oil {
   background-image: url('../img/olive-oil.svg');
 }
-
+/*New Icons*/
 .grid-link-icon-ale {
   background-image: url('../img/img2/ale.svg');
 }
 .grid-link-icon-berry {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 .grid-link-icon-berrie {
-  background-image: url('../img/img2/blueberries.svg');
+  background-image: url('../img/img2/berry.svg');
 }
 .grid-link-icon-beverage {
   background-image: url('../img/img2/beverage.svg');
@@ -910,9 +913,6 @@ footer {
 .grid-link-icon-produce {
   background-image: url('../img/img2/salad.svg');
 }
-.grid-link-icon-red {
-  background-image: url('../img/wine.svg');
-}
 .grid-link-icon-red-wine {
   background-image: url('../img/wine.svg');
 }
@@ -931,17 +931,20 @@ footer {
 .grid-link-icon-seed {
   background-image: url('../img/img2/seeds.svg');
 }
+.grid-link-icon-snack {
+  background-image: url('../img/img2/biscuit.svg');
+}
+.grid-link-icon-soda {
+  background-image: url('../img/img2/can.svg');
+}
 .grid-link-icon-soup {
   background-image: url('../img/img2/noodles.svg');
 }
 .grid-link-icon-spread {
   background-image: url('../img/img2/butter.svg');
 }
-.grid-link-icon-soda {
-  background-image: url('../img/img2/can.svg');
-}
-.grid-link-icon-snack {
-  background-image: url('../img/img2/biscuit.svg');
+.grid-link-icon-stout {
+  background-image: url('../img/img2/stout.ico');
 }
 .grid-link-icon-tea {
   background-image: url('../img/img2/tea.svg');
@@ -978,9 +981,6 @@ footer {
 }
 .grid-link-icon-wheat-beer {
   background-image: url('../img/img2/beer-glass.svg');
-}
-.grid-link-icon-white {
-  background-image: url('../img/img2/white-wine.ico');
 }
 .grid-link-icon-white-wine {
   background-image: url('../img/img2/white-wine.ico');
@@ -1067,8 +1067,6 @@ footer {
 .react-redux-modal button:focus {
   outline: 0;
 }
-
-
 .react-redux-modal .rrm-scrolling {
   width: 100%;
   height: 100%;
@@ -1077,8 +1075,6 @@ footer {
   left: 0;
   /*overflow: scroll;*/
 }
-
-
 .react-redux-modal .rrm-holder {
   width: 100%;
   height: 100%;
@@ -1154,7 +1150,7 @@ footer {
   max-height: 480px;
   overflow: auto;
   width: 100%;
-  padding: 0 20px 20px;
+  padding: 0 15px 15px;
 }
 .react-redux-modal .rrm-holder .rrm-shadow {
   width: 100%;
@@ -1207,7 +1203,6 @@ textarea {
     @neat-shift 3;
   }
 }*/
-
 .modal-form-container {
   clear: both;
 
@@ -1257,17 +1252,22 @@ button[disabled=disabled], button:disabled {
   background-color: #86BBD8;
   color: #fff;
 }
-
+.btn-primary:disabled {
+  background-color: rgb(230, 230, 230);
+}
+.btn-primary:not(:disabled):hover {
+  background-color: rgb(102, 165, 199);
+}
 .btn-edit {
   float: right;
   background-color: transparent;
   color: #86BBD8;
   border: 0px;
   position: relative;
-  top: 5px;
-  text-align: right
+  top: 0px;
+  text-align: right;
   height: 32px;
-  margin-top: 15px
+  margin-top: 15px;
   margin: 0px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -1277,7 +1277,7 @@ button[disabled=disabled], button:disabled {
   color: #86BBD8;
   height: 35px;
   width: 150px;
-  padding: -5px
+  padding: -5px;
   margin-bottom: 5px;
 }
 .btn-danger {
@@ -1285,22 +1285,15 @@ button[disabled=disabled], button:disabled {
   color: #FF5733;
   height: 35px;
   width: 150px;
-  padding: -5px
+  padding: -5px;
   margin-bottom: 5px;
 }
 .btn-dangerdanger {
-    background-color: transparent;
+  background-color: transparent;
   color: #FF5733;
   height: 35px;
-  padding: -5px
+  padding: -5px;
   margin-bottom: 5px;
-}
-
-.btn-primary:disabled {
-  background-color: rgb(230, 230, 230);
-}
-.btn-primary:not(:disabled):hover {
-  background-color: rgb(102, 165, 199);
 }
 .add-new-block {
   background: rgb(230, 230, 230);
