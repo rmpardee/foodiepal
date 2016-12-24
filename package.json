@@ -49,7 +49,6 @@
     "react-router-redux": "^4.0.5",
     "react-timeago": "^3.1.1",
     "redux": "^3.5.2",
-    "redux-auth": "0.0.2",
     "redux-form": "^5.3.1",
     "redux-thunk": "^2.1.0",
     "webpack": "^1.13.1"
