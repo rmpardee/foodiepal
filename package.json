@@ -41,7 +41,7 @@
     "react": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-rater": "^0.3.2",
+    "react-rater": "0.3.3",
     "react-redux": "^4.4.5",
     "react-redux-modal": "^0.4.3",
     "react-redux-toastr": "^3.8.5",
