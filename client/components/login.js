@@ -6,6 +6,7 @@ import { modal } from 'react-redux-modal';
 export default class Login extends Component {
   componentDidMount() {
     localStorage.removeItem('gourmandState');
+    this._loginEmail.focus();
   }
 
   componentWillUnmount() {
@@ -39,7 +40,7 @@ export default class Login extends Component {
             <form onSubmit={ handleSubmit(this.props.loginUser) } noValidate>
               <div className={ `form-group ${ emailInvalid ? 'has-error' : ''}` }>
                 <label className="control-label" htmlFor="email">Email</label>
-                <input type="email" id="email" autoFocus tabIndex="1" placeholder="Enter email" className="form-control" {...email} />
+                <input type="email" id="email" autoFocus tabIndex="1" placeholder="Enter email" className="form-control" ref={(i) => this._loginEmail = i } {...email} />
                 <div className={ `help-block ${ emailInvalid ? 'active' : ''}` }>
                   { emailInvalid ? email.error : ''}
                 </div>
@@ -64,4 +65,4 @@ export default class Login extends Component {
 
 Login.contextTypes = {
   router: PropTypes.object
-}
+};

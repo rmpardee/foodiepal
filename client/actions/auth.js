@@ -6,15 +6,31 @@ import {
   removeCurrentSubcategory
 } from './index.js';
 import { push } from 'react-router-redux';
+import { change, reset } from 'redux-form';
+import { toastr, actions as toastrActions } from 'react-redux-toastr';
 
-// Deployed version:
 const API_USER = `/api/user/`;
-// Local version:
-// const API_USER = `http://localhost:3000/api/user/`;
 const API_ADD_USER = `${API_USER}signup`;
 const API_LOGIN_USER = `${API_USER}login`;
 const API_FORGOTPW_USER = `${API_USER}forgotPassword`;
 const API_RESETPW_USER = `${API_USER}resetPassword`;
+
+
+// For Error
+export const toastrOptions = {
+  icon: 'error',
+  timeOut: 0,
+  showCloseButton: true,
+  removeOnHover: false
+};
+
+// Logout (and other things?)
+export const toastrOptionsDismiss = {
+  icon: 'success',
+  timeOut: 2000,
+  showCloseButton: true,
+  removeOnHover: false
+};
 
 
 // SIGN-UP
@@ -33,17 +49,25 @@ export function addUserRequest(user, dispatch) {
     .then(response => {
       if (response.status !== 201) {
         dispatch(addUserFailure(response.data));
+        dispatch(toastrActions.clean());
+        toastr.error('User Already Exists', 'This user already exists.', toastrOptions);
+        dispatch(reset('SignUp'));
         reject(response.data);
       } else {
         localStorage.setItem('jwtToken', response.data.token);
         dispatch(setCurrentUser(response.data.user));
         dispatch(addUserSuccess(response.data));
         dispatch(push('/u'));
+        dispatch(toastrActions.clean());
+        toastr.success('Sign Up Successful', 'Welcome to Gourmand!', toastrOptionsDismiss);
         resolve();
       }
     })
     .catch(response => {
-      console.error('user POST error:', response);
+      // console.error('user POST error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error trying to register you. Please try again.', toastrOptions);
+      dispatch(reset('SignUp'));
       reject();
     });
   });
@@ -86,18 +110,26 @@ export function loginRequest(user, dispatch) {
     })
     .then(response => {
       if (response.status !== 200) {
+        localStorage.removeItem('jwtToken');
         dispatch(loginFailure(response.data));
+        dispatch(toastrActions.clean());
+        toastr.error('Invalid Login', 'Your email/password was invalid. Please try again.', toastrOptions);
+        dispatch(change('Login', 'password', ''));
         reject(response.data);
       } else {
         localStorage.setItem('jwtToken', response.data.token);
         dispatch(setCurrentUser(response.data.user));
         dispatch(loginSuccess(response.data));
+        dispatch(toastrActions.clean());
         dispatch(push('/u'));
         resolve();
       }
     })
     .catch(response => {
-      console.error('login POST error: ', response);
+      // console.error('login POST error: ', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Invalid Login', 'Your email/password was invalid. Please try again.', toastrOptions);
+      dispatch(change('Login', 'password', ''));
       reject();
     });
   });
@@ -139,6 +171,7 @@ export function logoutRequest() {
     dispatch(logoutSuccess());
     dispatch(push('/login'));
     localStorage.removeItem('gourmandState');
+    toastr.success('Logout Successful', 'You\'ve been logged out.', toastrOptionsDismiss);
   };
 }
 
@@ -169,12 +202,18 @@ export function forgotPasswordRequest(user) {
     })
     .then(response => {
       if (response.status !== 201) {
+        dispatch(toastrActions.clean());
+        toastr.error('Error', 'Please make sure your information is correct and try again.', toastrOptions);
         dispatch(forgotPasswordFailure(response.data));
       } else {
         dispatch(forgotPasswordSuccess(response.data));
       }
     })
-    .catch(response => console.error('forgot password POST error:', response));
+    .catch(response => {
+      // console.error('forgot password POST error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Error', 'There was an error in your request. Please try again.', toastrOptions);
+    });
   };
 }
 
@@ -212,6 +251,19 @@ export function setUserID(userID) {
   resetpwUserID = userID;
 }
 
+export function resetPasswordRedirect(userID) {
+  return dispatch => {
+    dispatch(logout());
+    localStorage.removeItem('jwtToken');
+    dispatch(removeCurrentCategory());
+    dispatch(removeCurrentSubcategory());
+    dispatch(logoutSuccess());
+    dispatch(push(`/resetPassword?${userID}`));
+    localStorage.removeItem('gourmandState');
+  };
+}
+
+
 export function resetPasswordRequest(user, dispatch) {
   // add the userID we got from the forgot pw email URL to the user we send in our POST
   user.userID = resetpwUserID;
@@ -223,16 +275,22 @@ export function resetPasswordRequest(user, dispatch) {
     })
     .then(response => {
       if (response.status !== 201) {
+        dispatch(toastrActions.clean());
+        toastr.error('Reset Password Error', 'There was an error trying to reset your password. Please ensure your information is correct and try again.', toastrOptions);
         dispatch(resetPasswordFailure(response.data));
         reject(response.data);
       } else {
         dispatch(resetPasswordSuccess(response.data));
         dispatch(push('/u'));
+        dispatch(toastrActions.clean());
+        toastr.success('Reset Password Success', 'Password was reset successfully.', toastrOptionsDismiss);
         resolve();
       }
     })
     .catch(response => {
-      console.error('reset password POST error:', response);
+      // console.error('reset password POST error:', response);
+      dispatch(toastrActions.clean());
+      toastr.error('Reset Password Error', 'There was an error in your request. Please try again.', toastrOptions);
       reject();
     });
   });

@@ -1,19 +1,8 @@
-// DEPLOYED version:
 module.exports = {
-  jwtSecret: process.env.JWT_SECRET,
+  jwtSecret: process.env.JWT_SECRET || require('./config.js').expJwt.scrt,
   mlab: {
-    dbuser: process.env.MLAB_DBUSER,
-    dbpassword: process.env.MLAB_DBPASSWORD
+    dbuser: process.env.MLAB_DBUSER || require('./config.js').mlab.dbuser,
+    dbpassword: process.env.MLAB_DBPASSWORD || require('./config.js').mlab.dbpassword
   },
-  postmark: process.env.POSTMARK
+  postmark: process.env.POSTMARK || require('./config.js').postmark
 };
-
-// LOCAL version:
-// module.exports = {
-//   jwtSecret: require('./config.js').expJwt.scrt,
-//   mlab: {
-//     dbuser: require('./config.js').mlab.dbuser,
-//     dbpassword: require('./config.js').mlab.dbpassword
-//   },
-//   postmark: require('./config.js').postmark
-// };

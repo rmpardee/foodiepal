@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import { modal } from 'react-redux-modal';
+import EditEntry from './edit-entry';
+
 import {
   getCurrentSubcategory,
   getEntriesRequest
@@ -10,7 +14,7 @@ import TimeAgo from 'react-timeago';
 
 class EntryList extends Component {
   componentWillMount() {
-    this.props.getEntriesRequest(this.props.current.subcategory.id);
+    this.props.getEntriesRequest(this.props.current.subcategory.id, this.props.entries.sort);
   }
 
   renderRating(rating) {
@@ -39,8 +43,51 @@ class EntryList extends Component {
     return newTimestamp;
   }
 
+  openEntryEdit(e, entry) {
+    e.preventDefault();
+
+    modal.add(EditEntry, {
+      modalProps: entry,
+      title: 'Edit Entry',
+      closeOnOutsideClick: true,
+      hideCloseButton: false
+    });
+  }
+
+  compareName(a,b) {
+    if (a.type < b.type)
+      return -1;
+    if (a.type > b.type)
+      return 1;
+    return 0;
+  }
+
+  compareDate(a,b) {
+    if (a.createdAt < b.createdAt)
+      return -1;
+    if (a.createdAt > b.createdAt)
+      return 1;
+    return 0;
+  }
+
+  compareRating(a,b) { // Note: sorting in reverse order to put highest rating on top
+    if (a.rating > b.rating)
+      return -1;
+    if (a.rating < b.rating)
+      return 1;
+    return 0;
+  }
+
   renderEntries() {
-    const entries = this.props.entries.data;
+    let entries = this.props.entries.data;
+    let sort = this.props.entries.sort;
+    if (sort === 'A-Z') {
+      entries = entries.sort(this.compareName);  
+    } else if (sort === 'Date') {
+      entries = entries.sort(this.compareDate);
+    } else {
+      entries = entries.sort(this.compareRating);
+    }
 
     return entries.map((entry) => {
       return (
@@ -57,11 +104,12 @@ class EntryList extends Component {
                 { this.renderRating(entry.rating) }
               </div>
               <p className='entry-listing-notes'>{ entry.notes }</p>
+              <button onClick={ (e) => this.openEntryEdit(e, entry) } className='btn btn-warn'>Change Entry</button>
             </div>
           </div>
         </li>
       );
-    })
+    });
   }
 
   renderAddNewBlock() {
